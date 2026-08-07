@@ -1,0 +1,10 @@
+CREATE TABLE Customers(
+
+CustomerID INT PRIMARY KEY,
+
+CustomerName VARCHAR(100) NOT NULL,
+
+City VARCHAR(50),
+
+Phone VARCHAR(15) UNIQUE
+);

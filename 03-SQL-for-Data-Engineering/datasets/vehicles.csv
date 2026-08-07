@@ -1,0 +1,11 @@
+VehicleID,Brand,Model,FuelType,Price,ManufactureYear
+1,Tata,Nexon EV,Electric,1700000,2025
+2,Hyundai,Creta,Petrol,1850000,2024
+3,Mahindra,XUV700,Diesel,2200000,2025
+4,Tesla,Model Y,Electric,6200000,2026
+5,Toyota,Fortuner,Diesel,4200000,2024
+6,Kia,Seltos,Petrol,1750000,2025
+7,MG,ZS EV,Electric,2500000,2025
+8,Honda,City,Petrol,1600000,2024
+9,BMW,X1,Petrol,5200000,2026
+10,Audi,Q3,Diesel,5600000,2025
