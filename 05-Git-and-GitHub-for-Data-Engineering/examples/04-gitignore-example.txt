@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+logs/
+
+# Local configuration
+*.local
+config.local.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Generated files
+output/
+build/
+dist/
+
+# Large local datasets
+data/raw/
