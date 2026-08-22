@@ -1,0 +1,314 @@
+# Data Warehousing - Installation and Environment Setup
+
+## 1. Introduction
+
+A data warehouse can be implemented using local databases, cloud warehouses, or distributed platforms.
+
+For learning, a local PostgreSQL environment is a useful starting point.
+
+## 2. Recommended Learning Environment
+
+```text
+Windows / Linux
+ |
+ v
+PostgreSQL
+ |
+ v
+Python
+ |
+ v
+SQL
+ |
+ v
+Git
+```
+
+## 3. PostgreSQL
+
+Official website:
+
+https://www.postgresql.org/
+
+PostgreSQL can be used to practice:
+
+- SQL
+- Data modeling
+- Tables
+- Views
+- Indexes
+- Transactions
+
+## 4. PostgreSQL Tools
+
+Useful tools include:
+
+```text
+psql
+pgAdmin
+```
+
+## 5. Verify PostgreSQL
+
+Open terminal:
+
+```bash
+psql --version
+```
+
+## 6. Connect to PostgreSQL
+
+Example:
+
+```bash
+psql -U postgres
+```
+
+## 7. Create Database
+
+```sql
+CREATE DATABASE datawarehouse;
+```
+
+## 8. Connect
+
+```sql
+\c datawarehouse
+```
+
+## 9. Create Schema
+
+```sql
+CREATE SCHEMA warehouse;
+```
+
+## 10. Create Dimension
+
+```sql
+CREATE TABLE warehouse.dim_date (
+    date_key INT PRIMARY KEY,
+    full_date DATE NOT NULL,
+    year INT,
+    month INT,
+    day INT
+);
+```
+
+## 11. Create Vehicle Dimension
+
+```sql
+CREATE TABLE warehouse.dim_vehicle (
+    vehicle_key SERIAL PRIMARY KEY,
+    vehicle_id VARCHAR(50),
+    model VARCHAR(100),
+    brand VARCHAR(100),
+    fuel_type VARCHAR(50)
+);
+```
+
+## 12. Create Fact Table
+
+```sql
+CREATE TABLE warehouse.fact_sales (
+    sale_key SERIAL PRIMARY KEY,
+    date_key INT,
+    vehicle_key INT,
+    quantity INT,
+    amount DECIMAL(14,2)
+);
+```
+
+## 13. Python
+
+Check Python:
+
+```bash
+python --version
+```
+
+Python can be used for:
+
+- Extraction
+- Transformation
+- Validation
+- Automation
+
+## 14. Install PostgreSQL Driver
+
+```bash
+pip install psycopg2-binary
+```
+
+## 15. Pandas
+
+```bash
+pip install pandas
+```
+
+Useful for data processing.
+
+## 16. SQLAlchemy
+
+```bash
+pip install sqlalchemy
+```
+
+Useful for database interaction.
+
+## 17. Project Environment
+
+Create:
+
+```text
+data-warehouse-project/
+ |
+ +-- data/
+ +-- sql/
+ +-- src/
+ +-- tests/
+ +-- docs/
+ +-- README.md
+```
+
+## 18. Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+Windows activation:
+
+```bash
+.venv\Scripts\activate
+```
+
+## 19. Requirements
+
+Create:
+
+```text
+requirements.txt
+```
+
+Example:
+
+```text
+pandas
+sqlalchemy
+psycopg2-binary
+```
+
+Install:
+
+```bash
+pip install -r requirements.txt
+```
+
+## 20. Docker Option
+
+A warehouse environment can also use Docker.
+
+Example PostgreSQL container:
+
+```bash
+docker run --name warehouse-postgres ^
+-e POSTGRES_PASSWORD=postgres ^
+-p 5432:5432 ^
+-d postgres
+```
+
+## 21. Verify Container
+
+```bash
+docker ps
+```
+
+## 22. Cloud Option
+
+Cloud warehouses can be used later.
+
+Examples:
+
+```text
+Amazon Redshift
+Google BigQuery
+Azure Synapse
+Snowflake
+```
+
+## 23. Environment Variables
+
+Do not hardcode passwords.
+
+Example:
+
+```text
+DB_HOST
+DB_PORT
+DB_NAME
+DB_USER
+DB_PASSWORD
+```
+
+## 24. Example Connection
+
+```python
+import os
+from sqlalchemy import create_engine
+
+engine = create_engine(
+    os.getenv("DATABASE_URL")
+)
+```
+
+## 25. Git
+
+Initialize project:
+
+```bash
+git init
+```
+
+## 26. First Commit
+
+```bash
+git add .
+git commit -m "Initialize data warehouse project"
+```
+
+## 27. Verification Checklist
+
+```text
+[ ] PostgreSQL installed
+[ ] pgAdmin available
+[ ] psql works
+[ ] Database created
+[ ] Schema created
+[ ] Python installed
+[ ] Virtual environment created
+[ ] Dependencies installed
+```
+
+## 28. Summary
+
+For learning, begin locally:
+
+```text
+PostgreSQL
++
+Python
++
+SQL
++
+Git
+```
+
+Then progress to:
+
+```text
+Docker
+ |
+Cloud
+ |
+Distributed Data Platforms
+```

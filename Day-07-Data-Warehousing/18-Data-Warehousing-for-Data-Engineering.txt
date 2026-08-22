@@ -1,0 +1,987 @@
+# Data Warehousing for Data Engineering
+
+## 1. Introduction
+
+Data warehousing is a core part of data engineering because it converts data from operational and external systems into reliable analytical datasets.
+
+A data engineer designs pipelines that move data from sources into analytical storage.
+
+```text
+Sources
+ |
+ v
+Ingestion
+ |
+ v
+Raw / Staging
+ |
+ v
+Transformation
+ |
+ v
+Data Warehouse
+ |
+ v
+Data Marts
+ |
+ v
+BI / Analytics
+```
+
+## 2. Role of a Data Engineer
+
+A data engineer commonly works on:
+
+- Data ingestion
+- ETL / ELT
+- Data modeling
+- Data quality
+- Warehouse design
+- Pipeline orchestration
+- Performance
+- Security
+- Monitoring
+
+## 3. Operational vs Analytical Systems
+
+Operational systems support transactions.
+
+```text
+INSERT
+UPDATE
+DELETE
+```
+
+Analytical systems support:
+
+```text
+SELECT
+GROUP BY
+JOIN
+AGGREGATION
+```
+
+## 4. OLTP
+
+OLTP means Online Transaction Processing.
+
+Examples:
+
+- Banking transactions
+- Orders
+- Customer registration
+- Vehicle service booking
+
+OLTP systems are optimized for transactions.
+
+## 5. OLAP
+
+OLAP means Online Analytical Processing.
+
+Examples:
+
+- Revenue analysis
+- Customer analysis
+- Monthly sales
+- Vehicle performance analytics
+
+OLAP systems are optimized for analytical queries.
+
+## 6. Data Engineering Pipeline
+
+Typical workflow:
+
+```text
+Source DB
+ |
+ v
+Extract
+ |
+ v
+Staging
+ |
+ v
+Transform
+ |
+ v
+Warehouse
+ |
+ v
+Data Mart
+ |
+ v
+Dashboard
+```
+
+## 7. ETL
+
+ETL means:
+
+```text
+Extract
+Transform
+Load
+```
+
+Data is transformed before being loaded into the target warehouse.
+
+## 8. ELT
+
+ELT means:
+
+```text
+Extract
+Load
+Transform
+```
+
+Modern cloud warehouses often support ELT because transformation can occur using warehouse compute.
+
+## 9. Source Systems
+
+Sources can include:
+
+- PostgreSQL
+- MySQL
+- MongoDB
+- APIs
+- CSV
+- JSON
+- Kafka
+- IoT devices
+
+## 10. Staging Layer
+
+The staging layer receives extracted data.
+
+```text
+Source
+ |
+ v
+Staging
+ |
+ v
+Warehouse
+```
+
+Staging can help isolate source extraction from transformations.
+
+## 11. Raw Layer
+
+A raw layer preserves source-like data.
+
+```text
+raw/
+ |
+ +-- customers
+ +-- orders
+ +-- vehicles
+```
+
+Raw data can help with replay and troubleshooting.
+
+## 12. Cleaned Layer
+
+The cleaned layer standardizes data.
+
+Operations:
+
+- Type conversion
+- Deduplication
+- Null handling
+- Validation
+- Standard naming
+
+## 13. Curated Layer
+
+Curated data is business-ready.
+
+Example:
+
+```text
+Raw Sales
+ |
+ v
+Clean Sales
+ |
+ v
+Monthly Revenue
+```
+
+## 14. Dimensional Modeling
+
+A data engineer often models analytics using:
+
+- Fact tables
+- Dimension tables
+
+## 15. Fact Table
+
+A fact table stores measurable business events.
+
+Example:
+
+```text
+fact_sales
+
+sale_key
+customer_key
+vehicle_key
+date_key
+dealer_key
+quantity
+amount
+```
+
+## 16. Dimension Table
+
+A dimension stores descriptive information.
+
+Example:
+
+```text
+dim_vehicle
+
+vehicle_key
+model
+brand
+fuel_type
+year
+```
+
+## 17. Star Schema
+
+```text
+           dim_customer
+                |
+dim_vehicle -- fact_sales -- dim_date
+                |
+           dim_dealer
+```
+
+The fact table is at the center.
+
+## 18. Grain
+
+Grain defines what one fact row represents.
+
+Example:
+
+```text
+One row = One vehicle sale
+```
+
+Grain must be decided before adding measures.
+
+## 19. Surrogate Keys
+
+Warehouse dimensions often use surrogate keys.
+
+Example:
+
+```text
+customer_key = 1001
+```
+
+The source system may use:
+
+```text
+customer_id = C001
+```
+
+## 20. Slowly Changing Dimensions
+
+Dimensions can change over time.
+
+Example:
+
+```text
+Customer City:
+Rajkot
+   |
+   v
+Ahmedabad
+```
+
+The warehouse must decide how history is handled.
+
+## 21. SCD Type 1
+
+Type 1 overwrites old values.
+
+```text
+Rajkot
+   |
+   v
+Ahmedabad
+```
+
+History is not retained.
+
+## 22. SCD Type 2
+
+Type 2 preserves history.
+
+```text
+Customer
+ |
+ +-- Rajkot     2025-2026
+ |
+ +-- Ahmedabad  2026-
+```
+
+Common columns:
+
+```text
+effective_from
+effective_to
+is_current
+```
+
+## 23. Data Quality
+
+A warehouse should validate:
+
+- Completeness
+- Accuracy
+- Consistency
+- Uniqueness
+- Timeliness
+- Validity
+
+## 24. Data Quality Example
+
+Sales amount should not be negative unless the business explicitly allows refunds or adjustments.
+
+```sql
+SELECT *
+FROM sales
+WHERE amount < 0;
+```
+
+## 25. Deduplication
+
+Duplicate records can distort metrics.
+
+Example:
+
+```text
+S001
+S001
+```
+
+Use business keys or event IDs to identify duplicates.
+
+## 26. Null Handling
+
+Nulls should have defined business meaning.
+
+Possible meanings:
+
+- Unknown
+- Not applicable
+- Missing
+- Not collected
+
+Do not blindly replace every null with zero.
+
+## 27. Pipeline Orchestration
+
+A warehouse pipeline may run:
+
+```text
+Extract
+ |
+ v
+Validate
+ |
+ v
+Transform
+ |
+ v
+Load
+ |
+ v
+Quality Check
+ |
+ v
+Publish
+```
+
+Airflow is one technology used to orchestrate such workflows.
+
+## 28. Incremental Processing
+
+Instead of processing everything:
+
+```text
+10 TB
+```
+
+process only:
+
+```text
+Today's 50 GB
+```
+
+when the source and business requirements allow it.
+
+## 29. CDC
+
+Change Data Capture identifies source changes.
+
+```text
+OLTP
+ |
+ v
+CDC
+ |
+ v
+Streaming / Batch
+ |
+ v
+Warehouse
+```
+
+CDC is useful for near-real-time warehouse loading.
+
+## 30. Batch Processing
+
+Batch pipelines process data periodically.
+
+Example:
+
+```text
+02:00
+ |
+ v
+Daily ETL
+ |
+ v
+Warehouse
+```
+
+## 31. Real-Time Processing
+
+Streaming pipelines process events continuously.
+
+```text
+Event
+ |
+ v
+Kafka
+ |
+ v
+Stream Processor
+ |
+ v
+Warehouse / Lake
+```
+
+## 32. Data Warehouse and Data Lake
+
+Warehouse:
+
+- Structured
+- SQL-focused
+- Curated
+- BI-friendly
+
+Data lake:
+
+- Flexible
+- Large-scale
+- Multiple data formats
+- Raw + curated data
+
+## 33. Lakehouse
+
+Lakehouse combines lake storage with warehouse-style management.
+
+```text
+Object Storage
+ |
+ v
+Lakehouse
+ |
+ +-- SQL
+ +-- BI
+ +-- ML
+```
+
+## 34. Data Marts
+
+A data mart focuses on a business area.
+
+Examples:
+
+```text
+Enterprise Warehouse
+ |
+ +-- Sales Mart
+ +-- Finance Mart
+ +-- Service Mart
+ +-- Marketing Mart
+```
+
+## 35. Automobile Warehouse
+
+An automotive company may have:
+
+```text
+fact_sales
+fact_service
+fact_telemetry
+```
+
+Dimensions:
+
+```text
+dim_vehicle
+dim_customer
+dim_dealer
+dim_date
+dim_location
+```
+
+## 36. Telemetry Warehouse
+
+Telemetry can contain:
+
+```text
+vehicle_id
+event_time
+speed
+battery_level
+temperature
+location
+```
+
+A warehouse can aggregate this into business metrics.
+
+## 37. Service Analytics
+
+Example:
+
+```text
+Vehicle
+ |
+ v
+Service Visit
+ |
+ v
+Repair
+ |
+ v
+Cost
+ |
+ v
+Service Analytics
+```
+
+Metrics:
+
+- Service frequency
+- Average repair cost
+- Failure rate
+- Warranty claims
+
+## 38. Sales Analytics
+
+Example:
+
+```text
+Sales
+ |
+ v
+Warehouse
+ |
+ +-- Revenue
+ +-- Units
+ +-- Average Price
+ +-- Region
+ +-- Model
+```
+
+## 39. Warehouse Automation
+
+Automation can include:
+
+- Scheduled pipelines
+- CI/CD
+- Data quality tests
+- Schema checks
+- Monitoring
+- Alerts
+
+## 40. Metadata
+
+Metadata describes data.
+
+Examples:
+
+- Table name
+- Column name
+- Type
+- Owner
+- Description
+- Source
+- Refresh frequency
+
+## 41. Data Lineage
+
+Lineage shows where data came from.
+
+```text
+CRM
+ |
+ v
+Raw Customers
+ |
+ v
+Staging Customers
+ |
+ v
+dim_customer
+ |
+ v
+Sales Dashboard
+```
+
+## 42. Data Catalog
+
+A catalog helps users discover datasets.
+
+It may contain:
+
+- Definitions
+- Owners
+- Tags
+- Lineage
+- Quality information
+
+## 43. Governance
+
+Governance defines:
+
+- Ownership
+- Access
+- Quality
+- Retention
+- Classification
+- Standards
+
+## 44. Security
+
+Protect:
+
+- Credentials
+- Sensitive data
+- Backups
+- Connections
+- Access permissions
+
+## 45. Monitoring
+
+Monitor:
+
+```text
+Pipeline Status
+Data Freshness
+Row Counts
+Query Performance
+Storage
+Cost
+```
+
+## 46. SLA
+
+A Service Level Agreement defines expected service behavior.
+
+Example:
+
+```text
+Sales warehouse refresh:
+Before 06:00 every day
+```
+
+## 47. Freshness
+
+Freshness measures how current the data is.
+
+Example:
+
+```text
+Latest source event:
+10:00
+
+Warehouse:
+10:04
+
+Freshness delay:
+4 minutes
+```
+
+## 48. Cost Management
+
+Costs can come from:
+
+- Storage
+- Compute
+- Queries
+- Data transfer
+- Streaming
+
+Optimize based on workload.
+
+## 49. Testing
+
+Warehouse tests should cover:
+
+- Schema
+- Uniqueness
+- Nulls
+- Relationships
+- Business rules
+- Freshness
+
+## 50. CI/CD
+
+Warehouse code should be version controlled.
+
+```text
+Git
+ |
+ v
+Test
+ |
+ v
+Build
+ |
+ v
+Deploy
+```
+
+Tools may include:
+
+- GitHub Actions
+- GitLab CI
+- Jenkins
+
+## 51. Documentation
+
+Document:
+
+- Tables
+- Columns
+- Business definitions
+- Pipelines
+- Dependencies
+- Ownership
+
+## 52. Data Engineering Project Structure
+
+```text
+data-platform/
+|
++-- ingestion/
++-- staging/
++-- transformations/
++-- warehouse/
++-- tests/
++-- orchestration/
++-- monitoring/
++-- docs/
+```
+
+## 53. Beginner Project
+
+Build:
+
+```text
+CSV
+ |
+ v
+Python
+ |
+ v
+PostgreSQL
+ |
+ v
+SQL Analytics
+```
+
+## 54. Intermediate Project
+
+Build:
+
+```text
+API
+ |
+ v
+Python ETL
+ |
+ v
+PostgreSQL
+ |
+ v
+Dimensional Model
+ |
+ v
+Dashboard
+```
+
+## 55. Advanced Project
+
+Build:
+
+```text
+Kafka
+ |
+ v
+Spark / Flink
+ |
+ v
+Data Lake
+ |
+ v
+Warehouse
+ |
+ v
+dbt
+ |
+ v
+BI
+```
+
+## 56. Automobile Project
+
+```text
+Vehicle Sensors
+ |
+ v
+Kafka
+ |
+ v
+Spark Streaming
+ |
+ v
+Data Lake
+ |
+ v
+Data Warehouse
+ |
+ v
+Power BI
+```
+
+Use cases:
+
+- Battery monitoring
+- Predictive maintenance
+- Vehicle health
+- Sales analytics
+
+## 57. Best Practices
+
+- Define grain
+- Use consistent naming
+- Build incremental pipelines
+- Test transformations
+- Monitor freshness
+- Secure sensitive data
+- Document models
+- Optimize expensive queries
+
+## 58. Common Mistakes
+
+Avoid:
+
+- No defined grain
+- Duplicate facts
+- Uncontrolled schema changes
+- Full refresh everywhere
+- No quality checks
+- No lineage
+- No monitoring
+- Poor naming
+
+## 59. Interview Questions
+
+### Beginner
+
+1. What is a data warehouse?
+2. OLTP vs OLAP?
+3. Fact vs dimension?
+4. What is a star schema?
+5. What is ETL?
+
+### Intermediate
+
+1. What is grain?
+2. Explain SCD Type 1 and Type 2.
+3. Explain incremental loading.
+4. Explain CDC.
+5. Explain data lineage.
+
+### Advanced
+
+1. Design a warehouse for an automotive company.
+2. How would you process 10 TB daily?
+3. How would you handle late-arriving data?
+4. How would you guarantee data quality?
+5. How would you optimize warehouse cost?
+
+## 60. Cheat Sheet
+
+```text
+Source
+ |
+ v
+Ingestion
+ |
+ v
+Raw
+ |
+ v
+Staging
+ |
+ v
+Transform
+ |
+ v
+Warehouse
+ |
+ +-- Facts
+ +-- Dimensions
+ |
+ v
+Data Mart
+ |
+ v
+BI
+```
+
+## 61. Summary
+
+Data warehousing is one of the most important areas of data engineering.
+
+A data engineer connects:
+
+```text
+Sources
++
+Pipelines
++
+Storage
++
+Models
++
+Quality
++
+Security
++
+Monitoring
++
+Analytics
+```

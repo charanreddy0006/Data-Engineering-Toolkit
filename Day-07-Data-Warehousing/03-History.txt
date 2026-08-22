@@ -1,0 +1,375 @@
+# Data Warehousing - History
+
+## 1. Introduction
+
+Data warehousing evolved as organizations moved from isolated operational databases toward integrated analytical systems.
+
+The evolution happened over several decades.
+
+## 2. Early Business Data Processing
+
+Early systems focused mainly on transaction processing.
+
+```text
+Applications
+ |
+ v
+Operational Files / Databases
+```
+
+The primary goal was to record business transactions.
+
+## 3. Growth of Operational Databases
+
+Relational database systems became widely used.
+
+Examples include:
+
+- Oracle
+- IBM Db2
+- Microsoft SQL Server
+- PostgreSQL
+- MySQL
+
+These systems improved structured data management.
+
+## 4. Reporting Challenges
+
+As organizations collected more data, reporting became difficult.
+
+Analysts often queried production systems directly.
+
+Problems included:
+
+- Slow reports
+- Resource contention
+- Repeated data extraction
+- Inconsistent calculations
+
+## 5. Decision Support Systems
+
+Organizations began building systems specifically for decision support.
+
+```text
+Operational Systems
+ |
+ v
+Decision Support
+ |
+ v
+Management
+```
+
+## 6. Data Warehouse Concept
+
+The data warehouse concept became associated strongly with enterprise analytical architecture.
+
+A warehouse integrates data from multiple operational systems.
+
+## 7. Bill Inmon
+
+Bill Inmon is widely known for his work on enterprise data warehouse architecture.
+
+His approach emphasizes an integrated enterprise warehouse.
+
+## 8. Ralph Kimball
+
+Ralph Kimball popularized dimensional modeling and business-focused data marts.
+
+Key concepts include:
+
+- Fact tables
+- Dimension tables
+- Star schemas
+- Conformed dimensions
+
+## 9. Dimensional Modeling
+
+A common model became:
+
+```text
+Dimensions
+    |
+    v
+Fact Table
+    |
+    v
+Analytics
+```
+
+## 10. Enterprise Data Warehouses
+
+Large organizations built centralized warehouse platforms.
+
+```text
+Department Systems
+       |
+       v
+Enterprise Warehouse
+       |
+       v
+Reporting
+```
+
+## 11. Data Marts
+
+Departments often required specialized analytical datasets.
+
+```text
+Enterprise Warehouse
+ |
+ +-- Sales Mart
+ +-- Finance Mart
+ +-- Marketing Mart
+```
+
+## 12. ETL Era
+
+ETL became a major part of warehouse architecture.
+
+```text
+Extract
+ |
+Transform
+ |
+Load
+```
+
+Tools were created to automate these workflows.
+
+## 13. Appliance Era
+
+Specialized analytical database appliances became popular.
+
+They optimized hardware and software for large analytical workloads.
+
+## 14. Parallel Processing
+
+Massively Parallel Processing became important.
+
+```text
+Large Dataset
+ |
+ +-- Node 1
+ +-- Node 2
+ +-- Node 3
+ +-- Node 4
+```
+
+## 15. Columnar Storage
+
+Column-oriented storage became increasingly important for analytical systems.
+
+Instead of storing complete rows together:
+
+```text
+Column A
+Column B
+Column C
+```
+
+could be processed efficiently.
+
+## 16. Big Data Era
+
+Organizations began collecting huge volumes of:
+
+- Web logs
+- Social data
+- Sensor data
+- Machine data
+- Clickstreams
+
+Traditional systems alone were not always sufficient.
+
+## 17. Hadoop
+
+Hadoop introduced distributed storage and processing around technologies such as HDFS and MapReduce.
+
+```text
+Large Dataset
+ |
+ v
+Distributed Storage
+ |
+ v
+Distributed Processing
+```
+
+## 18. Data Lakes
+
+Data lakes emerged to store large amounts of raw data in flexible formats.
+
+```text
+Raw Data
+ |
+ v
+Data Lake
+```
+
+## 19. Cloud Warehouses
+
+Cloud computing changed warehouse architecture.
+
+Cloud platforms offered scalable compute and storage.
+
+Examples include:
+
+- Snowflake
+- Amazon Redshift
+- Google BigQuery
+- Azure Synapse
+
+## 20. Separation of Storage and Compute
+
+Modern cloud platforms often separate storage from compute.
+
+```text
+        Compute
+       /   |         /    |    Storage Storage Storage
+```
+
+This allows independent scaling in supported architectures.
+
+## 21. ELT Era
+
+Cloud warehouses made ELT increasingly popular.
+
+```text
+Extract
+ |
+Load
+ |
+Transform
+```
+
+Transformation can run inside the warehouse.
+
+## 22. Data Lakehouse
+
+Lakehouse architectures attempt to combine flexible lake storage with warehouse capabilities.
+
+```text
+Data Lake
+   +
+Warehouse Capabilities
+   =
+Lakehouse
+```
+
+## 23. Streaming Data
+
+Modern systems increasingly process events continuously.
+
+```text
+Events
+ |
+ v
+Kafka
+ |
+ v
+Stream Processing
+ |
+ v
+Analytics
+```
+
+## 24. Modern Architecture
+
+A modern data platform may contain:
+
+```text
+Sources
+ |
+ v
+Streaming / Batch
+ |
+ v
+Lake
+ |
+ v
+Warehouse / Lakehouse
+ |
+ v
+BI / ML
+```
+
+## 25. Automobile Evolution
+
+Earlier:
+
+```text
+Vehicle Sales
+ |
+ v
+Database
+ |
+ v
+Reports
+```
+
+Modern:
+
+```text
+Vehicle Sensors
+ |
+ v
+Kafka
+ |
+ v
+Stream Processing
+ |
+ v
+Data Lake
+ |
+ v
+Warehouse
+ |
+ v
+BI / ML
+```
+
+## 26. Timeline
+
+```text
+Operational Databases
+        |
+        v
+Decision Support
+        |
+        v
+Data Warehouses
+        |
+        v
+ETL Platforms
+        |
+        v
+MPP / Columnar Systems
+        |
+        v
+Big Data / Hadoop
+        |
+        v
+Cloud Warehouses
+        |
+        v
+Lakehouse / Real-Time Analytics
+```
+
+## 27. Summary
+
+Data warehousing evolved from centralized reporting systems into modern cloud and lakehouse architectures.
+
+The major trend is:
+
+```text
+More Data
++
+More Sources
++
+More Speed
++
+More Scale
+=
+Modern Data Platforms
+```

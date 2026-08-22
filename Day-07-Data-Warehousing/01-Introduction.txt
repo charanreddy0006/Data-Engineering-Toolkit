@@ -1,0 +1,336 @@
+# Data Warehousing - Introduction
+
+## 1. Introduction
+
+A data warehouse is a centralized analytical data platform used to collect, integrate, store, and analyze data from multiple sources.
+
+It is designed primarily for analytical workloads rather than day-to-day transaction processing.
+
+## 2. Why Data Warehousing Exists
+
+Organizations usually have many operational systems:
+
+- Customer applications
+- Sales systems
+- Finance systems
+- ERP systems
+- CRM systems
+- IoT systems
+- APIs
+- Files
+
+These systems store data in different structures.
+
+A warehouse brings useful information together.
+
+```text
+Operational Systems
+       |
+       v
+Data Integration
+       |
+       v
+Data Warehouse
+       |
+       v
+Analytics / BI
+```
+
+## 3. Main Characteristics
+
+A traditional data warehouse is generally:
+
+- Subject-oriented
+- Integrated
+- Historical
+- Designed for analysis
+
+## 4. Subject-Oriented
+
+Data is organized around important business subjects.
+
+Examples:
+
+```text
+Customers
+Products
+Sales
+Vehicles
+Services
+Finance
+```
+
+## 5. Integrated
+
+Data from different systems is standardized.
+
+Example:
+
+```text
+CRM:
+customer_id
+
+ERP:
+cust_no
+
+Warehouse:
+customer_key
+```
+
+## 6. Historical
+
+Warehouses commonly retain historical data so organizations can analyze trends over time.
+
+Example:
+
+```text
+Sales 2024
+Sales 2025
+Sales 2026
+```
+
+## 7. Analytical
+
+A warehouse supports questions such as:
+
+```text
+What was total revenue last year?
+Which vehicle model sold most?
+Which region has the highest service cost?
+```
+
+## 8. Data Warehouse Architecture
+
+```text
+Sources
+ |
+ v
+Ingestion
+ |
+ v
+Staging
+ |
+ v
+Transformation
+ |
+ v
+Warehouse
+ |
+ v
+Data Marts
+ |
+ v
+BI / Analytics
+```
+
+## 9. Sources
+
+Common sources:
+
+- PostgreSQL
+- MySQL
+- MongoDB
+- CSV
+- JSON
+- APIs
+- Kafka
+- IoT devices
+
+## 10. Staging
+
+Staging is an intermediate area used during ingestion and transformation.
+
+```text
+Source
+ |
+ v
+Staging
+ |
+ v
+Warehouse
+```
+
+## 11. Data Warehouse vs Database
+
+A database commonly supports operational applications.
+
+A warehouse supports analytical workloads.
+
+```text
+Application
+ |
+ v
+OLTP Database
+
+Analytics
+ |
+ v
+OLAP Warehouse
+```
+
+## 12. OLTP
+
+OLTP means Online Transaction Processing.
+
+Examples:
+
+- Order creation
+- Payment
+- Customer registration
+- Booking
+
+## 13. OLAP
+
+OLAP means Online Analytical Processing.
+
+Examples:
+
+- Revenue analysis
+- Trend analysis
+- Business dashboards
+- Historical reporting
+
+## 14. Typical Warehouse Components
+
+```text
+Data Sources
+ETL / ELT
+Staging
+Storage
+Fact Tables
+Dimension Tables
+Data Marts
+BI Tools
+```
+
+## 15. Fact Tables
+
+Fact tables contain measurable business events.
+
+Example:
+
+```text
+fact_sales
+sale_key
+customer_key
+vehicle_key
+date_key
+amount
+quantity
+```
+
+## 16. Dimension Tables
+
+Dimension tables contain descriptive information.
+
+Example:
+
+```text
+dim_vehicle
+vehicle_key
+model
+brand
+fuel_type
+year
+```
+
+## 17. Star Schema
+
+```text
+        dim_customer
+             |
+dim_vehicle--fact_sales--dim_date
+             |
+         dim_dealer
+```
+
+## 18. Data Warehouse Workflow
+
+```text
+Extract
+ |
+ v
+Validate
+ |
+ v
+Transform
+ |
+ v
+Load
+ |
+ v
+Test
+ |
+ v
+Publish
+```
+
+## 19. Automobile Example
+
+An automotive company may collect:
+
+```text
+Vehicle Sales
+Vehicle Sensors
+Service Records
+Dealer Information
+Customer Information
+```
+
+These can be integrated into a warehouse.
+
+```text
+Vehicle Data
+     |
+Sales Data ----+
+     |         |
+Service Data --+--> Warehouse --> BI
+     |
+Dealer Data ---+
+```
+
+## 20. Benefits
+
+- Centralized analytics
+- Historical reporting
+- Better decision making
+- Consistent metrics
+- Faster analytical queries
+- Integration of multiple sources
+
+## 21. Limitations
+
+- Implementation cost
+- Data engineering complexity
+- Storage requirements
+- Pipeline maintenance
+- Data quality challenges
+
+## 22. Key Terms
+
+```text
+Warehouse = Analytical Data Platform
+OLTP = Transaction Processing
+OLAP = Analytical Processing
+Fact = Business Event
+Dimension = Descriptive Context
+ETL = Extract Transform Load
+ELT = Extract Load Transform
+```
+
+## 23. Summary
+
+A data warehouse connects operational data with analytical decision making.
+
+```text
+Sources
+   |
+   v
+Integration
+   |
+   v
+Warehouse
+   |
+   v
+Analytics
+```

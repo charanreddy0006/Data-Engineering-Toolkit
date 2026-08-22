@@ -1,0 +1,1093 @@
+# Data Warehousing - Additional Learning Resources
+
+## 1. Purpose
+
+This file provides additional resources for continuing data warehousing and data engineering learning.
+
+The goal is to move from:
+
+```text
+Concept
+ |
+ v
+Hands-on Practice
+ |
+ v
+Projects
+ |
+ v
+Production Understanding
+```
+
+## 2. Learning Strategy
+
+Use this order:
+
+```text
+Learn
+ |
+ v
+Practice
+ |
+ v
+Build
+ |
+ v
+Debug
+ |
+ v
+Document
+ |
+ v
+Deploy
+```
+
+Do not only read documentation.
+
+## 3. SQL Practice
+
+Important SQL topics:
+
+- SELECT
+- WHERE
+- GROUP BY
+- HAVING
+- ORDER BY
+- JOIN
+- Subqueries
+- CTE
+- Window functions
+- Aggregation
+- CASE
+- Date functions
+
+## 4. PostgreSQL Practice
+
+Build databases containing:
+
+```text
+customers
+products
+orders
+vehicles
+dealers
+service_records
+```
+
+Practice:
+
+- Constraints
+- Indexes
+- Transactions
+- Views
+- Functions
+- Query plans
+
+## 5. Data Modeling Practice
+
+Practice designing:
+
+```text
+fact_sales
+dim_customer
+dim_product
+dim_date
+```
+
+Then define:
+
+- Grain
+- Keys
+- Measures
+- Relationships
+
+## 6. Data Warehouse Project
+
+Beginner project:
+
+```text
+CSV
+ |
+ v
+Python
+ |
+ v
+PostgreSQL
+ |
+ v
+SQL Analytics
+```
+
+## 7. Intermediate Project
+
+```text
+REST API
+ |
+ v
+Python ETL
+ |
+ v
+PostgreSQL
+ |
+ v
+Star Schema
+ |
+ v
+Dashboard
+```
+
+## 8. Advanced Project
+
+```text
+Kafka
+ |
+ v
+Spark
+ |
+ v
+Data Lake
+ |
+ v
+Warehouse
+ |
+ v
+dbt
+ |
+ v
+BI
+```
+
+## 9. Automobile Project
+
+Build an automotive analytics warehouse.
+
+Sources:
+
+```text
+Vehicle Sensors
+Sales
+Service
+Dealers
+Customers
+```
+
+Pipeline:
+
+```text
+Sources
+ |
+ v
+Kafka / APIs
+ |
+ v
+Data Lake
+ |
+ v
+Spark
+ |
+ v
+Warehouse
+ |
+ v
+BI
+```
+
+## 10. Automobile Metrics
+
+Calculate:
+
+- Total vehicles
+- Total sales
+- Revenue
+- Average selling price
+- Service cost
+- Battery temperature
+- Average speed
+- Vehicle utilization
+
+## 11. Data Warehouse Books
+
+Recommended books:
+
+- The Data Warehouse Toolkit
+- Fundamentals of Data Engineering
+- Designing Data-Intensive Applications
+- Data Engineering with Python
+- Streaming Systems
+
+## 12. The Data Warehouse Toolkit
+
+Authors:
+
+Ralph Kimball
+Margy Ross
+
+Useful for:
+
+- Dimensional modeling
+- Fact tables
+- Dimensions
+- Star schemas
+- Business processes
+
+Publisher:
+
+Wiley
+
+## 13. Fundamentals of Data Engineering
+
+Authors:
+
+Joe Reis
+Matt Housley
+
+Useful for understanding:
+
+- Data engineering lifecycle
+- Architecture
+- Storage
+- Pipelines
+- Governance
+- Reliability
+
+## 14. Designing Data-Intensive Applications
+
+Author:
+
+Martin Kleppmann
+
+Useful for:
+
+- Distributed systems
+- Databases
+- Streams
+- Replication
+- Partitioning
+- Reliability
+
+## 15. Streaming Systems
+
+Authors:
+
+Tyler Akidau
+Slavik Chernyak
+Reuven Lax
+
+Useful for:
+
+- Event time
+- Windows
+- Watermarks
+- Streaming architecture
+
+## 16. Official Learning
+
+Use official learning resources for technologies.
+
+Important areas:
+
+```text
+SQL
+Spark
+Kafka
+Airflow
+dbt
+Cloud
+Docker
+Kubernetes
+```
+
+## 17. Apache Spark Learning
+
+Official:
+
+https://spark.apache.org/docs/latest/
+
+Practice:
+
+- DataFrames
+- SQL
+- Joins
+- Aggregations
+- Partitioning
+- Spark jobs
+- Structured Streaming
+
+## 18. Kafka Learning
+
+Official:
+
+https://kafka.apache.org/documentation/
+
+Practice:
+
+- Topics
+- Partitions
+- Producers
+- Consumers
+- Consumer groups
+- Offsets
+- Replication
+
+## 19. Airflow Learning
+
+Official:
+
+https://airflow.apache.org/docs/
+
+Practice:
+
+```text
+DAG
+ |
+ v
+Task
+ |
+ v
+Dependency
+ |
+ v
+Schedule
+```
+
+## 20. dbt Learning
+
+Official:
+
+https://docs.getdbt.com/
+
+Practice:
+
+- Models
+- Sources
+- Tests
+- Macros
+- Documentation
+- Incremental models
+
+## 21. Docker Learning
+
+Official:
+
+https://docs.docker.com/
+
+Practice:
+
+```text
+Dockerfile
+ |
+ v
+Image
+ |
+ v
+Container
+```
+
+Then:
+
+```text
+Compose
+ |
+ v
+Multiple Services
+```
+
+## 22. Kubernetes Learning
+
+Official:
+
+https://kubernetes.io/docs/
+
+Practice:
+
+- Pods
+- Deployments
+- Services
+- ConfigMaps
+- Secrets
+- Jobs
+- CronJobs
+
+## 23. Cloud Learning
+
+Choose one cloud first.
+
+Recommended categories:
+
+```text
+Object Storage
+Compute
+Database
+Warehouse
+Streaming
+IAM
+Monitoring
+```
+
+## 24. AWS Learning
+
+Start with:
+
+```text
+S3
+IAM
+RDS
+Glue
+Redshift
+Kinesis
+EMR
+```
+
+Official:
+
+https://aws.amazon.com/training/
+
+## 25. Azure Learning
+
+Start with:
+
+```text
+ADLS
+Data Factory
+Azure SQL
+Synapse
+Databricks
+Event Hubs
+```
+
+Official:
+
+https://learn.microsoft.com/training/azure/
+
+## 26. GCP Learning
+
+Start with:
+
+```text
+Cloud Storage
+BigQuery
+Pub/Sub
+Dataflow
+Dataproc
+Cloud SQL
+Composer
+```
+
+Official:
+
+https://cloud.google.com/learn
+
+## 27. Practice Platforms
+
+Useful platforms include:
+
+- HackerRank
+- LeetCode
+- DataLemur
+- StrataScratch
+- Kaggle
+
+Focus on SQL and data engineering problems.
+
+## 28. SQL Interview Practice
+
+Practice:
+
+```text
+Joins
+Aggregations
+Window Functions
+CTEs
+Date Logic
+Ranking
+Deduplication
+Running Totals
+```
+
+## 29. Data Engineering Interview Practice
+
+Study:
+
+- ETL
+- ELT
+- Data warehouses
+- Data lakes
+- Kafka
+- Spark
+- Airflow
+- Cloud
+- Data modeling
+- Data quality
+
+## 30. Architecture Practice
+
+Draw architectures regularly.
+
+Example:
+
+```text
+Source
+ |
+ v
+Kafka
+ |
+ v
+Spark
+ |
+ v
+Data Lake
+ |
+ v
+Warehouse
+ |
+ v
+BI
+```
+
+## 31. Diagram Practice
+
+Create:
+
+- System diagrams
+- Data flow diagrams
+- ETL diagrams
+- Architecture diagrams
+- Entity relationship diagrams
+- Cloud architecture diagrams
+
+## 32. GitHub Practice
+
+For every project include:
+
+```text
+README.md
+requirements.txt
+src/
+tests/
+data/
+docs/
+```
+
+Use Git commits regularly.
+
+## 33. Documentation Practice
+
+For each project document:
+
+- Problem
+- Architecture
+- Technologies
+- Setup
+- Data flow
+- Examples
+- Results
+- Limitations
+- Future scope
+
+## 34. Testing Practice
+
+Add tests for:
+
+- Data types
+- Nulls
+- Duplicates
+- Row counts
+- Business rules
+
+## 35. Data Quality Project
+
+Build:
+
+```text
+CSV
+ |
+ v
+Quality Checks
+ |
+ +-- Valid
+ |
+ +-- Invalid
+ |
+ v
+Warehouse
+```
+
+Check:
+
+```text
+Nulls
+Duplicates
+Ranges
+Schema
+```
+
+## 36. Batch Pipeline Project
+
+```text
+Daily CSV
+ |
+ v
+Python
+ |
+ v
+PostgreSQL
+ |
+ v
+dbt
+ |
+ v
+Dashboard
+```
+
+## 37. Streaming Pipeline Project
+
+```text
+Producer
+ |
+ v
+Kafka
+ |
+ v
+Spark / Flink
+ |
+ v
+Data Lake
+ |
+ v
+Analytics
+```
+
+## 38. End-to-End Project
+
+Build:
+
+```text
+Source Systems
+ |
+ v
+Kafka / APIs
+ |
+ v
+Data Lake
+ |
+ v
+Spark
+ |
+ v
+Warehouse
+ |
+ v
+dbt
+ |
+ v
+BI
+```
+
+## 39. Automobile End-to-End Project
+
+```text
+Vehicle Sensors
+       |
+       v
+Kafka
+       |
+       v
+Spark Streaming
+       |
+       v
+S3 / Data Lake
+       |
+       v
+Data Warehouse
+       |
+       v
+dbt
+       |
+       v
+Power BI
+```
+
+## 40. Portfolio Requirements
+
+A strong project should show:
+
+- Architecture
+- Code
+- SQL
+- Data model
+- Tests
+- Documentation
+- Screenshots
+- Dashboard
+- Git history
+
+## 41. Resume Skills
+
+Data engineering skills can include:
+
+```text
+Python
+SQL
+PostgreSQL
+Spark
+Kafka
+Airflow
+dbt
+Docker
+Kubernetes
+AWS / Azure / GCP
+Data Warehousing
+Data Lakes
+ETL / ELT
+```
+
+Only list technologies that you can explain and demonstrate.
+
+## 42. Learning Roadmap
+
+```text
+Python
+ |
+ v
+SQL
+ |
+ v
+Linux
+ |
+ v
+Git
+ |
+ v
+Databases
+ |
+ v
+Data Warehousing
+ |
+ v
+Data Lakes
+ |
+ v
+ETL / ELT
+ |
+ v
+Airflow
+ |
+ v
+Spark
+ |
+ v
+Kafka
+ |
+ v
+Cloud
+ |
+ v
+Projects
+```
+
+## 43. Daily Practice
+
+A useful daily routine:
+
+```text
+30 min -> Theory
+60 min -> Coding
+30 min -> SQL
+30 min -> Project
+15 min -> Documentation
+```
+
+Adjust the schedule according to available time.
+
+## 44. Repository Practice
+
+This repository should contain:
+
+```text
+Concepts
+Examples
+Projects
+Datasets
+Resources
+Diagrams
+```
+
+## 45. Learning Through Examples
+
+For each technology:
+
+```text
+Beginner Example
+ |
+ v
+Intermediate Example
+ |
+ v
+Advanced Example
+ |
+ v
+Automobile Example
+```
+
+## 46. Dataset Practice
+
+Use datasets containing:
+
+- Sales
+- Customers
+- Vehicles
+- Orders
+- IoT
+- Weather
+- Transactions
+
+Always verify dataset licenses and sources.
+
+## 47. Data Sources
+
+Potential public sources:
+
+- Kaggle
+- Government open-data portals
+- Official APIs
+- Public research datasets
+- Cloud sample datasets
+
+## 48. Research Papers
+
+For advanced learning, study papers about:
+
+- Distributed systems
+- Data warehouses
+- Stream processing
+- Columnar storage
+- Data lakes
+- Lakehouses
+
+Use official conference or publisher sources where possible.
+
+## 49. Community Learning
+
+Useful communities include:
+
+- Apache project communities
+- GitHub repositories
+- Stack Overflow
+- Data engineering communities
+
+Always verify community advice against official documentation.
+
+## 50. Project Review Checklist
+
+```text
+[ ] Architecture
+[ ] Source
+[ ] Ingestion
+[ ] Storage
+[ ] Transformation
+[ ] Warehouse
+[ ] Quality
+[ ] Security
+[ ] Monitoring
+[ ] Documentation
+```
+
+## 51. Performance Review
+
+```text
+[ ] Query optimization
+[ ] Partitioning
+[ ] File formats
+[ ] Incremental processing
+[ ] Data skew
+[ ] Cost
+```
+
+## 52. Security Review
+
+```text
+[ ] Authentication
+[ ] Authorization
+[ ] Secrets
+[ ] Encryption
+[ ] Network
+[ ] Audit
+```
+
+## 53. Reliability Review
+
+```text
+[ ] Retry
+[ ] Idempotency
+[ ] Backup
+[ ] Recovery
+[ ] Monitoring
+[ ] Alerts
+```
+
+## 54. Automobile Learning Path
+
+```text
+Vehicle Data
+ |
+ v
+Python
+ |
+ v
+SQL
+ |
+ v
+PostgreSQL
+ |
+ v
+Kafka
+ |
+ v
+Spark
+ |
+ v
+Data Lake
+ |
+ v
+Warehouse
+ |
+ v
+BI
+```
+
+## 55. Final Goal
+
+The goal is not to memorize every tool.
+
+The goal is to understand:
+
+```text
+How Data Enters
+        |
+How Data Moves
+        |
+How Data Is Stored
+        |
+How Data Is Transformed
+        |
+How Data Is Validated
+        |
+How Data Is Secured
+        |
+How Data Is Served
+```
+
+## 56. Recommended Progression
+
+```text
+Beginner
+ |
+ +-- Python
+ +-- SQL
+ +-- Linux
+ +-- Git
+ |
+ v
+Intermediate
+ |
+ +-- Databases
+ +-- Warehousing
+ +-- ETL
+ +-- Airflow
+ |
+ v
+Advanced
+ |
+ +-- Spark
+ +-- Kafka
+ +-- Flink
+ +-- Cloud
+ |
+ v
+Professional
+ |
+ +-- Architecture
+ +-- Security
+ +-- Governance
+ +-- Monitoring
+ +-- Projects
+```
+
+## 57. Final Resource List
+
+```text
+Official Documentation
+Books
+Courses
+Datasets
+Practice Platforms
+Research Papers
+GitHub
+Community Discussions
+```
+
+## 58. Final Advice
+
+Build while learning.
+
+For every major technology:
+
+```text
+Learn
+ |
+ v
+Install
+ |
+ v
+Build Example
+ |
+ v
+Break It
+ |
+ v
+Debug
+ |
+ v
+Document
+ |
+ v
+Build Project
+```
+
+## 59. Repository Objective
+
+This Data-Engineering-Toolkit repository should become a long-term reference containing:
+
+```text
+Concepts
+Examples
+Code
+Architecture
+Datasets
+Projects
+Interview Preparation
+Cheat Sheets
+Resources
+```
+
+## 60. Summary
+
+The strongest way to learn data engineering is to combine:
+
+```text
+Theory
++
+SQL
++
+Programming
++
+Distributed Systems
++
+Cloud
++
+Projects
++
+Documentation
+```
+
+The final objective is to be able to design and explain complete production-inspired data pipelines from source to analytics.

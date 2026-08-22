@@ -1,0 +1,777 @@
+# Data Warehousing - Backup and Recovery
+
+## 1. Introduction
+
+Backup and recovery protect warehouse data from accidental deletion, corruption, infrastructure failure, operational mistakes, and other incidents.
+
+A reliable warehouse needs both:
+
+- Backup strategy
+- Recovery strategy
+
+```text
+Production Warehouse
+        |
+        v
+      Backup
+        |
+        v
+Backup Storage
+        |
+        v
+      Recovery
+```
+
+## 2. Why Backup Exists
+
+Potential incidents include:
+
+- Accidental DELETE
+- Accidental DROP
+- Data corruption
+- Bad ETL deployment
+- Software failure
+- Hardware failure
+- Security incidents
+- Human error
+- Regional outage
+
+## 3. Recovery
+
+Recovery means restoring data or services to an acceptable state.
+
+Possible recovery targets:
+
+- Entire database
+- Individual tables
+- Partitions
+- Files
+- Metadata
+- Pipelines
+
+## 4. Backup Types
+
+Common backup types:
+
+- Full backup
+- Incremental backup
+- Differential backup
+- Snapshot
+- Logical backup
+- Physical backup
+
+The available options depend on the database or cloud platform.
+
+## 5. Full Backup
+
+A full backup copies the complete selected dataset.
+
+```text
+Database
+ |
+ v
+Full Backup
+ |
+ v
+Backup Storage
+```
+
+Advantages:
+
+- Simple recovery
+- Complete copy
+
+Disadvantages:
+
+- Large storage requirement
+- Longer backup time
+
+## 6. Incremental Backup
+
+An incremental backup stores changes since a previous backup.
+
+```text
+Sunday
+Full
+
+Monday
+Changes
+
+Tuesday
+Changes
+
+Wednesday
+Changes
+```
+
+This reduces backup size.
+
+## 7. Differential Backup
+
+A differential backup stores changes since the last full backup.
+
+```text
+Full
+ |
+ +-- Monday changes
+ +-- Tuesday changes
+ +-- Wednesday changes
+```
+
+Recovery can require the full backup plus the latest differential.
+
+## 8. Snapshot
+
+A snapshot captures storage or database state at a point in time.
+
+Snapshots are common in cloud environments and storage systems.
+
+## 9. Logical Backup
+
+Logical backups contain database objects and data in logical form.
+
+Examples:
+
+- SQL dump
+- Table export
+- Database export
+
+Useful for selective restoration.
+
+## 10. Physical Backup
+
+Physical backup copies underlying database files or storage structures.
+
+It is usually closely tied to a specific database system.
+
+## 11. Backup Architecture
+
+```text
+Warehouse
+ |
+ +---- Daily Backup
+ |
+ +---- Weekly Full Backup
+ |
+ +---- Snapshot
+ |
+ v
+Backup Storage
+ |
+ v
+Different Region / Account
+```
+
+## 12. Recovery Point Objective
+
+RPO defines the maximum acceptable amount of data loss.
+
+Example:
+
+```text
+RPO = 15 minutes
+```
+
+The system should be designed so that a failure does not normally result in more than the target amount of lost data.
+
+## 13. Recovery Time Objective
+
+RTO defines the target time to restore service.
+
+Example:
+
+```text
+RTO = 2 hours
+```
+
+## 14. RPO vs RTO
+
+| Concept | Meaning |
+|---|---|
+| RPO | How much data loss is acceptable |
+| RTO | How long recovery can take |
+
+## 15. Point-in-Time Recovery
+
+Point-in-time recovery restores a database to a selected time.
+
+Example:
+
+```text
+10:00 Backup
+10:15 Data Change
+10:30 Accidental DELETE
+10:35 Recovery
+```
+
+The system can restore to a suitable point before the accidental deletion if supported.
+
+## 16. Transaction Logs
+
+Many database systems use logs to support recovery.
+
+```text
+Transaction
+ |
+ v
+Log
+ |
+ v
+Database
+```
+
+Logs can record changes needed for recovery.
+
+## 17. Write-Ahead Logging
+
+In systems using WAL:
+
+```text
+Change
+ |
+ v
+Write Log
+ |
+ v
+Write Data
+```
+
+The log provides recovery information.
+
+## 18. Restore Process
+
+Typical process:
+
+```text
+Identify Incident
+       |
+       v
+Stop / Isolate Workload
+       |
+       v
+Select Recovery Point
+       |
+       v
+Restore
+       |
+       v
+Validate
+       |
+       v
+Resume
+```
+
+## 19. Restore Validation
+
+After recovery, verify:
+
+- Row counts
+- Schema
+- Constraints
+- Data freshness
+- Important business metrics
+- Pipeline status
+
+## 20. Backup Testing
+
+A backup is not useful if it cannot be restored.
+
+Test:
+
+```text
+Backup
+ |
+ v
+Restore Test
+ |
+ v
+Validation
+```
+
+## 21. Recovery Testing
+
+Conduct periodic recovery drills.
+
+Test:
+
+- Full restore
+- Partial restore
+- Pipeline recovery
+- Metadata recovery
+- Credential recovery
+- Application reconnection
+
+## 22. Backup Retention
+
+Define retention periods.
+
+Example:
+
+```text
+Daily backups -> 30 days
+Weekly backups -> 12 weeks
+Monthly backups -> 12 months
+```
+
+Actual policy depends on business and regulatory requirements.
+
+## 23. Backup Storage
+
+Backups should ideally be isolated from production.
+
+Options:
+
+- Separate storage
+- Separate account
+- Separate project
+- Separate region
+
+This reduces correlated failure risk.
+
+## 24. Immutable Backups
+
+Immutable storage prevents backup modification for a defined retention period.
+
+Useful against:
+
+- Accidental deletion
+- Malicious modification
+- Ransomware
+
+## 25. Encryption
+
+Backups should be encrypted.
+
+Protect:
+
+- Data at rest
+- Data in transit
+
+Use appropriate key-management controls.
+
+## 26. Access Control
+
+Only authorized personnel should access backups.
+
+Use:
+
+- IAM
+- Roles
+- Least privilege
+- Audit logging
+
+## 27. Disaster Recovery
+
+Disaster recovery addresses major failures.
+
+Example:
+
+```text
+Primary Region
+      |
+      v
+Replication / Backup
+      |
+      v
+Secondary Region
+```
+
+## 28. High Availability vs Disaster Recovery
+
+High availability focuses on minimizing service interruption.
+
+Disaster recovery focuses on restoring service after major failures.
+
+They are related but different.
+
+## 29. Replication
+
+Replication copies data between systems.
+
+```text
+Primary
+ |
+ v
+Replica
+```
+
+Replication can reduce recovery time, but it should not replace backups.
+
+## 30. Why Replication Is Not Backup
+
+If an accidental deletion is replicated immediately:
+
+```text
+Primary DELETE
+ |
+ v
+Replica DELETE
+```
+
+Both copies may contain the mistake.
+
+Independent backups provide another recovery layer.
+
+## 31. Database Backup Example
+
+For PostgreSQL, a logical dump can be created using:
+
+```bash
+pg_dump -U postgres warehouse > warehouse.sql
+```
+
+Restore:
+
+```bash
+psql -U postgres warehouse < warehouse.sql
+```
+
+Exact commands should match the PostgreSQL version and environment.
+
+## 32. Warehouse Backup
+
+For a cloud warehouse, use the provider's supported:
+
+- Snapshots
+- Exports
+- Time-travel features
+- Replication
+- Backup services
+
+## 33. Data Lake Backup
+
+Object storage often uses:
+
+- Versioning
+- Replication
+- Lifecycle policies
+- Object lock
+- Cross-region replication
+
+## 34. ETL Recovery
+
+Data recovery is not enough.
+
+Pipelines also need recovery.
+
+Example:
+
+```text
+Extract
+ |
+ X Failure
+ |
+ v
+Retry
+ |
+ v
+Transform
+ |
+ v
+Load
+```
+
+Use idempotent jobs where possible.
+
+## 35. Idempotent Pipeline
+
+A retry should not create duplicate business data.
+
+Example:
+
+```text
+Load batch 2026-08-11
+        |
+        v
+Failure
+        |
+        v
+Retry same batch
+```
+
+The result should remain correct.
+
+## 36. Checkpointing
+
+Long-running data jobs can store checkpoints.
+
+```text
+Job
+ |
+ +-- Checkpoint 1
+ +-- Checkpoint 2
+ +-- Checkpoint 3
+```
+
+After failure, processing can resume from a known point when supported.
+
+## 37. Recovery Metadata
+
+Maintain:
+
+- Backup timestamp
+- Version
+- Location
+- Retention
+- Encryption key
+- Restore procedure
+- Validation procedure
+
+## 38. Runbook
+
+A recovery runbook should contain:
+
+1. Detection
+2. Escalation
+3. Isolation
+4. Recovery decision
+5. Restore steps
+6. Validation
+7. Communication
+8. Post-incident review
+
+## 39. Monitoring
+
+Monitor:
+
+- Backup success
+- Backup duration
+- Backup size
+- Replication status
+- Storage capacity
+- Restore tests
+
+## 40. Backup Alerts
+
+Example:
+
+```text
+Backup Job
+ |
+ v
+Success? ---- No ----> Alert
+ |
+ Yes
+ |
+ v
+Record Status
+```
+
+## 41. Automobile Example
+
+An automotive warehouse stores:
+
+```text
+Vehicle Telemetry
+Sales
+Service Records
+Customer Data
+```
+
+A recovery plan may include:
+
+```text
+Warehouse
+ |
+ +-- Daily Backup
+ +-- Continuous Logs
+ +-- Cross-Region Copy
+ +-- Recovery Tests
+```
+
+## 42. Accidental Delete Scenario
+
+```text
+Analyst
+ |
+ v
+DELETE
+ |
+ v
+Data Missing
+ |
+ v
+Incident Detected
+ |
+ v
+Point-in-Time Recovery
+ |
+ v
+Validation
+```
+
+## 43. Regional Failure Scenario
+
+```text
+Region A
+Warehouse
+    |
+    v
+Replication / Backup
+    |
+    v
+Region B
+Recovery Environment
+```
+
+## 44. Security Incident
+
+If production credentials are compromised:
+
+```text
+Detect
+ |
+ v
+Revoke Credentials
+ |
+ v
+Isolate Systems
+ |
+ v
+Validate Backups
+ |
+ v
+Recover Clean State
+```
+
+Recovery procedures should be coordinated with security teams.
+
+## 45. Best Practices
+
+- Automate backups
+- Test restores
+- Define RPO
+- Define RTO
+- Encrypt backups
+- Use least privilege
+- Keep independent copies
+- Use immutable storage where appropriate
+- Monitor backup jobs
+- Document recovery procedures
+
+## 46. Common Mistakes
+
+Avoid:
+
+- Never testing backups
+- Keeping backups in the same failure domain
+- No retention policy
+- No restore documentation
+- Treating replication as backup
+- Exposing backup credentials
+- No disaster recovery plan
+
+## 47. Recovery Checklist
+
+```text
+[ ] Incident identified
+[ ] Recovery point selected
+[ ] Backup verified
+[ ] Access confirmed
+[ ] Restore executed
+[ ] Data validated
+[ ] Pipelines checked
+[ ] Applications reconnected
+[ ] Incident documented
+```
+
+## 48. Advantages
+
+A strong backup system provides:
+
+- Data protection
+- Business continuity
+- Reduced downtime
+- Recovery from mistakes
+- Compliance support
+- Operational confidence
+
+## 49. Limitations
+
+Backup systems have costs:
+
+- Storage
+- Compute
+- Management
+- Testing
+- Recovery time
+
+The strategy should balance risk and cost.
+
+## 50. Interview Questions
+
+### Beginner
+
+1. What is a backup?
+2. What is recovery?
+3. What is RPO?
+4. What is RTO?
+5. Why test backups?
+
+### Intermediate
+
+1. Full vs incremental backup?
+2. Backup vs replication?
+3. What is point-in-time recovery?
+4. What is immutable backup?
+5. How do you recover an accidental DELETE?
+
+### Advanced
+
+1. Design a warehouse disaster recovery strategy.
+2. How would you achieve an RPO of 15 minutes?
+3. How would you design cross-region recovery?
+4. How do you make ETL jobs recoverable?
+5. How would you test a recovery plan?
+
+## 51. Cheat Sheet
+
+```text
+Backup
+ |
+ +-- Full
+ +-- Incremental
+ +-- Differential
+ +-- Snapshot
+ |
+ v
+Storage
+ |
+ v
+Restore
+ |
+ v
+Validation
+```
+
+```text
+RPO = Acceptable Data Loss
+RTO = Acceptable Recovery Time
+```
+
+## 52. Official Documentation
+
+- PostgreSQL Backup: https://www.postgresql.org/docs/current/backup.html
+- AWS Backup: https://docs.aws.amazon.com/aws-backup/
+- Azure Backup: https://learn.microsoft.com/azure/backup/
+- Google Cloud Backup: https://cloud.google.com/backup-and-dr
+
+## 53. Summary
+
+A data warehouse should be designed for failure as well as normal operation.
+
+A mature recovery strategy combines:
+
+```text
+Backups
++
+Replication
++
+Logs
++
+Recovery Procedures
++
+Testing
++
+Monitoring
+```

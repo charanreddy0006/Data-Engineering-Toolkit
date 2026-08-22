@@ -1,0 +1,167 @@
+# Data Warehousing - Common Mistakes
+
+## 1. Introduction
+
+Poor warehouse design can cause slow queries, incorrect metrics, expensive pipelines, and unreliable reporting.
+
+## 2. No Defined Grain
+
+A fact table without a clear grain can produce incorrect aggregations.
+
+Always answer:
+
+```text
+What does one row represent?
+```
+
+## 3. SELECT *
+
+Avoid unnecessary columns.
+
+Bad:
+
+```sql
+SELECT *
+FROM fact_sales;
+```
+
+Better:
+
+```sql
+SELECT
+    vehicle_key,
+    amount
+FROM fact_sales;
+```
+
+## 4. Full Reload Everywhere
+
+Reloading all data daily can be expensive.
+
+Prefer incremental processing when appropriate.
+
+## 5. No Data Quality Checks
+
+Without validation, incorrect data reaches dashboards.
+
+Check:
+
+```text
+Nulls
+Duplicates
+Ranges
+Keys
+Freshness
+```
+
+## 6. Poor Naming
+
+Avoid unclear names such as:
+
+```text
+tbl1
+data_new
+temp_final2
+```
+
+Prefer:
+
+```text
+fact_sales
+dim_customer
+```
+
+## 7. Mixing Raw and Curated Data
+
+Keep raw and business-ready data logically separated.
+
+## 8. Over-Partitioning
+
+Too many tiny partitions can create overhead.
+
+## 9. Under-Partitioning
+
+Huge unpartitioned tables can cause unnecessary scanning.
+
+## 10. Ignoring Data Skew
+
+Uneven data distribution can create processing bottlenecks.
+
+## 11. Too Many Joins
+
+Complex joins over huge tables can become expensive.
+
+## 12. No Incremental Strategy
+
+Pipelines should have a clear strategy for new and changed records.
+
+## 13. Duplicate Records
+
+Retries and joins can create duplicates.
+
+Use business keys and idempotent logic.
+
+## 14. Hardcoded Credentials
+
+Never write passwords directly in source code.
+
+## 15. Excessive Permissions
+
+Avoid giving every user administrator access.
+
+Use least privilege.
+
+## 16. No Backup Testing
+
+A backup is not enough.
+
+Test restoration.
+
+## 17. No Monitoring
+
+Without monitoring, failures may remain unnoticed.
+
+## 18. No Documentation
+
+Undocumented tables become difficult to maintain.
+
+## 19. No Lineage
+
+Users should understand where metrics originate.
+
+## 20. Ignoring Costs
+
+Cloud queries and storage can create unexpected costs.
+
+## 21. Automobile Mistake Example
+
+Suppose telemetry contains:
+
+```text
+10 billion rows
+```
+
+and a dashboard scans all records for every request.
+
+Better:
+
+```text
+Partition by event_date
++
+Select required columns
++
+Use aggregates
+```
+
+## 22. Summary
+
+Avoiding common mistakes improves:
+
+```text
+Accuracy
+Performance
+Security
+Reliability
+Cost
+Maintainability
+```

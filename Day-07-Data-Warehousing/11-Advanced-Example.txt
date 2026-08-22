@@ -1,0 +1,274 @@
+# Data Warehousing - Advanced Example
+
+## 1. Project
+
+Build a production-inspired automotive data platform.
+
+## 2. Architecture
+
+```text
+Vehicle IoT
+APIs
+OLTP Databases
+      |
+      v
+Kafka / Batch Ingestion
+      |
+      v
+Data Lake
+      |
+      v
+Spark
+      |
+      v
+Warehouse
+      |
+      v
+dbt / SQL
+      |
+      v
+BI / ML
+```
+
+## 3. Data Sources
+
+```text
+Vehicle Telemetry
+Sales
+Service
+Warranty
+Customer
+Dealer
+```
+
+## 4. Streaming
+
+Telemetry events are sent continuously.
+
+```text
+Vehicle
+ |
+ v
+Producer
+ |
+ v
+Kafka Topic
+```
+
+## 5. Batch Sources
+
+Sales and service systems may be extracted periodically.
+
+```text
+OLTP
+ |
+ v
+CDC / Batch
+ |
+ v
+Lake
+```
+
+## 6. Data Lake
+
+Store raw events:
+
+```text
+raw/
+ |
+ +-- telemetry/
+ +-- sales/
+ +-- service/
+```
+
+## 7. Spark Transformation
+
+Spark can process large datasets.
+
+Concept:
+
+```python
+df = spark.read.parquet("raw/telemetry")
+
+clean = df.filter(
+    df.vehicle_id.isNotNull()
+)
+```
+
+## 8. Warehouse
+
+Curated tables:
+
+```text
+fact_telemetry
+fact_sales
+fact_service
+```
+
+Dimensions:
+
+```text
+dim_vehicle
+dim_customer
+dim_dealer
+dim_date
+dim_location
+```
+
+## 9. Incremental Processing
+
+Process only new events.
+
+```text
+Previous Watermark
+        |
+        v
+New Events
+        |
+        v
+Transform
+        |
+        v
+Warehouse
+```
+
+## 10. Data Quality
+
+Checks include:
+
+```text
+vehicle_id NOT NULL
+event_time NOT NULL
+temperature within valid range
+battery_level between 0 and 100
+```
+
+## 11. Idempotency
+
+Use event IDs to prevent duplicate processing.
+
+```text
+event_id
+```
+
+should identify one event.
+
+## 12. Late Data
+
+Events may arrive late.
+
+Use:
+
+- Event timestamps
+- Watermarks
+- Reprocessing
+- Backfills
+
+## 13. Slowly Changing Vehicle Dimension
+
+Vehicle attributes may change.
+
+Use Type 2 history where business requirements require it.
+
+## 14. Performance
+
+Use:
+
+- Partitioning
+- Columnar storage
+- Predicate pushdown
+- Incremental transformations
+- Appropriate clustering
+
+## 15. Security
+
+Protect:
+
+```text
+Customer Information
+Vehicle Location
+Telemetry
+Credentials
+```
+
+Use:
+
+- IAM
+- Encryption
+- Masking
+- Auditing
+
+## 16. Monitoring
+
+Monitor:
+
+```text
+Kafka lag
+Pipeline failures
+Data freshness
+Warehouse queries
+Data quality
+Cost
+```
+
+## 17. Failure Recovery
+
+Use:
+
+```text
+Retries
+Checkpoints
+Backups
+Idempotency
+Dead-letter handling
+```
+
+## 18. BI
+
+Expose curated metrics:
+
+```text
+Vehicle Health
+Sales
+Service Cost
+Warranty
+Battery Performance
+```
+
+## 19. Example KPI
+
+Average battery temperature:
+
+```sql
+SELECT
+    vehicle_key,
+    AVG(battery_temperature)
+FROM fact_telemetry
+GROUP BY vehicle_key;
+```
+
+## 20. Advanced Architecture
+
+```text
+                 +--> BI
+                 |
+Sources --> Lake --> Warehouse --> ML
+                 |
+                 +--> Archive
+```
+
+## 21. Production Considerations
+
+Consider:
+
+- SLAs
+- Cost
+- Security
+- Disaster recovery
+- Scalability
+- Governance
+- Observability
+
+## 22. Outcome
+
+This architecture demonstrates how a data engineer can connect streaming, batch, lake, warehouse, transformation, and analytics technologies.

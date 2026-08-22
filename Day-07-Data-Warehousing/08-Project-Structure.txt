@@ -1,0 +1,314 @@
+# Data Warehousing - Project Structure
+
+## 1. Introduction
+
+A professional data warehouse project should separate source data, SQL models, Python code, tests, documentation, and configuration.
+
+## 2. Recommended Structure
+
+```text
+data-warehouse-project/
+|
++-- README.md
++-- requirements.txt
++-- .gitignore
+|
++-- data/
+|   +-- raw/
+|   +-- processed/
+|
++-- sql/
+|   +-- staging/
+|   +-- dimensions/
+|   +-- facts/
+|   +-- marts/
+|
++-- src/
+|   +-- ingestion/
+|   +-- transformation/
+|   +-- validation/
+|
++-- tests/
+|
++-- docs/
+|   +-- architecture/
+|   +-- data-model/
+|
++-- config/
+|
++-- scripts/
+```
+
+## 3. README
+
+The README explains:
+
+- Project purpose
+- Architecture
+- Setup
+- Data sources
+- Pipeline
+- Usage
+
+## 4. Data Directory
+
+Store development datasets here.
+
+```text
+data/
+ |
+ +-- raw/
+ +-- processed/
+```
+
+Do not commit sensitive production data.
+
+## 5. Raw Data
+
+Raw files should preserve source structure.
+
+Example:
+
+```text
+raw/
+ |
+ +-- customers.csv
+ +-- vehicles.csv
+ +-- sales.csv
+```
+
+## 6. Processed Data
+
+Processed data contains cleaned or transformed datasets.
+
+## 7. SQL Directory
+
+Separate SQL by responsibility.
+
+```text
+sql/
+ |
+ +-- staging/
+ +-- dimensions/
+ +-- facts/
+ +-- marts/
+```
+
+## 8. Staging SQL
+
+Staging queries clean source data.
+
+Example:
+
+```sql
+SELECT
+    TRIM(customer_id) AS customer_id,
+    UPPER(city) AS city
+FROM raw_customers;
+```
+
+## 9. Dimension SQL
+
+Dimension models create descriptive tables.
+
+```text
+dim_customer.sql
+dim_vehicle.sql
+dim_date.sql
+```
+
+## 10. Fact SQL
+
+Fact models create measurable events.
+
+```text
+fact_sales.sql
+fact_service.sql
+```
+
+## 11. Data Mart SQL
+
+Marts provide business-specific outputs.
+
+```text
+sales_summary.sql
+service_summary.sql
+```
+
+## 12. Python Source
+
+Python can handle:
+
+- API extraction
+- File ingestion
+- Validation
+- Automation
+
+## 13. Ingestion Folder
+
+```text
+src/ingestion/
+ |
+ +-- api.py
+ +-- database.py
+ +-- files.py
+```
+
+## 14. Transformation Folder
+
+```text
+src/transformation/
+ |
+ +-- clean_sales.py
+ +-- clean_vehicle.py
+```
+
+## 15. Validation Folder
+
+```text
+src/validation/
+ |
+ +-- quality_checks.py
+```
+
+## 16. Tests
+
+Test:
+
+- Transformations
+- Data quality
+- SQL models
+- Pipeline behavior
+
+## 17. Documentation
+
+Document:
+
+```text
+Architecture
+Data Model
+Pipeline
+Deployment
+```
+
+## 18. Configuration
+
+Store non-secret configuration separately.
+
+Secrets should use environment variables or secret managers.
+
+## 19. Scripts
+
+Scripts automate common tasks.
+
+Example:
+
+```text
+scripts/
+ |
+ +-- setup.sh
+ +-- load_data.py
+ +-- run_pipeline.py
+```
+
+## 20. .gitignore
+
+Ignore:
+
+```text
+.venv/
+__pycache__/
+.env
+*.log
+local data
+```
+
+## 21. Automobile Project Structure
+
+```text
+automotive-warehouse/
+|
++-- data/
+|   +-- raw/
+|   +-- processed/
+|
++-- sql/
+|   +-- staging/
+|   +-- dimensions/
+|   +-- facts/
+|   +-- marts/
+|
++-- src/
+|   +-- ingestion/
+|   +-- transformation/
+|   +-- validation/
+|
++-- tests/
+|
++-- docs/
+|   +-- architecture/
+|   +-- diagrams/
+|
++-- README.md
+```
+
+## 22. Example Tables
+
+```text
+dim_vehicle
+dim_customer
+dim_dealer
+dim_date
+
+fact_sales
+fact_service
+fact_telemetry
+```
+
+## 23. Pipeline Structure
+
+```text
+Extract
+ |
+ v
+Validate
+ |
+ v
+Stage
+ |
+ v
+Transform
+ |
+ v
+Load
+ |
+ v
+Test
+ |
+ v
+Publish
+```
+
+## 24. Professional Practices
+
+Use:
+
+- Clear names
+- Modular code
+- Version control
+- Environment configuration
+- Tests
+- Documentation
+
+## 25. Summary
+
+A clean project structure makes data pipelines easier to understand, test, maintain, and deploy.
+
+```text
+Data
+Code
+SQL
+Tests
+Docs
+Config
+```

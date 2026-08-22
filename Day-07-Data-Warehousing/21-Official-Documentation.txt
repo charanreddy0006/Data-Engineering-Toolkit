@@ -1,0 +1,617 @@
+# Data Warehousing - Official Documentation
+
+## 1. Purpose
+
+This file contains official documentation links for technologies and concepts used in data warehousing.
+
+Only official documentation should be preferred for technical implementation details.
+
+## 2. PostgreSQL
+
+Official Website:
+
+https://www.postgresql.org/
+
+Official Documentation:
+
+https://www.postgresql.org/docs/
+
+SQL Documentation:
+
+https://www.postgresql.org/docs/current/sql.html
+
+Backup and Recovery:
+
+https://www.postgresql.org/docs/current/backup.html
+
+Performance:
+
+https://www.postgresql.org/docs/current/performance-tips.html
+
+Security:
+
+https://www.postgresql.org/docs/current/security.html
+
+## 3. MySQL
+
+Official Website:
+
+https://www.mysql.com/
+
+Official Documentation:
+
+https://dev.mysql.com/doc/
+
+MySQL Reference Manual:
+
+https://dev.mysql.com/doc/refman/8.4/en/
+
+## 4. SQLite
+
+Official Website:
+
+https://sqlite.org/
+
+Official Documentation:
+
+https://sqlite.org/docs.html
+
+SQL Syntax:
+
+https://sqlite.org/lang.html
+
+## 5. MongoDB
+
+Official Website:
+
+https://www.mongodb.com/
+
+Official Documentation:
+
+https://www.mongodb.com/docs/
+
+Data Modeling:
+
+https://www.mongodb.com/docs/manual/core/data-modeling-introduction/
+
+## 6. Apache Hadoop
+
+Official Website:
+
+https://hadoop.apache.org/
+
+Official Documentation:
+
+https://hadoop.apache.org/docs/
+
+HDFS:
+
+https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsUserGuide.html
+
+## 7. Apache Hive
+
+Official Website:
+
+https://hive.apache.org/
+
+Official Documentation:
+
+https://hive.apache.org/docs/
+
+Language Manual:
+
+https://hive.apache.org/docs/latest/language-manual/
+
+## 8. Apache Spark
+
+Official Website:
+
+https://spark.apache.org/
+
+Official Documentation:
+
+https://spark.apache.org/docs/latest/
+
+SQL:
+
+https://spark.apache.org/docs/latest/sql-programming-guide.html
+
+Performance Tuning:
+
+https://spark.apache.org/docs/latest/sql-performance-tuning.html
+
+## 9. Apache Kafka
+
+Official Website:
+
+https://kafka.apache.org/
+
+Official Documentation:
+
+https://kafka.apache.org/documentation/
+
+Kafka Connect:
+
+https://kafka.apache.org/documentation/#connect
+
+Kafka Streams:
+
+https://kafka.apache.org/documentation/streams/
+
+## 10. Apache Flink
+
+Official Website:
+
+https://flink.apache.org/
+
+Official Documentation:
+
+https://nightlies.apache.org/flink/
+
+DataStream API:
+
+https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/overview/
+
+Table API and SQL:
+
+https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/overview/
+
+## 11. Docker
+
+Official Website:
+
+https://www.docker.com/
+
+Official Documentation:
+
+https://docs.docker.com/
+
+Docker Compose:
+
+https://docs.docker.com/compose/
+
+Dockerfile Reference:
+
+https://docs.docker.com/reference/dockerfile/
+
+## 12. Kubernetes
+
+Official Website:
+
+https://kubernetes.io/
+
+Official Documentation:
+
+https://kubernetes.io/docs/
+
+Concepts:
+
+https://kubernetes.io/docs/concepts/
+
+kubectl:
+
+https://kubernetes.io/docs/reference/kubectl/
+
+## 13. Apache Airflow
+
+Official Website:
+
+https://airflow.apache.org/
+
+Official Documentation:
+
+https://airflow.apache.org/docs/
+
+Core Concepts:
+
+https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/
+
+## 14. dbt
+
+Official Website:
+
+https://www.getdbt.com/
+
+Official Documentation:
+
+https://docs.getdbt.com/
+
+dbt Core:
+
+https://docs.getdbt.com/docs/core/about-core
+
+## 15. Apache NiFi
+
+Official Website:
+
+https://nifi.apache.org/
+
+Official Documentation:
+
+https://nifi.apache.org/documentation/
+
+## 16. AWS
+
+Official Website:
+
+https://aws.amazon.com/
+
+AWS Documentation:
+
+https://docs.aws.amazon.com/
+
+Amazon S3:
+
+https://docs.aws.amazon.com/s3/
+
+Amazon Redshift:
+
+https://docs.aws.amazon.com/redshift/
+
+AWS Glue:
+
+https://docs.aws.amazon.com/glue/
+
+Amazon EMR:
+
+https://docs.aws.amazon.com/emr/
+
+Amazon Kinesis:
+
+https://docs.aws.amazon.com/kinesis/
+
+AWS IAM:
+
+https://docs.aws.amazon.com/iam/
+
+## 17. Microsoft Azure
+
+Official Website:
+
+https://azure.microsoft.com/
+
+Documentation:
+
+https://learn.microsoft.com/azure/
+
+Azure Data Lake Storage:
+
+https://learn.microsoft.com/azure/storage/blobs/data-lake-storage-introduction
+
+Azure Data Factory:
+
+https://learn.microsoft.com/azure/data-factory/
+
+Azure Synapse:
+
+https://learn.microsoft.com/azure/synapse-analytics/
+
+Azure Databricks:
+
+https://learn.microsoft.com/azure/databricks/
+
+Azure Event Hubs:
+
+https://learn.microsoft.com/azure/event-hubs/
+
+## 18. Google Cloud
+
+Official Website:
+
+https://cloud.google.com/
+
+Documentation:
+
+https://cloud.google.com/docs
+
+Cloud Storage:
+
+https://cloud.google.com/storage/docs
+
+BigQuery:
+
+https://cloud.google.com/bigquery/docs
+
+Dataflow:
+
+https://cloud.google.com/dataflow/docs
+
+Dataproc:
+
+https://cloud.google.com/dataproc/docs
+
+Pub/Sub:
+
+https://cloud.google.com/pubsub/docs
+
+## 19. Data Modeling
+
+Kimball Group:
+
+https://www.kimballgroup.com/
+
+Official-style reference material for dimensional modeling can be found through Kimball Group resources.
+
+## 20. SQL Standards
+
+ISO/IEC SQL information:
+
+https://www.iso.org/standard/76583.html
+
+Database implementations may differ from the SQL standard.
+
+## 21. Apache Parquet
+
+Official Website:
+
+https://parquet.apache.org/
+
+Documentation:
+
+https://parquet.apache.org/docs/
+
+## 22. Apache ORC
+
+Official Website:
+
+https://orc.apache.org/
+
+Documentation:
+
+https://orc.apache.org/docs/
+
+## 23. Apache Avro
+
+Official Website:
+
+https://avro.apache.org/
+
+Documentation:
+
+https://avro.apache.org/docs/
+
+## 24. Apache Iceberg
+
+Official Website:
+
+https://iceberg.apache.org/
+
+Documentation:
+
+https://iceberg.apache.org/docs/latest/
+
+## 25. Delta Lake
+
+Official Website:
+
+https://delta.io/
+
+Documentation:
+
+https://docs.delta.io/
+
+## 26. Apache Hudi
+
+Official Website:
+
+https://hudi.apache.org/
+
+Documentation:
+
+https://hudi.apache.org/docs/
+
+## 27. Databricks
+
+Official Website:
+
+https://www.databricks.com/
+
+Documentation:
+
+https://docs.databricks.com/
+
+Lakehouse:
+
+https://docs.databricks.com/aws/en/lakehouse/
+
+## 28. Snowflake
+
+Official Website:
+
+https://www.snowflake.com/
+
+Documentation:
+
+https://docs.snowflake.com/
+
+SQL Reference:
+
+https://docs.snowflake.com/en/sql-reference
+
+## 29. Google BigQuery
+
+Documentation:
+
+https://cloud.google.com/bigquery/docs
+
+SQL Reference:
+
+https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax
+
+Partitioned Tables:
+
+https://cloud.google.com/bigquery/docs/partitioned-tables
+
+Clustered Tables:
+
+https://cloud.google.com/bigquery/docs/clustered-tables
+
+## 30. Amazon Redshift
+
+Documentation:
+
+https://docs.aws.amazon.com/redshift/
+
+Best Practices:
+
+https://docs.aws.amazon.com/redshift/latest/dg/best-practices.html
+
+## 31. Azure Synapse
+
+Documentation:
+
+https://learn.microsoft.com/azure/synapse-analytics/
+
+Dedicated SQL Pool:
+
+https://learn.microsoft.com/azure/synapse-analytics/sql-data-warehouse/
+
+## 32. Documentation Usage
+
+When implementing a technology:
+
+```text
+Repository Notes
+      |
+      v
+Official Documentation
+      |
+      v
+Test Example
+      |
+      v
+Production Pattern
+```
+
+## 33. Recommended Documentation Order
+
+For each technology:
+
+1. Introduction
+2. Core concepts
+3. Architecture
+4. Installation
+5. API / SQL reference
+6. Performance
+7. Security
+8. Deployment
+9. Troubleshooting
+
+## 34. Source Quality
+
+Prefer:
+
+```text
+Official Documentation
+        >
+Official GitHub Repository
+        >
+Academic / Industry Reference
+        >
+Community Tutorials
+```
+
+## 35. Data Warehouse Learning Order
+
+```text
+SQL
+ |
+ v
+Database
+ |
+ v
+Data Modeling
+ |
+ v
+ETL / ELT
+ |
+ v
+Warehouse
+ |
+ v
+Lake / Lakehouse
+ |
+ v
+Distributed Processing
+ |
+ v
+Cloud
+```
+
+## 36. Important Documentation Topics
+
+Study:
+
+- SQL
+- Data modeling
+- Partitioning
+- Query optimization
+- Security
+- Backup
+- Recovery
+- Monitoring
+- Cloud architecture
+
+## 37. Repository Rule
+
+For every technology in this repository:
+
+```text
+Official Documentation
+        |
+        v
+Official Examples
+        |
+        v
+Repository Example
+```
+
+Avoid copying large sections of documentation.
+
+## 38. Documentation Best Practice
+
+Use official documentation to verify:
+
+- Syntax
+- Configuration
+- Version compatibility
+- Security settings
+- Deployment requirements
+- API behavior
+
+## 39. Version Awareness
+
+Technology documentation changes.
+
+Always check the documentation version relevant to the installed software.
+
+Example:
+
+```text
+Spark 3.x
+```
+
+should be matched with the correct Spark documentation.
+
+## 40. Final Reference
+
+The most important official documentation for this repository is:
+
+```text
+PostgreSQL
+MySQL
+Hadoop
+Hive
+Spark
+Kafka
+Flink
+Airflow
+dbt
+Docker
+Kubernetes
+AWS
+Azure
+Google Cloud
+Snowflake
+Databricks
+```

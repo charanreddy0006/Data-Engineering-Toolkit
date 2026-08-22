@@ -1,0 +1,710 @@
+# Data Warehousing - Performance Tips
+
+## 1. Introduction
+
+Data warehouse performance determines how quickly users, dashboards, reports, and analytical applications can obtain useful information.
+
+A warehouse can contain millions or billions of rows, so performance depends on how data is stored, organized, queried, and processed.
+
+Main performance areas:
+
+- Data modeling
+- Query optimization
+- Indexing
+- Partitioning
+- Clustering
+- Compression
+- File formats
+- ETL/ELT design
+- Resource management
+- Caching
+- Monitoring
+
+## 2. Performance Architecture
+
+```text
+Data Sources
+     |
+     v
+Ingestion
+     |
+     v
+Staging
+     |
+     v
+Transformation
+     |
+     v
+Warehouse
+     |
+     +---- Partitioning
+     +---- Clustering
+     +---- Compression
+     +---- Indexing
+     |
+     v
+BI / Analytics
+```
+
+## 3. Query Performance
+
+A query should process only the data it needs.
+
+Bad:
+
+```sql
+SELECT *
+FROM sales;
+```
+
+Better:
+
+```sql
+SELECT
+    sale_id,
+    customer_id,
+    amount
+FROM sales;
+```
+
+Selecting only required columns reduces unnecessary data transfer and processing.
+
+## 4. Avoid SELECT *
+
+`SELECT *` can:
+
+- Read unnecessary columns
+- Increase network traffic
+- Increase memory usage
+- Make queries less predictable
+
+Use explicit columns for production queries.
+
+## 5. Filtering
+
+Apply filters whenever possible.
+
+```sql
+SELECT
+    product_id,
+    SUM(amount)
+FROM sales
+WHERE sale_date >= '2026-01-01'
+GROUP BY product_id;
+```
+
+Filtering reduces the amount of data processed.
+
+## 6. Predicate Pushdown
+
+Modern analytical engines can push filters closer to the storage layer.
+
+```text
+Query
+ |
+ v
+Filter
+ |
+ v
+Storage
+```
+
+Instead of:
+
+```text
+Storage
+ |
+ v
+Read Everything
+ |
+ v
+Filter
+```
+
+Predicate pushdown can significantly reduce I/O.
+
+## 7. Partitioning
+
+Partitioning divides a large table into logical sections.
+
+Example:
+
+```text
+sales
+ |
+ +-- year=2025
+ |
+ +-- year=2026
+      |
+      +-- month=01
+      +-- month=02
+      +-- month=08
+```
+
+## 8. Partition Pruning
+
+If a table is partitioned by date:
+
+```sql
+SELECT *
+FROM sales
+WHERE sale_date >= '2026-08-01'
+AND sale_date < '2026-09-01';
+```
+
+The engine can avoid scanning unrelated partitions.
+
+## 9. Good Partition Columns
+
+Common candidates:
+
+- Date
+- Year
+- Month
+- Region
+- Business unit
+
+Date-based partitioning is common in event and transaction warehouses.
+
+## 10. Bad Partitioning
+
+Avoid creating too many tiny partitions.
+
+For example:
+
+```text
+One partition per:
+- customer
+- transaction
+- event
+```
+
+This can create metadata and management overhead.
+
+## 11. Clustering
+
+Clustering organizes data according to commonly filtered or joined columns.
+
+Example:
+
+```text
+Table
+ |
+ +-- customer_id
+ +-- product_id
+ +-- region
+```
+
+Clustering strategies vary by warehouse technology.
+
+## 12. Indexing
+
+Indexes can accelerate point lookups and selective queries in systems that support them.
+
+Example:
+
+```sql
+CREATE INDEX idx_customer
+ON customers(customer_id);
+```
+
+Indexes are not universally beneficial for analytical warehouses.
+
+## 13. Index Trade-Off
+
+Indexes can improve:
+
+- Search
+- Filtering
+- Joins
+
+But they can increase:
+
+- Storage
+- Insert cost
+- Update cost
+- Maintenance
+
+Use them based on workload.
+
+## 14. Join Performance
+
+Large joins can become expensive.
+
+Example:
+
+```sql
+SELECT
+    c.customer_name,
+    SUM(f.amount)
+FROM fact_sales f
+JOIN dim_customer c
+    ON f.customer_key = c.customer_key
+GROUP BY c.customer_name;
+```
+
+Ensure join columns are appropriate and data volumes are understood.
+
+## 15. Star Schema Performance
+
+Star schemas often work well for analytics.
+
+```text
+       Dim Customer
+             |
+Dim Product--Fact Sales--Dim Date
+             |
+        Dim Location
+```
+
+Fact tables contain measurements and foreign keys.
+
+Dimensions provide descriptive context.
+
+## 16. Pre-Aggregation
+
+Frequently used metrics can be materialized.
+
+Example:
+
+```text
+Raw Sales
+   |
+   v
+Daily Sales
+   |
+   v
+Monthly Sales
+```
+
+A dashboard can query monthly data instead of billions of raw records.
+
+## 17. Materialized Views
+
+A materialized view stores query results.
+
+Example:
+
+```sql
+CREATE MATERIALIZED VIEW monthly_sales AS
+SELECT
+    DATE_TRUNC('month', sale_date) AS month,
+    SUM(amount) AS revenue
+FROM sales
+GROUP BY 1;
+```
+
+Syntax varies by database.
+
+## 18. Caching
+
+Caching avoids repeatedly calculating the same result.
+
+Possible cache layers:
+
+- Database cache
+- Query result cache
+- BI cache
+- Application cache
+
+## 19. Compression
+
+Compression reduces storage and I/O.
+
+Common approaches:
+
+- Columnar compression
+- Dictionary encoding
+- Run-length encoding
+- General-purpose compression
+
+Compressed data can improve performance when I/O is the bottleneck.
+
+## 20. Columnar Storage
+
+Columnar storage stores values by column.
+
+```text
+Row Storage:
+A1 B1 C1
+A2 B2 C2
+
+Column Storage:
+A1 A2
+B1 B2
+C1 C2
+```
+
+Analytical queries often read only a few columns, making columnar storage useful.
+
+## 21. Parquet
+
+Parquet is a popular columnar file format.
+
+Benefits:
+
+- Compression
+- Column pruning
+- Predicate pushdown
+- Cross-platform support
+
+## 22. ORC
+
+ORC is another columnar format widely associated with Hadoop and Hive.
+
+It supports:
+
+- Compression
+- Statistics
+- Predicate pushdown
+- Efficient analytical reads
+
+## 23. Statistics
+
+Query optimizers use statistics to choose execution plans.
+
+Statistics may include:
+
+- Row counts
+- Distinct values
+- Minimum
+- Maximum
+- Data distribution
+
+Outdated statistics can lead to poor plans.
+
+## 24. Query Execution Plan
+
+Use execution-plan tools when available.
+
+Example:
+
+```sql
+EXPLAIN
+SELECT *
+FROM sales
+WHERE amount > 50000;
+```
+
+Look for:
+
+- Full scans
+- Large joins
+- Sorts
+- Shuffles
+- Excessive data movement
+
+## 25. Avoid Unnecessary Sorting
+
+Sorting large datasets is expensive.
+
+Use `ORDER BY` only when the result needs a guaranteed order.
+
+## 26. Aggregation Optimization
+
+Reduce data before joining where possible.
+
+Example:
+
+```sql
+WITH sales_summary AS (
+    SELECT
+        customer_id,
+        SUM(amount) AS revenue
+    FROM sales
+    GROUP BY customer_id
+)
+SELECT *
+FROM sales_summary;
+```
+
+The exact optimization depends on the engine.
+
+## 27. Data Types
+
+Use appropriate data types.
+
+Avoid:
+
+```text
+Everything = STRING
+```
+
+Prefer:
+
+```text
+amount = DECIMAL
+sale_date = DATE
+created_at = TIMESTAMP
+quantity = INTEGER
+```
+
+Correct types improve storage and processing.
+
+## 28. Avoid Data Duplication
+
+Unnecessary duplication increases:
+
+- Storage
+- ETL time
+- Maintenance
+- Query complexity
+
+Use dimensional modeling and curated layers carefully.
+
+## 29. Incremental Loading
+
+Avoid rebuilding the entire warehouse every day.
+
+Instead:
+
+```text
+Yesterday
+   |
+   v
+Existing Data
+
+Today
+   |
+   v
+New Data
+```
+
+Load only new or changed records when appropriate.
+
+## 30. Change Data Capture
+
+CDC captures source changes.
+
+```text
+Source DB
+ |
+ v
+CDC
+ |
+ v
+Warehouse
+```
+
+CDC can reduce full extraction workloads.
+
+## 31. Batch Size
+
+Extremely small batches can create overhead.
+
+Extremely large batches can increase latency.
+
+Choose a batch size based on:
+
+- Data volume
+- SLA
+- Compute capacity
+- Source limits
+
+## 32. Parallel Processing
+
+Large workloads can be divided.
+
+```text
+Dataset
+ |
+ +-- Task 1
+ +-- Task 2
+ +-- Task 3
+ +-- Task 4
+```
+
+Parallelism improves throughput when resources are available.
+
+## 33. Data Skew
+
+Data skew occurs when one partition receives much more data than others.
+
+```text
+Partition 1 = 10 GB
+Partition 2 = 10 GB
+Partition 3 = 10 GB
+Partition 4 = 500 GB
+```
+
+The large partition becomes a bottleneck.
+
+## 34. Handling Skew
+
+Possible techniques:
+
+- Better partition keys
+- Salting
+- Pre-aggregation
+- Filtering
+- Adaptive execution
+
+The correct technique depends on the engine.
+
+## 35. Small File Problem
+
+Data lakes can suffer from thousands of small files.
+
+```text
+100,000 tiny files
+       |
+       v
+Metadata + I/O overhead
+```
+
+Compaction can improve performance.
+
+## 36. File Compaction
+
+Combine small files:
+
+```text
+file1
+file2
+file3
+...
+file100
+ |
+ v
+large-file.parquet
+```
+
+## 37. Warehouse Workload Management
+
+Separate workloads where supported.
+
+Example:
+
+```text
+ETL Workload
+Analytics Workload
+BI Workload
+Ad-hoc Workload
+```
+
+Resource isolation can prevent one workload from affecting another.
+
+## 38. Concurrency
+
+Many users may query a warehouse simultaneously.
+
+Monitor:
+
+- Concurrent queries
+- Queue time
+- CPU
+- Memory
+- I/O
+
+## 39. BI Optimization
+
+Dashboards should not repeatedly execute expensive raw queries.
+
+Use:
+
+- Aggregated tables
+- Materialized views
+- Extracts
+- Caching
+- Filter pushdown
+
+## 40. Automobile Example
+
+Suppose an automotive warehouse stores:
+
+```text
+10 billion vehicle telemetry records
+```
+
+A dashboard asks:
+
+```text
+Average battery temperature
+for August 2026
+by vehicle model
+```
+
+Useful optimizations:
+
+```text
+Partition by event_date
+Cluster by model
+Store in columnar format
+Filter August
+Aggregate only required columns
+```
+
+## 41. Performance Checklist
+
+Before production:
+
+- Check query plans
+- Check partitions
+- Check file sizes
+- Check indexes
+- Check joins
+- Check data types
+- Check statistics
+- Check concurrency
+- Check resource usage
+- Check dashboard queries
+
+## 42. Best Practices
+
+1. Select only required columns.
+2. Filter early.
+3. Partition large tables.
+4. Use suitable file formats.
+5. Avoid excessive partitions.
+6. Use incremental loading.
+7. Monitor query plans.
+8. Control data skew.
+9. Compact small files.
+10. Monitor workloads.
+
+## 43. Common Mistakes
+
+- SELECT *
+- Full table scans
+- Over-partitioning
+- Too many indexes
+- Unbounded joins
+- Outdated statistics
+- Tiny files
+- Reprocessing all data
+- Ignoring skew
+- No monitoring
+
+## 44. Performance Metrics
+
+Useful metrics:
+
+- Query latency
+- CPU usage
+- Memory usage
+- I/O
+- Bytes scanned
+- Rows processed
+- Queue time
+- ETL duration
+- Data freshness
+
+## 45. Summary
+
+Warehouse performance is not based on one optimization.
+
+A strong design combines:
+
+```text
+Good Modeling
++
+Efficient Storage
++
+Partitioning
++
+Query Optimization
++
+Incremental Processing
++
+Monitoring
+```

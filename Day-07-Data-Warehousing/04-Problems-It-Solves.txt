@@ -1,0 +1,288 @@
+# Data Warehousing - Problems It Solves
+
+## 1. Introduction
+
+Data warehouses solve problems created by fragmented data, analytical workloads, historical reporting, inconsistent definitions, and large-scale data processing.
+
+## 2. Data Silos
+
+Different departments often maintain separate systems.
+
+```text
+Sales
+Service
+Finance
+Marketing
+   |
+   X
+Separate Data
+```
+
+A warehouse integrates them.
+
+```text
+Sales ----+
+Service --+
+Finance --+--> Warehouse
+Marketing-+
+```
+
+## 3. Inconsistent Data
+
+Different systems may use different names.
+
+```text
+customer_id
+cust_id
+customer_number
+```
+
+The warehouse can standardize these concepts.
+
+## 4. Inconsistent Metrics
+
+Different teams may calculate:
+
+```text
+Revenue
+Profit
+Customer Count
+```
+
+differently.
+
+A curated warehouse can establish trusted definitions.
+
+## 5. Historical Data
+
+Operational systems may focus on current records.
+
+Warehouses retain history for analysis.
+
+```text
+2024 -> 2025 -> 2026
+```
+
+## 6. Reporting Performance
+
+Large analytical queries can affect operational systems.
+
+A warehouse separates analytical workloads.
+
+```text
+OLTP ---> Applications
+
+Warehouse ---> Reports
+```
+
+## 7. Complex Queries
+
+Warehouse systems are designed for analytical operations such as:
+
+```sql
+GROUP BY
+JOIN
+SUM
+AVG
+RANK
+WINDOW FUNCTIONS
+```
+
+## 8. Data Integration
+
+A warehouse can combine:
+
+```text
+Database
+API
+CSV
+IoT
+Application
+```
+
+## 9. Data Cleaning
+
+Warehouse pipelines can handle:
+
+- Null values
+- Duplicate records
+- Invalid formats
+- Type conversions
+- Standardization
+
+## 10. Data Transformation
+
+Example:
+
+```text
+Raw Price
+ |
+ v
+Currency Conversion
+ |
+ v
+Standardized Revenue
+```
+
+## 11. Business Intelligence
+
+Warehouses provide data for:
+
+- Dashboards
+- Reports
+- KPIs
+- Management analysis
+
+## 12. Self-Service Analytics
+
+A trusted warehouse allows analysts to query curated data without repeatedly extracting data from operational systems.
+
+## 13. Data Consistency
+
+Centralized definitions improve consistency.
+
+```text
+One Metric
+ |
+ v
+Many Reports
+```
+
+## 14. Scalability
+
+Large warehouses support large analytical datasets using:
+
+- Parallelism
+- Partitioning
+- Compression
+- Columnar storage
+
+## 15. Data Governance
+
+A warehouse can support:
+
+- Ownership
+- Metadata
+- Lineage
+- Classification
+- Access control
+
+## 16. Security
+
+Warehouse security can protect sensitive analytical data through:
+
+- RBAC
+- Encryption
+- Masking
+- Auditing
+
+## 17. Data Quality
+
+Quality checks can detect:
+
+```text
+Duplicates
+Nulls
+Invalid Values
+Missing Data
+Schema Changes
+```
+
+## 18. Operational Isolation
+
+Separating analytics from OLTP protects transaction workloads.
+
+## 19. Trend Analysis
+
+Warehouses enable:
+
+```text
+Daily
+Monthly
+Quarterly
+Yearly
+```
+
+comparisons.
+
+## 20. Forecasting
+
+Historical warehouse data can feed:
+
+- Forecasting
+- Machine learning
+- Predictive analytics
+
+## 21. Automobile Example
+
+An automotive company wants to understand:
+
+```text
+Which models sell best?
+Which models have highest service cost?
+Which regions have more warranty claims?
+```
+
+These questions may require multiple sources.
+
+## 22. Integrated Automotive Warehouse
+
+```text
+Sales
+Service
+Warranty
+Telemetry
+Dealer
+Customer
+ |
+ v
+Warehouse
+ |
+ v
+Analytics
+```
+
+## 23. Data Warehouse Value
+
+```text
+Raw Data
+ |
+ v
+Integrated Data
+ |
+ v
+Trusted Data
+ |
+ v
+Insights
+ |
+ v
+Business Decisions
+```
+
+## 24. Common Problems Solved
+
+```text
+Data Silos
+Poor Reporting
+Slow Analytics
+Missing History
+Inconsistent Metrics
+Data Quality
+Security
+Governance
+```
+
+## 25. Summary
+
+A warehouse is valuable because it converts fragmented operational information into a trusted analytical foundation.
+
+```text
+Many Sources
+ |
+ v
+One Analytical Platform
+ |
+ v
+Reliable Insights
+```

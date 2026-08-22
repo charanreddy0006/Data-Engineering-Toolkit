@@ -1,0 +1,306 @@
+# Data Warehousing - Core Components
+
+## 1. Introduction
+
+A data warehouse consists of multiple components working together.
+
+## 2. Core Components
+
+```text
+Sources
+Ingestion
+Staging
+Transformation
+Storage
+Facts
+Dimensions
+Data Marts
+Metadata
+BI
+Governance
+Monitoring
+```
+
+## 3. Source Systems
+
+Source systems generate or store business data.
+
+Examples:
+
+- PostgreSQL
+- MySQL
+- APIs
+- ERP
+- CRM
+- IoT
+
+## 4. Ingestion
+
+Ingestion moves data into the platform.
+
+Types:
+
+```text
+Batch
+Streaming
+CDC
+```
+
+## 5. Staging
+
+Staging is an intermediate processing area.
+
+Uses:
+
+- Validation
+- Temporary storage
+- Debugging
+- Reprocessing
+
+## 6. Raw Storage
+
+Raw storage preserves source data.
+
+```text
+raw/
+ |
+ +-- customers
+ +-- orders
+ +-- vehicles
+```
+
+## 7. Transformation
+
+Transformation converts raw data into analytical data.
+
+Examples:
+
+```text
+Clean
+Join
+Aggregate
+Deduplicate
+Standardize
+```
+
+## 8. Fact Tables
+
+Fact tables represent business events.
+
+Example:
+
+```text
+fact_sales
+```
+
+Measures:
+
+- Quantity
+- Amount
+- Discount
+- Cost
+
+## 9. Dimension Tables
+
+Dimensions provide context.
+
+Examples:
+
+```text
+dim_customer
+dim_product
+dim_date
+dim_vehicle
+```
+
+## 10. Grain
+
+Grain defines the meaning of one fact row.
+
+Example:
+
+```text
+One row = One invoice line
+```
+
+## 11. Measures
+
+Measures are numeric values used for analysis.
+
+Examples:
+
+```text
+Revenue
+Quantity
+Cost
+Profit
+```
+
+## 12. Keys
+
+Common keys:
+
+- Primary key
+- Foreign key
+- Natural key
+- Surrogate key
+
+## 13. Data Marts
+
+Data marts serve a specific business area.
+
+```text
+Warehouse
+ |
+ +-- Sales
+ +-- Finance
+ +-- Service
+```
+
+## 14. Semantic Layer
+
+A semantic layer provides business-friendly definitions.
+
+Example:
+
+```text
+Revenue
+=
+SUM(net_sales)
+```
+
+## 15. Metadata
+
+Metadata describes data.
+
+Examples:
+
+- Schema
+- Column type
+- Owner
+- Source
+- Description
+
+## 16. Data Catalog
+
+A catalog helps users discover datasets.
+
+## 17. Lineage
+
+Lineage explains data flow.
+
+```text
+Source
+ |
+ v
+ETL
+ |
+ v
+Warehouse
+ |
+ v
+Dashboard
+```
+
+## 18. Quality Layer
+
+Quality checks include:
+
+- Null checks
+- Duplicate checks
+- Range checks
+- Schema checks
+
+## 19. Security
+
+Security includes:
+
+- Authentication
+- Authorization
+- Encryption
+- Masking
+- Auditing
+
+## 20. Monitoring
+
+Monitor:
+
+```text
+Pipelines
+Queries
+Freshness
+Storage
+Cost
+```
+
+## 21. Backup
+
+Backups protect against:
+
+- Accidental deletion
+- Corruption
+- System failures
+
+## 22. Recovery
+
+Recovery restores data and services after failures.
+
+## 23. Automobile Components
+
+An automotive warehouse may contain:
+
+```text
+fact_sales
+fact_service
+fact_telemetry
+
+dim_vehicle
+dim_customer
+dim_dealer
+dim_date
+dim_location
+```
+
+## 24. Example Data Flow
+
+```text
+Vehicle Sensors
+ |
+ v
+Kafka
+ |
+ v
+Raw Data
+ |
+ v
+Spark
+ |
+ v
+Clean Data
+ |
+ v
+fact_telemetry
+ |
+ v
+Dashboard
+```
+
+## 25. Summary
+
+Each component has a specific role.
+
+```text
+Source
+ |
+Ingestion
+ |
+Raw
+ |
+Transform
+ |
+Warehouse
+ |
+Facts + Dimensions
+ |
+BI
+```

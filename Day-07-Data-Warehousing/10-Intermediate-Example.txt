@@ -1,0 +1,270 @@
+# Data Warehousing - Intermediate Example
+
+## 1. Project
+
+Build an automotive sales warehouse using multiple source tables.
+
+## 2. Architecture
+
+```text
+Customers
+Vehicles
+Dealers
+Sales
+ |
+ v
+Python Ingestion
+ |
+ v
+Staging
+ |
+ v
+Transformation
+ |
+ v
+Star Schema
+ |
+ v
+Analytics
+```
+
+## 3. Source Tables
+
+```text
+customers
+vehicles
+dealers
+sales
+```
+
+## 4. Warehouse Model
+
+```text
+          dim_customer
+                |
+dim_vehicle--fact_sales--dim_date
+                |
+           dim_dealer
+```
+
+## 5. Customer Dimension
+
+```sql
+CREATE TABLE dim_customer (
+    customer_key SERIAL PRIMARY KEY,
+    customer_id VARCHAR(50) UNIQUE,
+    customer_name VARCHAR(100),
+    city VARCHAR(100)
+);
+```
+
+## 6. Vehicle Dimension
+
+```sql
+CREATE TABLE dim_vehicle (
+    vehicle_key SERIAL PRIMARY KEY,
+    vehicle_id VARCHAR(50) UNIQUE,
+    model VARCHAR(100),
+    brand VARCHAR(100),
+    fuel_type VARCHAR(50)
+);
+```
+
+## 7. Dealer Dimension
+
+```sql
+CREATE TABLE dim_dealer (
+    dealer_key SERIAL PRIMARY KEY,
+    dealer_id VARCHAR(50) UNIQUE,
+    dealer_name VARCHAR(100),
+    city VARCHAR(100)
+);
+```
+
+## 8. Date Dimension
+
+```sql
+CREATE TABLE dim_date (
+    date_key INT PRIMARY KEY,
+    full_date DATE,
+    year INT,
+    month INT,
+    day INT
+);
+```
+
+## 9. Sales Fact
+
+```sql
+CREATE TABLE fact_sales (
+    sale_key BIGSERIAL PRIMARY KEY,
+    customer_key INT,
+    vehicle_key INT,
+    dealer_key INT,
+    date_key INT,
+    quantity INT,
+    amount DECIMAL(14,2)
+);
+```
+
+## 10. Data Quality
+
+Validate:
+
+```text
+Customer ID unique
+Vehicle ID valid
+Amount >= 0
+Date valid
+Quantity > 0
+```
+
+## 11. Incremental Load
+
+Use a watermark:
+
+```text
+last_loaded_timestamp
+```
+
+Example:
+
+```sql
+SELECT *
+FROM source_sales
+WHERE updated_at > :last_watermark;
+```
+
+## 12. Deduplication
+
+Example:
+
+```sql
+SELECT *
+FROM (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY sale_id
+            ORDER BY updated_at DESC
+        ) AS rn
+    FROM staging_sales
+) x
+WHERE rn = 1;
+```
+
+## 13. Upsert
+
+A warehouse may use a merge or database-specific upsert mechanism.
+
+Concept:
+
+```text
+New Key -> INSERT
+Existing Key -> UPDATE
+```
+
+## 14. Analytics
+
+Revenue by model:
+
+```sql
+SELECT
+    v.model,
+    SUM(f.amount) AS revenue
+FROM fact_sales f
+JOIN dim_vehicle v
+    ON f.vehicle_key = v.vehicle_key
+GROUP BY v.model
+ORDER BY revenue DESC;
+```
+
+## 15. Revenue by Region
+
+```sql
+SELECT
+    d.city,
+    SUM(f.amount) AS revenue
+FROM fact_sales f
+JOIN dim_dealer d
+    ON f.dealer_key = d.dealer_key
+GROUP BY d.city;
+```
+
+## 16. Monthly Revenue
+
+```sql
+SELECT
+    dt.year,
+    dt.month,
+    SUM(f.amount) AS revenue
+FROM fact_sales f
+JOIN dim_date dt
+    ON f.date_key = dt.date_key
+GROUP BY dt.year, dt.month
+ORDER BY dt.year, dt.month;
+```
+
+## 17. Pipeline
+
+```text
+Extract
+ |
+ v
+Staging
+ |
+ v
+Quality Checks
+ |
+ v
+Deduplicate
+ |
+ v
+Transform
+ |
+ v
+Load Dimensions
+ |
+ v
+Load Facts
+ |
+ v
+Publish
+```
+
+## 18. Monitoring
+
+Track:
+
+```text
+Rows Extracted
+Rows Loaded
+Rejected Rows
+Pipeline Duration
+Latest Data Timestamp
+```
+
+## 19. Automobile Use Case
+
+Management wants:
+
+```text
+Revenue by model
+Revenue by dealer
+Monthly sales
+Top customers
+```
+
+The star schema supports these queries efficiently.
+
+## 20. Learning Outcome
+
+This project introduces:
+
+- Multiple dimensions
+- Fact modeling
+- Incremental loads
+- Deduplication
+- Data quality
+- Analytical SQL
+- Monitoring

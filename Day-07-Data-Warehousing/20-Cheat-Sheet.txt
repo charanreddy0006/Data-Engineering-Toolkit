@@ -1,0 +1,722 @@
+# Data Warehousing - Cheat Sheet
+
+## 1. Core Definition
+
+A data warehouse is an analytical data platform designed to integrate, store, and query historical business data.
+
+## 2. Main Purpose
+
+```text
+Operational Data
+      |
+      v
+Integration
+      |
+      v
+Historical Analytical Data
+      |
+      v
+Reporting
+```
+
+## 3. OLTP
+
+```text
+Online Transaction Processing
+
+Used for:
+- Orders
+- Payments
+- Registrations
+- Service bookings
+```
+
+## 4. OLAP
+
+```text
+Online Analytical Processing
+
+Used for:
+- Reporting
+- Dashboards
+- Trends
+- Aggregations
+```
+
+## 5. OLTP vs OLAP
+
+| OLTP | OLAP |
+|---|---|
+| Transactions | Analytics |
+| Current data | Historical data |
+| Many writes | Mostly reads |
+| Normalized | Dimensional |
+| Small queries | Large queries |
+
+## 6. ETL
+
+```text
+Extract
+  |
+Transform
+  |
+Load
+```
+
+## 7. ELT
+
+```text
+Extract
+  |
+Load
+  |
+Transform
+```
+
+## 8. Warehouse Architecture
+
+```text
+Sources
+ |
+ v
+Ingestion
+ |
+ v
+Staging
+ |
+ v
+Warehouse
+ |
+ v
+Data Marts
+ |
+ v
+BI
+```
+
+## 9. Layers
+
+```text
+Raw
+ |
+ v
+Staging
+ |
+ v
+Clean
+ |
+ v
+Curated
+ |
+ v
+Analytics
+```
+
+## 10. Fact Table
+
+Contains:
+
+- Measures
+- Foreign keys
+- Business events
+
+Example:
+
+```text
+fact_sales
+```
+
+## 11. Dimension Table
+
+Contains descriptive attributes.
+
+Examples:
+
+```text
+dim_customer
+dim_vehicle
+dim_product
+dim_date
+```
+
+## 12. Star Schema
+
+```text
+        dim_customer
+             |
+dim_vehicle--fact_sales--dim_date
+             |
+         dim_dealer
+```
+
+## 13. Snowflake Schema
+
+Dimensions are normalized into additional related tables.
+
+## 14. Grain
+
+Grain = meaning of one fact row.
+
+Example:
+
+```text
+One row = One vehicle sale
+```
+
+## 15. Surrogate Key
+
+Warehouse-generated key.
+
+```text
+customer_key = 1001
+```
+
+## 16. Natural Key
+
+Source-system identifier.
+
+```text
+customer_id = C001
+```
+
+## 17. SCD Type 1
+
+Overwrite old value.
+
+```text
+Rajkot
+  |
+  v
+Ahmedabad
+```
+
+## 18. SCD Type 2
+
+Preserve history.
+
+```text
+Rajkot      2025-2026
+Ahmedabad   2026-
+```
+
+## 19. Data Mart
+
+Business-specific analytical dataset.
+
+```text
+Warehouse
+ |
+ +-- Sales
+ +-- Finance
+ +-- Marketing
+ +-- Service
+```
+
+## 20. Data Lake
+
+Stores large amounts of raw and processed data.
+
+## 21. Lakehouse
+
+Combines lake storage with warehouse-style analytics.
+
+## 22. Partitioning
+
+Divide data into logical sections.
+
+```text
+year=2026
+month=08
+day=11
+```
+
+## 23. Partition Pruning
+
+Read only relevant partitions.
+
+## 24. Clustering
+
+Organize data around commonly used columns to improve data skipping or query efficiency, depending on the platform.
+
+## 25. Index
+
+Data structure used to speed up supported query patterns.
+
+## 26. Materialized View
+
+Stores query results physically for faster access.
+
+## 27. Columnar Storage
+
+Stores data by column.
+
+Good for analytical workloads.
+
+## 28. Parquet
+
+```text
+Columnar
+Compressed
+Efficient
+Analytics-friendly
+```
+
+## 29. ORC
+
+```text
+Columnar
+Compressed
+Optimized for analytics
+```
+
+## 30. Query Optimization
+
+```text
+Filter Early
+Select Required Columns
+Partition
+Optimize Joins
+Avoid Unnecessary Sorts
+```
+
+## 31. Bad Query
+
+```sql
+SELECT *
+FROM sales;
+```
+
+## 32. Better Query
+
+```sql
+SELECT
+    vehicle_id,
+    amount
+FROM sales
+WHERE sale_date >= '2026-01-01';
+```
+
+## 33. Incremental Load
+
+```text
+Existing Data
++
+New / Changed Data
+```
+
+Avoid unnecessary full reloads.
+
+## 34. CDC
+
+```text
+Source DB
+ |
+ v
+Change Data Capture
+ |
+ v
+Warehouse
+```
+
+## 35. Data Quality
+
+Main dimensions:
+
+```text
+Accuracy
+Completeness
+Consistency
+Uniqueness
+Validity
+Timeliness
+```
+
+## 36. Deduplication
+
+Use:
+
+- Event ID
+- Business key
+- Window functions
+- Merge logic
+
+## 37. Data Lineage
+
+```text
+Source
+ |
+ v
+Pipeline
+ |
+ v
+Warehouse
+ |
+ v
+Dashboard
+```
+
+## 38. Metadata
+
+Information about data.
+
+Examples:
+
+```text
+Column
+Type
+Owner
+Source
+Description
+```
+
+## 39. Security
+
+```text
+Authentication
+Authorization
+Encryption
+Masking
+Auditing
+Monitoring
+```
+
+## 40. RBAC
+
+```text
+User
+ |
+ v
+Role
+ |
+ v
+Permissions
+```
+
+## 41. Least Privilege
+
+Give only required access.
+
+## 42. Row-Level Security
+
+Different users see different rows.
+
+```text
+Region = Gujarat
+```
+
+## 43. Column-Level Security
+
+Restrict sensitive columns.
+
+## 44. Backup
+
+Common forms:
+
+- Full
+- Incremental
+- Differential
+- Snapshot
+- Logical
+- Physical
+
+## 45. RPO
+
+```text
+Recovery Point Objective
+=
+Acceptable Data Loss
+```
+
+## 46. RTO
+
+```text
+Recovery Time Objective
+=
+Target Recovery Time
+```
+
+## 47. Replication
+
+```text
+Primary
+ |
+ v
+Replica
+```
+
+Replication improves availability but does not replace backups.
+
+## 48. Performance
+
+Important techniques:
+
+```text
+Partitioning
+Clustering
+Indexing
+Compression
+Columnar Storage
+Caching
+Materialization
+Incremental Processing
+```
+
+## 49. Data Skew
+
+Uneven partition distribution.
+
+```text
+P1 = 10 GB
+P2 = 10 GB
+P3 = 500 GB
+```
+
+## 50. Small Files
+
+Too many small files create overhead.
+
+Solution:
+
+```text
+Small Files
+ |
+ v
+Compaction
+ |
+ v
+Larger Files
+```
+
+## 51. Monitoring
+
+Monitor:
+
+- Query latency
+- Pipeline duration
+- Data freshness
+- Storage
+- Compute
+- Failures
+- Cost
+
+## 52. Automobile Warehouse
+
+```text
+Vehicle Sensors
+ |
+ v
+Kafka
+ |
+ v
+Spark
+ |
+ v
+Data Lake
+ |
+ v
+Warehouse
+ |
+ v
+BI
+```
+
+## 53. Automotive Facts
+
+```text
+fact_sales
+fact_service
+fact_telemetry
+```
+
+## 54. Automotive Dimensions
+
+```text
+dim_vehicle
+dim_customer
+dim_dealer
+dim_date
+dim_location
+```
+
+## 55. Typical Pipeline
+
+```text
+Extract
+ |
+ v
+Validate
+ |
+ v
+Transform
+ |
+ v
+Load
+ |
+ v
+Quality Check
+ |
+ v
+Publish
+```
+
+## 56. Reliability
+
+Use:
+
+- Retries
+- Idempotency
+- Checkpoints
+- Monitoring
+- Alerts
+
+## 57. Cost Optimization
+
+Use:
+
+- Incremental processing
+- Partition pruning
+- Compression
+- Right-sized compute
+- Lifecycle policies
+
+## 58. Security Checklist
+
+```text
+[ ] MFA
+[ ] Least privilege
+[ ] Encryption
+[ ] Secrets protected
+[ ] Audit logs
+[ ] Network restrictions
+[ ] Backups protected
+```
+
+## 59. Performance Checklist
+
+```text
+[ ] Query plan
+[ ] Partitioning
+[ ] Clustering
+[ ] Data types
+[ ] Joins
+[ ] Data skew
+[ ] Small files
+[ ] Statistics
+```
+
+## 60. Data Quality Checklist
+
+```text
+[ ] Null checks
+[ ] Duplicate checks
+[ ] Schema checks
+[ ] Range checks
+[ ] Freshness checks
+[ ] Referential checks
+```
+
+## 61. Key Terms
+
+```text
+Warehouse
+OLTP
+OLAP
+ETL
+ELT
+Fact
+Dimension
+Grain
+SCD
+CDC
+Partition
+Cluster
+Index
+Data Mart
+Data Lake
+Lakehouse
+Lineage
+Metadata
+```
+
+## 62. SQL Patterns
+
+```sql
+SELECT
+    category,
+    SUM(amount)
+FROM sales
+GROUP BY category;
+```
+
+## 63. Filtering
+
+```sql
+SELECT *
+FROM sales
+WHERE sale_date >= '2026-01-01';
+```
+
+## 64. Join
+
+```sql
+SELECT
+    f.amount,
+    d.vehicle_model
+FROM fact_sales f
+JOIN dim_vehicle d
+    ON f.vehicle_key = d.vehicle_key;
+```
+
+## 65. Window Function
+
+```sql
+SELECT
+    vehicle_id,
+    amount,
+    RANK() OVER (
+        ORDER BY amount DESC
+    ) AS rank
+FROM sales;
+```
+
+## 66. Final Architecture
+
+```text
+Sources
+ |
+ v
+Kafka / APIs / Databases
+ |
+ v
+Data Lake
+ |
+ v
+Spark / SQL / dbt
+ |
+ v
+Data Warehouse
+ |
+ +-- Facts
+ +-- Dimensions
+ |
+ v
+Data Marts
+ |
+ v
+BI
+```
+
+## 67. One-Line Revision
+
+```text
+Warehouse = Integrated Historical Data for Analytics
+Fact = Measures
+Dimension = Description
+Grain = Meaning of One Fact Row
+ETL = Transform Before Load
+ELT = Transform After Load
+CDC = Capture Changes
+SCD2 = Preserve Dimension History
+RPO = Acceptable Data Loss
+RTO = Recovery Time
+```

@@ -1,0 +1,240 @@
+# Data Warehousing - Automobile Industry Example
+
+## 1. Use Case
+
+Design a data warehouse for an automobile company.
+
+The company collects data from:
+
+- Vehicle sensors
+- Sales systems
+- Service centers
+- Dealers
+- Customers
+- Warranty systems
+
+## 2. Architecture
+
+```text
+Vehicle Sensors
+       |
+       v
+Kafka
+       |
+       v
+Data Lake
+       |
+       v
+Spark
+       |
+       v
+Data Warehouse
+       |
+       v
+Power BI
+```
+
+## 3. Sales System
+
+Stores:
+
+```text
+sale_id
+customer_id
+vehicle_id
+dealer_id
+sale_date
+amount
+```
+
+## 4. Service System
+
+Stores:
+
+```text
+service_id
+vehicle_id
+service_date
+service_type
+cost
+```
+
+## 5. Telemetry
+
+Stores:
+
+```text
+vehicle_id
+event_time
+speed
+battery_level
+temperature
+location
+```
+
+## 6. Dimensions
+
+```text
+dim_vehicle
+dim_customer
+dim_dealer
+dim_date
+dim_location
+```
+
+## 7. Facts
+
+```text
+fact_sales
+fact_service
+fact_telemetry
+```
+
+## 8. Star Schema
+
+```text
+            dim_vehicle
+                 |
+dim_customer -- fact_sales -- dim_date
+                 |
+             dim_dealer
+```
+
+Telemetry can use:
+
+```text
+dim_vehicle
+dim_date
+dim_location
+```
+
+## 9. Sales Analytics
+
+Questions:
+
+```text
+Which model sells most?
+Which dealer sells most?
+Which region generates most revenue?
+```
+
+## 10. Service Analytics
+
+Questions:
+
+```text
+Which models require more service?
+What is average repair cost?
+Which components fail most?
+```
+
+## 11. Telemetry Analytics
+
+Questions:
+
+```text
+What is average battery temperature?
+Which vehicles show abnormal behavior?
+What is average vehicle speed?
+```
+
+## 12. Predictive Maintenance
+
+Warehouse data can feed ML pipelines.
+
+```text
+Telemetry
+ |
+ v
+Feature Engineering
+ |
+ v
+ML Model
+ |
+ v
+Failure Prediction
+```
+
+## 13. Revenue KPI
+
+```sql
+SELECT
+    SUM(amount) AS total_revenue
+FROM fact_sales;
+```
+
+## 14. Service Cost KPI
+
+```sql
+SELECT
+    SUM(cost) AS total_service_cost
+FROM fact_service;
+```
+
+## 15. Model Performance
+
+```sql
+SELECT
+    v.model,
+    SUM(s.amount) AS revenue
+FROM fact_sales s
+JOIN dim_vehicle v
+    ON s.vehicle_key = v.vehicle_key
+GROUP BY v.model;
+```
+
+## 16. Data Flow
+
+```text
+Vehicle
+ |
+ v
+Sensor
+ |
+ v
+Event
+ |
+ v
+Kafka
+ |
+ v
+Spark
+ |
+ v
+Lake
+ |
+ v
+Warehouse
+ |
+ v
+Dashboard
+```
+
+## 17. Security
+
+Vehicle location and customer information should have restricted access.
+
+## 18. Quality
+
+Validate:
+
+```text
+vehicle_id
+event_time
+battery_level
+temperature
+```
+
+## 19. Performance
+
+Partition telemetry by event date.
+
+```text
+2026-08-09
+2026-08-10
+2026-08-11
+```
+
+## 20. Final Outcome
+
+The warehouse becomes a central analytical platform for sales, service, telemetry, warranty, and business intelligence.

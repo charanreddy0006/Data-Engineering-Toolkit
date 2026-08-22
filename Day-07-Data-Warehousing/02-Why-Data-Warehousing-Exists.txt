@@ -1,0 +1,306 @@
+# Why Data Warehousing Exists
+
+## 1. Introduction
+
+Data warehouses exist because operational systems are not designed to answer every analytical question efficiently.
+
+Organizations need integrated, historical, reliable, and query-friendly data.
+
+## 2. The Problem Before Warehousing
+
+Imagine an automobile company with:
+
+```text
+Sales DB
+Service DB
+Customer DB
+Dealer DB
+Vehicle IoT Platform
+Finance System
+```
+
+Each system may use different schemas.
+
+## 3. Data Silos
+
+A data silo is data isolated inside one system or department.
+
+```text
+Sales      Service      Finance
+  |           |            |
+  +-----------+------------+
+              X
+       Difficult Analysis
+```
+
+## 4. Integration Problem
+
+Management may ask:
+
+```text
+Which vehicle models generate
+the highest revenue and lowest
+service cost?
+```
+
+The answer may require several systems.
+
+## 5. Reporting Problem
+
+Running heavy analytical queries directly on production systems can affect applications.
+
+```text
+Application Users
+       |
+       v
+OLTP Database
+       ^
+       |
+Heavy Report
+```
+
+This creates contention.
+
+## 6. Historical Data Problem
+
+Operational databases often focus on current state.
+
+A warehouse can preserve historical states.
+
+```text
+2024
+ |
+2025
+ |
+2026
+```
+
+## 7. Inconsistent Definitions
+
+Different teams may calculate revenue differently.
+
+```text
+Finance Revenue
+Sales Revenue
+BI Revenue
+```
+
+A warehouse can provide standardized definitions.
+
+## 8. Performance Problem
+
+Analytical queries can scan large amounts of data.
+
+Example:
+
+```sql
+SELECT
+    vehicle_model,
+    SUM(amount)
+FROM sales
+GROUP BY vehicle_model;
+```
+
+A warehouse can be optimized for such workloads.
+
+## 9. Data Quality Problem
+
+Source data can contain:
+
+- Duplicates
+- Nulls
+- Invalid values
+- Different formats
+- Incorrect types
+
+Pipelines can clean and validate data before analytics.
+
+## 10. Decision-Making Problem
+
+Without integrated data:
+
+```text
+Data
+ |
+ X
+ |
+Decision
+```
+
+With integrated data:
+
+```text
+Data
+ |
+ v
+Warehouse
+ |
+ v
+Analysis
+ |
+ v
+Decision
+```
+
+## 11. Centralized Analytics
+
+A warehouse provides a shared analytical platform.
+
+```text
+Sales
+Service
+Finance
+Marketing
+   |
+   v
+Warehouse
+   |
+   v
+BI
+```
+
+## 12. Historical Trend Analysis
+
+Questions become easier:
+
+- Revenue by year
+- Sales by month
+- Customer growth
+- Service cost trend
+- Vehicle failure trend
+
+## 13. Business Intelligence
+
+BI tools commonly connect to warehouses.
+
+```text
+Warehouse
+ |
+ v
+Power BI / Tableau / Looker
+ |
+ v
+Dashboard
+```
+
+## 14. ETL
+
+ETL was a traditional solution:
+
+```text
+Extract
+ |
+Transform
+ |
+Load
+```
+
+## 15. ELT
+
+Modern cloud warehouses often support:
+
+```text
+Extract
+ |
+Load
+ |
+Transform
+```
+
+Transformation uses warehouse compute.
+
+## 16. Data Consolidation
+
+Example:
+
+```text
+CRM
+ERP
+IoT
+CSV
+API
+ |
+ v
+Warehouse
+```
+
+## 17. Single Source of Truth
+
+A warehouse can provide standardized business data.
+
+It should not mean every raw source is deleted.
+
+Instead:
+
+```text
+Raw Sources
+ |
+ v
+Trusted Warehouse Layer
+ |
+ v
+Business Metrics
+```
+
+## 18. Scalability
+
+Warehouses can be designed to process large analytical workloads.
+
+Common techniques:
+
+- Parallel processing
+- Partitioning
+- Columnar storage
+- Compression
+- Caching
+
+## 19. Automobile Example
+
+A company wants:
+
+```text
+Revenue by model
++
+Warranty cost by model
++
+Service frequency
+```
+
+Data comes from:
+
+```text
+Sales
+Warranty
+Service
+Vehicle systems
+```
+
+A warehouse combines them.
+
+## 20. Main Problems Solved
+
+```text
+Data Silos
+Inconsistent Metrics
+Poor Analytical Performance
+Limited History
+Difficult Reporting
+Data Quality Problems
+```
+
+## 21. Summary
+
+The central reason for a warehouse is simple:
+
+```text
+Many Operational Sources
+          |
+          v
+Integrated Trusted Data
+          |
+          v
+Fast Analytics
+          |
+          v
+Better Decisions
+```

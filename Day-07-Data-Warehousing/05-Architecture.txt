@@ -1,0 +1,361 @@
+# Data Warehousing - Architecture
+
+## 1. Introduction
+
+Data warehouse architecture defines how data moves from source systems into analytical storage and finally to users.
+
+## 2. High-Level Architecture
+
+```text
+Data Sources
+      |
+      v
+Data Ingestion
+      |
+      v
+Staging / Raw
+      |
+      v
+Transformation
+      |
+      v
+Data Warehouse
+      |
+      v
+Data Marts
+      |
+      v
+BI / Analytics
+```
+
+## 3. Data Sources
+
+Sources include:
+
+- Relational databases
+- NoSQL databases
+- APIs
+- CSV
+- JSON
+- Applications
+- IoT devices
+- Event streams
+
+## 4. Ingestion Layer
+
+The ingestion layer extracts or receives data.
+
+```text
+Source
+ |
+ v
+Ingestion
+```
+
+Ingestion may be:
+
+- Batch
+- Streaming
+- CDC
+
+## 5. Batch Ingestion
+
+```text
+Source
+ |
+ v
+Scheduled Job
+ |
+ v
+Warehouse
+```
+
+Example:
+
+```text
+Every night at 02:00
+```
+
+## 6. Streaming Ingestion
+
+```text
+Event
+ |
+ v
+Kafka
+ |
+ v
+Stream Processor
+```
+
+## 7. CDC
+
+CDC captures changes from operational systems.
+
+```text
+INSERT
+UPDATE
+DELETE
+ |
+ v
+CDC
+ |
+ v
+Warehouse
+```
+
+## 8. Staging Layer
+
+Staging stores incoming data temporarily.
+
+Benefits:
+
+- Debugging
+- Validation
+- Reprocessing
+- Source isolation
+
+## 9. Raw Layer
+
+Raw storage keeps source-like data.
+
+```text
+raw/
+  customers/
+  orders/
+  vehicles/
+```
+
+## 10. Transformation Layer
+
+Transforms raw data into useful business datasets.
+
+Common operations:
+
+- Cleaning
+- Joining
+- Aggregation
+- Standardization
+- Deduplication
+
+## 11. Warehouse Layer
+
+The warehouse contains trusted analytical data.
+
+Common structures:
+
+```text
+Fact Tables
+Dimension Tables
+Aggregate Tables
+```
+
+## 12. Data Mart Layer
+
+Business-specific datasets can be created.
+
+```text
+Warehouse
+ |
+ +-- Sales
+ +-- Finance
+ +-- Service
+```
+
+## 13. BI Layer
+
+BI tools consume curated data.
+
+Examples:
+
+- Power BI
+- Tableau
+- Looker
+
+## 14. Three-Tier Architecture
+
+A traditional architecture can be represented as:
+
+```text
+Bottom Tier
+Data Sources / Warehouse
+       |
+Middle Tier
+OLAP / Semantic Layer
+       |
+Top Tier
+Reports / BI
+```
+
+## 15. Modern Architecture
+
+Modern cloud architecture may look like:
+
+```text
+Sources
+ |
+ v
+Ingestion
+ |
+ v
+Data Lake
+ |
+ v
+Transformations
+ |
+ v
+Warehouse / Lakehouse
+ |
+ v
+BI / ML
+```
+
+## 16. Storage and Compute
+
+Cloud systems may separate storage and compute.
+
+```text
+        Compute
+       /   |         /    |        Storage Layer
+```
+
+## 17. MPP Architecture
+
+Massively Parallel Processing divides work across nodes.
+
+```text
+Query
+ |
+ +-- Worker 1
+ +-- Worker 2
+ +-- Worker 3
+ +-- Worker 4
+```
+
+## 18. Star Schema Architecture
+
+```text
+dim_date
+   |
+dim_vehicle--fact_sales--dim_customer
+   |
+dim_dealer
+```
+
+## 19. Data Flow
+
+```text
+CRM
+ |
+ v
+Raw Customers
+ |
+ v
+Clean Customers
+ |
+ v
+dim_customer
+ |
+ v
+Sales Dashboard
+```
+
+## 20. Metadata Layer
+
+Metadata stores information about datasets.
+
+```text
+Table
+Column
+Owner
+Description
+Source
+Lineage
+```
+
+## 21. Governance Layer
+
+Governance controls:
+
+- Access
+- Quality
+- Retention
+- Ownership
+- Classification
+
+## 22. Security Layer
+
+Security is applied throughout the platform.
+
+```text
+Identity
+ |
+ v
+Access Control
+ |
+ v
+Encryption
+ |
+ v
+Audit
+```
+
+## 23. Monitoring Layer
+
+Monitor:
+
+- Pipeline failures
+- Query performance
+- Freshness
+- Storage
+- Cost
+
+## 24. Automobile Architecture
+
+```text
+Vehicle Sensors
+ |
+ v
+Kafka
+ |
+ v
+Spark Streaming
+ |
+ v
+Data Lake
+ |
+ v
+Warehouse
+ |
+ v
+Power BI
+```
+
+## 25. Architecture Goals
+
+A good architecture should provide:
+
+- Scalability
+- Reliability
+- Security
+- Performance
+- Maintainability
+- Cost control
+
+## 26. Summary
+
+Warehouse architecture is a pipeline from sources to trusted analytical information.
+
+```text
+Sources
+ |
+Ingestion
+ |
+Storage
+ |
+Transformation
+ |
+Warehouse
+ |
+Analytics
+```

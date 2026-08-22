@@ -1,0 +1,233 @@
+# Data Warehousing - Beginner Example
+
+## 1. Project
+
+Build a small sales warehouse using CSV data and PostgreSQL.
+
+## 2. Architecture
+
+```text
+CSV
+ |
+ v
+Python
+ |
+ v
+PostgreSQL
+ |
+ v
+SQL Analytics
+```
+
+## 3. Source Data
+
+Example:
+
+```text
+sales.csv
+
+sale_id,customer,vehicle,amount
+1,C001,Model A,25000
+2,C002,Model B,32000
+3,C003,Model A,27000
+```
+
+## 4. Create Database
+
+```sql
+CREATE DATABASE automotive_dw;
+```
+
+## 5. Create Schema
+
+```sql
+CREATE SCHEMA warehouse;
+```
+
+## 6. Customer Dimension
+
+```sql
+CREATE TABLE warehouse.dim_customer (
+    customer_key SERIAL PRIMARY KEY,
+    customer_id VARCHAR(50),
+    customer_name VARCHAR(100)
+);
+```
+
+## 7. Vehicle Dimension
+
+```sql
+CREATE TABLE warehouse.dim_vehicle (
+    vehicle_key SERIAL PRIMARY KEY,
+    vehicle_name VARCHAR(100)
+);
+```
+
+## 8. Sales Fact
+
+```sql
+CREATE TABLE warehouse.fact_sales (
+    sale_key SERIAL PRIMARY KEY,
+    customer_key INT,
+    vehicle_key INT,
+    amount DECIMAL(12,2)
+);
+```
+
+## 9. Insert Customers
+
+```sql
+INSERT INTO warehouse.dim_customer
+(customer_id, customer_name)
+VALUES
+('C001', 'Charan'),
+('C002', 'Ravi'),
+('C003', 'Arun');
+```
+
+## 10. Insert Vehicles
+
+```sql
+INSERT INTO warehouse.dim_vehicle
+(vehicle_name)
+VALUES
+('Model A'),
+('Model B');
+```
+
+## 11. Insert Sales
+
+```sql
+INSERT INTO warehouse.fact_sales
+(customer_key, vehicle_key, amount)
+VALUES
+(1, 1, 25000),
+(2, 2, 32000),
+(3, 1, 27000);
+```
+
+## 12. Query Revenue
+
+```sql
+SELECT SUM(amount) AS total_revenue
+FROM warehouse.fact_sales;
+```
+
+## 13. Revenue by Vehicle
+
+```sql
+SELECT
+    v.vehicle_name,
+    SUM(f.amount) AS revenue
+FROM warehouse.fact_sales f
+JOIN warehouse.dim_vehicle v
+    ON f.vehicle_key = v.vehicle_key
+GROUP BY v.vehicle_name;
+```
+
+## 14. Customer Sales
+
+```sql
+SELECT
+    c.customer_name,
+    SUM(f.amount) AS total_spent
+FROM warehouse.fact_sales f
+JOIN warehouse.dim_customer c
+    ON f.customer_key = c.customer_key
+GROUP BY c.customer_name;
+```
+
+## 15. Python Loading
+
+```python
+import pandas as pd
+from sqlalchemy import create_engine
+
+df = pd.read_csv("data/raw/sales.csv")
+
+engine = create_engine(
+    "postgresql+psycopg2://postgres:password@localhost:5432/automotive_dw"
+)
+
+df.to_sql(
+    "sales_staging",
+    engine,
+    schema="warehouse",
+    if_exists="append",
+    index=False
+)
+```
+
+Use environment variables for real credentials.
+
+## 16. Data Validation
+
+Check:
+
+```python
+print(df.shape)
+print(df.isnull().sum())
+print(df.duplicated().sum())
+```
+
+## 17. Basic Pipeline
+
+```text
+CSV
+ |
+ v
+Read
+ |
+ v
+Validate
+ |
+ v
+Load
+ |
+ v
+SQL Transform
+ |
+ v
+Analytics
+```
+
+## 18. Expected Result
+
+Example:
+
+```text
+Model A = 52000
+Model B = 32000
+```
+
+## 19. Learning Objectives
+
+This example demonstrates:
+
+- Source data
+- Staging
+- Dimensions
+- Facts
+- SQL
+- Python
+- Basic analytics
+
+## 20. Next Step
+
+Move from:
+
+```text
+Small CSV
+```
+
+to:
+
+```text
+API
++
+Multiple tables
++
+Incremental loading
++
+Quality checks
+```

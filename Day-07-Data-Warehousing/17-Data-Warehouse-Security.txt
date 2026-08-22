@@ -1,0 +1,808 @@
+# Data Warehousing - Security
+
+## 1. Introduction
+
+Data warehouse security protects analytical data from unauthorized access, modification, leakage, and misuse.
+
+Security should cover:
+
+- Identity
+- Authentication
+- Authorization
+- Encryption
+- Network security
+- Data masking
+- Auditing
+- Monitoring
+- Governance
+
+## 2. Security Architecture
+
+```text
+User
+ |
+ v
+Identity Provider
+ |
+ v
+Authentication
+ |
+ v
+Authorization
+ |
+ v
+Warehouse
+ |
+ +-- Encryption
+ +-- Masking
+ +-- Auditing
+ +-- Monitoring
+```
+
+## 3. Why Security Exists
+
+Warehouses can contain:
+
+- Customer information
+- Financial information
+- Employee information
+- Sales data
+- Operational data
+- Vehicle telemetry
+- Business-sensitive metrics
+
+Unauthorized access can cause financial and reputational damage.
+
+## 4. Authentication
+
+Authentication answers:
+
+```text
+Who are you?
+```
+
+Examples:
+
+- Password
+- SSO
+- MFA
+- Certificates
+- Tokens
+
+## 5. Authorization
+
+Authorization answers:
+
+```text
+What are you allowed to do?
+```
+
+Example:
+
+```text
+Analyst
+ |
+ +-- SELECT
+ |
+ X-- DROP TABLE
+```
+
+## 6. Identity and Access Management
+
+Use centralized identity where possible.
+
+Concepts:
+
+- Users
+- Groups
+- Roles
+- Policies
+- Service accounts
+
+## 7. Least Privilege
+
+Give users only the permissions they require.
+
+Example:
+
+```text
+BI Analyst
+ |
+ +-- SELECT reporting tables
+ |
+ X-- DELETE production tables
+```
+
+## 8. Role-Based Access Control
+
+RBAC assigns permissions to roles.
+
+```text
+User
+ |
+ v
+Role
+ |
+ v
+Permissions
+```
+
+Example roles:
+
+- Data Engineer
+- Data Analyst
+- BI Developer
+- Data Scientist
+- Administrator
+
+## 9. Separation of Duties
+
+Critical actions should not depend on one unrestricted account.
+
+Example:
+
+```text
+Developer
+   |
+   +-- Build Pipeline
+
+Administrator
+   |
+   +-- Production Access
+```
+
+## 10. Service Accounts
+
+Automated pipelines should use dedicated identities.
+
+Avoid using a personal account for production ETL.
+
+## 11. Secrets
+
+Sensitive values include:
+
+- Passwords
+- API keys
+- Tokens
+- Certificates
+
+Never commit secrets to Git.
+
+Bad:
+
+```python
+PASSWORD = "my-password"
+```
+
+## 12. Secret Management
+
+Use:
+
+- Cloud secret managers
+- Vault systems
+- Environment-based secure configuration
+- Managed identities
+
+## 13. Encryption at Rest
+
+Encryption protects stored data.
+
+```text
+Warehouse
+ |
+ v
+Encrypted Storage
+```
+
+## 14. Encryption in Transit
+
+Network communication should use secure protocols.
+
+```text
+Client
+ |
+ TLS
+ |
+ v
+Warehouse
+```
+
+## 15. Key Management
+
+Encryption keys should be managed securely.
+
+Key-management systems can provide:
+
+- Key rotation
+- Access control
+- Auditing
+- Lifecycle management
+
+## 16. Network Security
+
+Limit network exposure.
+
+Controls include:
+
+- Private networks
+- Firewalls
+- Security groups
+- Private endpoints
+- Network policies
+
+## 17. Public Exposure
+
+Avoid exposing warehouses or databases publicly unless required.
+
+Prefer:
+
+```text
+Private Network
+ |
+ v
+Secure Access
+ |
+ v
+Warehouse
+```
+
+## 18. IP Restrictions
+
+Some systems can restrict connections to approved IP ranges.
+
+Example:
+
+```text
+Office Network
+      |
+      v
+Allowed IP
+      |
+      v
+Warehouse
+```
+
+## 19. Data Classification
+
+Classify data by sensitivity.
+
+Example:
+
+```text
+Public
+Internal
+Confidential
+Restricted
+```
+
+Classification determines protection requirements.
+
+## 20. Sensitive Data
+
+Examples:
+
+- Personally identifiable information
+- Financial data
+- Authentication data
+- Confidential business data
+
+Sensitive information requires stronger controls.
+
+## 21. Data Masking
+
+Mask sensitive values.
+
+Example:
+
+```text
+Original:
+9876543210
+
+Masked:
+98******10
+```
+
+## 22. Dynamic Data Masking
+
+A system can show different values depending on user permissions.
+
+```text
+Admin:
+9876543210
+
+Analyst:
+98******10
+```
+
+## 23. Tokenization
+
+Tokenization replaces sensitive values with tokens.
+
+```text
+Original Value
+ |
+ v
+Tokenization
+ |
+ v
+Token
+```
+
+The token can be mapped back only through controlled systems.
+
+## 24. Row-Level Security
+
+Row-level security limits which rows a user can see.
+
+Example:
+
+```text
+Region = Gujarat
+```
+
+A regional analyst may only see Gujarat records.
+
+```sql
+SELECT *
+FROM sales
+WHERE region = 'Gujarat';
+```
+
+Actual row-level security syntax depends on the warehouse.
+
+## 25. Column-Level Security
+
+Users may have access to selected columns.
+
+```text
+Analyst:
+customer_id
+city
+sales_amount
+
+Restricted:
+phone
+email
+```
+
+## 26. Views for Security
+
+A secure view can expose only approved data.
+
+```sql
+CREATE VIEW sales_reporting AS
+SELECT
+    sale_id,
+    region,
+    amount
+FROM sales;
+```
+
+Users query the view instead of the base table.
+
+## 27. Auditing
+
+Audit logs record activity.
+
+Examples:
+
+- Login
+- Query
+- Data modification
+- Permission change
+- Table creation
+- Table deletion
+
+## 28. Audit Architecture
+
+```text
+User
+ |
+ v
+Warehouse
+ |
+ v
+Audit Logs
+ |
+ v
+Monitoring
+ |
+ v
+Security Team
+```
+
+## 29. Monitoring
+
+Monitor suspicious activity:
+
+- Failed logins
+- Unusual queries
+- Large exports
+- Permission changes
+- Access from unexpected locations
+
+## 30. Data Exfiltration
+
+Data exfiltration means unauthorized data transfer.
+
+Controls include:
+
+- Network restrictions
+- DLP
+- Access controls
+- Monitoring
+- Export policies
+
+## 31. SQL Injection
+
+Applications should not construct SQL unsafely.
+
+Bad:
+
+```python
+query = "SELECT * FROM users WHERE name = '" + name + "'"
+```
+
+Use parameterized queries.
+
+## 32. Secure Application Access
+
+```text
+Application
+ |
+ v
+Parameterized Query
+ |
+ v
+Warehouse
+```
+
+## 33. Database Roles
+
+Example:
+
+```sql
+CREATE ROLE analyst;
+```
+
+Grant appropriate permissions:
+
+```sql
+GRANT SELECT
+ON sales_reporting
+TO analyst;
+```
+
+Exact syntax varies by database.
+
+## 34. Production Environments
+
+Separate:
+
+```text
+Development
+Staging
+Production
+```
+
+Production access should be restricted.
+
+## 35. Environment Separation
+
+```text
+Developer
+ |
+ v
+Development
+
+CI/CD
+ |
+ v
+Staging
+ |
+ v
+Production
+```
+
+## 36. Backup Security
+
+Backups also contain sensitive information.
+
+Protect them using:
+
+- Encryption
+- Access control
+- Isolation
+- Retention policies
+- Audit logs
+
+## 37. Security in ETL
+
+ETL systems should:
+
+- Secure credentials
+- Encrypt connections
+- Validate inputs
+- Avoid sensitive logs
+- Restrict storage
+- Audit access
+
+## 38. Logging Sensitive Data
+
+Avoid:
+
+```text
+LOG:
+password=abc123
+token=xyz
+```
+
+Logs should not expose secrets.
+
+## 39. Data Minimization
+
+Store only data required for the business purpose.
+
+Benefits:
+
+- Reduced risk
+- Lower storage cost
+- Easier governance
+- Easier compliance
+
+## 40. Retention
+
+Define how long data should be stored.
+
+Example:
+
+```text
+Raw logs -> 90 days
+Aggregated data -> 5 years
+```
+
+Actual retention depends on business and legal requirements.
+
+## 41. Secure Deletion
+
+When data reaches the end of its retention period, deletion should follow approved policies.
+
+Consider:
+
+- Backups
+- Replicas
+- Caches
+- Derived datasets
+
+## 42. Cloud Security
+
+Cloud warehouses should use:
+
+- IAM
+- Private networking
+- Encryption
+- Logging
+- Key management
+- Security monitoring
+
+## 43. Automobile Example
+
+An automotive warehouse may contain:
+
+```text
+Vehicle ID
+Customer ID
+Location
+Service Records
+Battery Data
+Sales Data
+```
+
+Different users require different access.
+
+```text
+Service Team
+ |
+ +-- Vehicle Service Data
+
+Sales Team
+ |
+ +-- Sales Data
+
+Analyst
+ |
+ +-- Aggregated Analytics
+```
+
+## 44. Security Pipeline
+
+```text
+Vehicle Data
+ |
+ v
+Encrypted Ingestion
+ |
+ v
+Secure Data Lake
+ |
+ v
+Warehouse
+ |
+ +-- RBAC
+ +-- Masking
+ +-- Auditing
+ |
+ v
+BI
+```
+
+## 45. Threat Model
+
+Consider:
+
+- External attackers
+- Malicious insiders
+- Compromised accounts
+- Misconfigured storage
+- Stolen credentials
+- Vulnerable applications
+
+## 46. Security Testing
+
+Test:
+
+- Access controls
+- Authentication
+- Authorization
+- Network exposure
+- Secret management
+- SQL injection
+- Audit logging
+
+## 47. Vulnerability Management
+
+Keep:
+
+- Databases
+- Libraries
+- Containers
+- Operating systems
+
+updated according to organizational policy.
+
+## 48. Compliance
+
+Data warehouses may need to support organizational and regulatory requirements.
+
+Security controls should be documented and auditable.
+
+## 49. Security Checklist
+
+```text
+[ ] MFA enabled
+[ ] Least privilege
+[ ] Encryption enabled
+[ ] Secrets protected
+[ ] Network restricted
+[ ] Audit logs enabled
+[ ] Sensitive data classified
+[ ] Masking configured
+[ ] Backups protected
+[ ] Access reviewed
+```
+
+## 50. Best Practices
+
+1. Use least privilege.
+2. Use MFA.
+3. Encrypt data.
+4. Protect secrets.
+5. Use private networking.
+6. Audit access.
+7. Mask sensitive data.
+8. Separate environments.
+9. Review permissions.
+10. Test security controls.
+
+## 51. Common Mistakes
+
+Avoid:
+
+- Hardcoded passwords
+- Public database access
+- Shared admin accounts
+- Excessive permissions
+- Sensitive logs
+- Unencrypted backups
+- No audit trail
+- No access reviews
+
+## 52. Advantages
+
+Strong security provides:
+
+- Confidentiality
+- Integrity
+- Availability
+- Accountability
+- Reduced risk
+
+## 53. Limitations
+
+Security adds:
+
+- Configuration effort
+- Operational cost
+- Monitoring requirements
+- Access management complexity
+
+Security should be designed into the platform rather than added at the end.
+
+## 54. Interview Questions
+
+### Beginner
+
+1. Authentication vs authorization?
+2. What is RBAC?
+3. What is encryption?
+4. What is data masking?
+5. What is least privilege?
+
+### Intermediate
+
+1. Explain row-level security.
+2. Explain column-level security.
+3. How should ETL credentials be stored?
+4. How do you secure backups?
+5. Why should production access be restricted?
+
+### Advanced
+
+1. Design a secure automotive warehouse.
+2. How would you prevent data exfiltration?
+3. How would you handle compromised credentials?
+4. How would you audit sensitive data access?
+5. How would you implement multi-environment security?
+
+## 55. Cheat Sheet
+
+```text
+Security
+|
++-- Authentication
++-- Authorization
++-- RBAC
++-- Encryption
++-- Masking
++-- Network Security
++-- Auditing
++-- Monitoring
++-- Governance
+```
+
+## 56. Official Documentation
+
+- PostgreSQL Security: https://www.postgresql.org/docs/current/security.html
+- AWS Security: https://aws.amazon.com/security/
+- Azure Security: https://azure.microsoft.com/products/azure-security/
+- Google Cloud Security: https://cloud.google.com/security
+
+## 57. Summary
+
+Warehouse security is a combination of technical and operational controls.
+
+A secure warehouse follows:
+
+```text
+Identity
++
+Least Privilege
++
+Encryption
++
+Data Protection
++
+Auditing
++
+Monitoring
+```

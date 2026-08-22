@@ -1,0 +1,201 @@
+# Data Warehousing - Best Practices
+
+## 1. Introduction
+
+Good warehouse design improves reliability, performance, maintainability, security, and analytical usability.
+
+## 2. Define Business Requirements
+
+Before designing tables, understand:
+
+- Business questions
+- Users
+- Reports
+- KPIs
+- Data freshness
+- Data volume
+
+## 3. Define Grain
+
+Always define the grain of fact tables.
+
+```text
+One row = One business event
+```
+
+## 4. Use Consistent Naming
+
+Example:
+
+```text
+dim_customer
+dim_vehicle
+fact_sales
+fact_service
+```
+
+## 5. Use Surrogate Keys
+
+Use warehouse-generated keys when appropriate.
+
+## 6. Separate Layers
+
+Use:
+
+```text
+Raw
+Staging
+Curated
+Warehouse
+Marts
+```
+
+## 7. Prefer Incremental Processing
+
+Avoid unnecessary full reloads.
+
+## 8. Validate Data
+
+Include checks for:
+
+- Nulls
+- Duplicates
+- Invalid values
+- Relationships
+- Freshness
+
+## 9. Document Data
+
+Document:
+
+- Table purpose
+- Column definitions
+- Owners
+- Source
+- Business meaning
+
+## 10. Monitor Pipelines
+
+Track:
+
+```text
+Success
+Failure
+Duration
+Freshness
+Rows
+```
+
+## 11. Optimize Queries
+
+Use:
+
+- Partition pruning
+- Column selection
+- Appropriate joins
+- Aggregations
+- Clustering where supported
+
+## 12. Use Appropriate Data Types
+
+Avoid storing everything as strings.
+
+## 13. Control Data Skew
+
+Choose partition and distribution strategies carefully.
+
+## 14. Secure Data
+
+Use:
+
+```text
+Least Privilege
+Encryption
+Masking
+Auditing
+```
+
+## 15. Protect Secrets
+
+Never commit:
+
+```text
+Passwords
+API Keys
+Tokens
+```
+
+## 16. Version Control
+
+Keep:
+
+```text
+SQL
+Python
+Configuration
+Documentation
+```
+
+in Git.
+
+## 17. Test Changes
+
+Test before production deployment.
+
+## 18. Automate
+
+Automate:
+
+- Builds
+- Tests
+- Deployments
+- Data quality
+- Monitoring
+
+## 19. Design for Recovery
+
+Use:
+
+- Backups
+- Recovery plans
+- Idempotency
+- Retries
+
+## 20. Control Cost
+
+Monitor:
+
+- Compute
+- Storage
+- Query usage
+- Data transfer
+
+## 21. Automobile Best Practice
+
+Telemetry pipelines should:
+
+```text
+Validate events
+ |
+ v
+Deduplicate
+ |
+ v
+Partition by date
+ |
+ v
+Store columnar data
+```
+
+## 22. Summary
+
+A professional warehouse should be:
+
+```text
+Reliable
+Scalable
+Secure
+Observable
+Maintainable
+Cost-aware
+```
