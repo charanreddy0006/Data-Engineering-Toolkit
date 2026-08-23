@@ -1,0 +1,12 @@
+flowchart LR
+    A[Vehicle Sensors] --> B[Kafka]
+    B --> C[Raw Zone]
+    C --> D[Spark / Flink]
+    D --> E[Processed Zone]
+    E --> F[Curated Zone]
+    F --> G[BI]
+    F --> H[ML]
+    F --> I[Warehouse]
+    C --> J[Catalog]
+    D --> K[Data Quality]
+    E --> L[Monitoring]

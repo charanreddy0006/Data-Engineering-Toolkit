@@ -1,0 +1,10 @@
+flowchart TD
+    A[Vehicle ECU / Sensors] --> B[Kafka Producer]
+    B --> C[Kafka Topic]
+    C --> D[Spark Streaming]
+    D --> E{Validation}
+    E -->|Valid| F[Raw / Processed Lake]
+    E -->|Invalid| G[Quarantine]
+    F --> H[Curated Vehicle Health]
+    H --> I[BI Dashboard]
+    H --> J[Predictive Maintenance ML]

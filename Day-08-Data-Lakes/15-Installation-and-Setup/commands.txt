@@ -1,0 +1,16 @@
+# Day 08 setup commands
+
+python --version
+python -m venv .venv
+.venv\Scripts\activate
+python -m pip install --upgrade pip
+pip install -r examples/requirements.txt
+
+# Create sample data
+python examples/python/create_sample_data.py
+
+# Convert CSV to Parquet
+python examples/python/csv_to_parquet.py
+
+# Run PySpark example
+python examples/pyspark/telemetry_pipeline.py
