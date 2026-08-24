@@ -1,0 +1,12 @@
+flowchart LR
+A[Sources] --> B[Extract]
+B --> C[Raw / Staging]
+C --> D[Validation]
+D --> E{Quality Gate}
+E -->|Valid| F[Transform]
+E -->|Invalid| G[Quarantine]
+F --> H[Load]
+H --> I[Curated Data]
+I --> J[BI]
+I --> K[ML]
+H --> L[Monitoring]

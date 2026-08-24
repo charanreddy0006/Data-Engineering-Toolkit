@@ -1,0 +1,13 @@
+flowchart TD
+A[Vehicle Sensors] --> B[Kafka / API]
+C[Service Database] --> D[Batch Extract]
+E[Warranty System] --> D
+B --> F[Raw Data Lake]
+D --> F
+F --> G[Quality Checks]
+G -->|Valid| H[Spark / SQL]
+G -->|Invalid| I[Quarantine]
+H --> J[Curated Vehicle Data]
+J --> K[Warehouse]
+K --> L[BI Dashboard]
+J --> M[Predictive Maintenance]

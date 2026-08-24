@@ -1,0 +1,5 @@
+pandas>=2.0
+pyarrow>=14.0
+pyspark>=3.5
+sqlalchemy>=2.0
+requests>=2.31
