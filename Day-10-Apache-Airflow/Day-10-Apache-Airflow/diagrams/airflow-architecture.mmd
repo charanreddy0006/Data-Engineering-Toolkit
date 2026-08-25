@@ -1,0 +1,9 @@
+flowchart TD
+A[DAG Files] --> B[DAG Processor]
+B --> C[Scheduler]
+C --> D[Executor]
+D --> E[Workers]
+C --> F[Metadata DB]
+G[Web API] --> F
+E --> H[External Systems]
+E --> I[Logs and Metrics]

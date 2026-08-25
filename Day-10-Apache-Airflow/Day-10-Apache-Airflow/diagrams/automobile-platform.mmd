@@ -1,0 +1,11 @@
+flowchart LR
+A[Vehicle Sensors] --> B[Kafka]
+C[Service PostgreSQL] --> D[Airflow]
+E[Warranty API] --> D
+B --> F[Streaming Processing]
+D --> G[Raw Data Lake]
+G --> H[Quality]
+H --> I[Spark / dbt]
+I --> J[Warehouse]
+J --> K[BI]
+I --> L[ML]

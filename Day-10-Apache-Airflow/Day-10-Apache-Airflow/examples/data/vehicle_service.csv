@@ -1,0 +1,7 @@
+service_id,vehicle_id,service_date,service_type,cost
+S001,V001,2026-08-20,Oil Change,450
+S002,V001,2026-08-21,Brake Service,1800
+S003,V002,2026-08-21,General Service,1200
+S004,V003,2026-08-22,Oil Change,500
+S005,V004,2026-08-23,AC Service,2500
+S006,V005,2026-08-24,Tyre Service,3200
