@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_service_records
+    columns:
+      - name: service_id
+        tests: [not_null, unique]
+      - name: vehicle_id
+        tests: [not_null]
+      - name: cost
+        tests: [not_null]
+
+  - name: fct_service_cost
+    columns:
+      - name: vehicle_id
+        tests: [not_null, unique]

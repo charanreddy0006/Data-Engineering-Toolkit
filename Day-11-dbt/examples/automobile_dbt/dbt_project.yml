@@ -1,0 +1,17 @@
+name: automobile_dbt
+version: '1.0.0'
+config-version: 2
+profile: automobile_dbt
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+models:
+  automobile_dbt:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

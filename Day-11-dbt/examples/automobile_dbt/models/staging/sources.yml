@@ -1,0 +1,12 @@
+version: 2
+sources:
+  - name: automotive
+    schema: raw
+    description: Raw automobile service records.
+    tables:
+      - name: service_records
+        columns:
+          - name: service_id
+            tests: [not_null]
+          - name: vehicle_id
+            tests: [not_null]
