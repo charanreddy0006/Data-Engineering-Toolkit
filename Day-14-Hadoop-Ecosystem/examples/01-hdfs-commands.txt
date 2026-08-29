@@ -1,0 +1,9 @@
+# HDFS practice
+
+hdfs dfs -mkdir -p /data/raw/vehicles
+hdfs dfs -put vehicles.csv /data/raw/vehicles/
+hdfs dfs -ls -h /data/raw/vehicles
+hdfs dfs -cat /data/raw/vehicles/vehicles.csv
+hdfs dfs -du -h /data/raw/vehicles
+hdfs dfs -get /data/raw/vehicles/vehicles.csv .
+hdfs dfs -rm /data/raw/vehicles/vehicles.csv

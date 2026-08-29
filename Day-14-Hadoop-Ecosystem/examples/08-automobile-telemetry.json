@@ -1,0 +1,9 @@
+{
+  "vehicle_id": "V001",
+  "event_time": "2026-08-29T10:30:00Z",
+  "speed": 72,
+  "engine_temperature": 91.2,
+  "fuel_level": 61,
+  "latitude": 17.385,
+  "longitude": 78.486
+}
