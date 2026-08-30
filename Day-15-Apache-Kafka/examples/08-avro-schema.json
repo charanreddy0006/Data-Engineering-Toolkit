@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "VehicleTelemetry",
+  "namespace": "com.dataengineering.vehicle",
+  "fields": [
+    {"name": "vehicle_id", "type": "string"},
+    {"name": "speed", "type": "double"},
+    {"name": "engine_temperature", "type": "double"},
+    {"name": "fuel_level", "type": "double"}
+  ]
+}
