@@ -1,0 +1,7 @@
+beeline -u jdbc:hive2://localhost:10000/default
+
+SHOW DATABASES;
+USE automobile_dw;
+SHOW TABLES;
+DESCRIBE vehicle_master;
+DESCRIBE FORMATTED vehicle_events;
