@@ -1,0 +1,5 @@
+vehicle_id,vin,model_name,manufacturer,fuel_type,segment
+V001,VIN00000000000001,Model-A,AutoCorp,EV,SUV
+V002,VIN00000000000002,Model-B,AutoCorp,Petrol,Sedan
+V003,VIN00000000000003,Model-C,MotoAuto,Hybrid,SUV
+V004,VIN00000000000004,Model-D,MotoAuto,Diesel,Hatchback

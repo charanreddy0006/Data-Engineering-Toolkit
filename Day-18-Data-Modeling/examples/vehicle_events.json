@@ -1,0 +1,22 @@
+[
+  {
+    "event_id": "evt-10001",
+    "vehicle_id": "V001",
+    "event_time": "2026-09-02T08:10:00Z",
+    "ingest_time": "2026-09-02T08:10:03Z",
+    "event_type": "telemetry",
+    "schema_version": 1,
+    "speed_kmh": 72.5,
+    "battery_level": 84.2,
+    "engine_temperature_c": 91.4
+  },
+  {
+    "event_id": "evt-10002",
+    "vehicle_id": "V001",
+    "event_time": "2026-09-02T08:10:05Z",
+    "ingest_time": "2026-09-02T08:10:08Z",
+    "event_type": "fault",
+    "schema_version": 1,
+    "fault_code": "P0420"
+  }
+]
