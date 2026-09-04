@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: automobile-config
+  namespace: automobile-data
+data:
+  LOG_LEVEL: INFO
+  EVENT_TOPIC: vehicle.telemetry
+  QUALITY_MODE: strict

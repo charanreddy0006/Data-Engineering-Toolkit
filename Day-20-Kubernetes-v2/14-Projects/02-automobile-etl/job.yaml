@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: telemetry-etl
+  namespace: vehicle-data
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: etl
+          image: vehicle-telemetry-etl:1.0
+          envFrom:
+            - configMapRef:
+                name: telemetry-config
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

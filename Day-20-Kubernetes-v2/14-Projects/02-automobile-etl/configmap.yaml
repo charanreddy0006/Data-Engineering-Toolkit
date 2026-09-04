@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telemetry-config
+  namespace: vehicle-data
+data:
+  LOG_LEVEL: INFO
+  TARGET_TABLE: vehicle_telemetry
+  INPUT_FILE: /data/telemetry.csv

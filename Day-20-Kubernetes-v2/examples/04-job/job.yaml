@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: telemetry-quality
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: quality
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              echo "Starting quality check"
+              echo "Checking vehicle telemetry partition"
+              sleep 3
+              echo "Quality check complete"
