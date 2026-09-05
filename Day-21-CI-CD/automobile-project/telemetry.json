@@ -1,0 +1,18 @@
+[
+  {
+    "event_id": "evt-10001",
+    "vehicle_id": "VH-1001",
+    "timestamp": "2026-09-05T08:00:00Z",
+    "speed_kph": 61.4,
+    "battery_pct": 72.5,
+    "engine_temp_c": 91.2
+  },
+  {
+    "event_id": "evt-10002",
+    "vehicle_id": "VH-1002",
+    "timestamp": "2026-09-05T08:00:10Z",
+    "speed_kph": 42.7,
+    "battery_pct": 81.0,
+    "engine_temp_c": 88.4
+  }
+]
