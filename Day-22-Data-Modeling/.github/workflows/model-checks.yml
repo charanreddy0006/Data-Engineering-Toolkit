@@ -1,0 +1,31 @@
+name: Data Model Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify core files
+        shell: bash
+        run: |
+          test -f README.md
+          test -f ROADMAP.md
+          test -f automobile-project/schema.sql
+          test -f examples/sql/03-grain-safe-join.sql
+
+      - name: Count learning documentation
+        shell: bash
+        run: |
+          count=$(find . -name '*.md' | wc -l)
+          echo "Markdown files: $count"
+          test "$count" -ge 30

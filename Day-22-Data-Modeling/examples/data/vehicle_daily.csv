@@ -1,0 +1,4 @@
+vehicle_id,snapshot_date,end_odometer_km,end_battery_soc,daily_distance_km,fault_count
+V100,2026-09-06,15280.4,72.3,50.2,1
+V101,2026-09-06,9870.1,58.0,50.0,0
+V102,2026-09-06,22480.9,84.4,79.1,2
