@@ -1,0 +1,13 @@
+pipeline:
+  name: vehicle-telemetry
+  input_format: jsonl
+  output_format: parquet
+  compression: zstd
+
+quality:
+  required_fields:
+    - event_id
+    - vehicle_id
+    - event_time
+  battery_soc_min: 0
+  battery_soc_max: 100

@@ -1,0 +1,11 @@
+{
+  "vehicle_id": "V100",
+  "vin": "DEMO-VIN-100",
+  "model": "VoltX",
+  "powertrain": "BEV",
+  "model_year": 2026,
+  "owner": {
+    "customer_id": "C100",
+    "region": "South"
+  }
+}

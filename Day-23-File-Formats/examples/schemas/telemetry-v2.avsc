@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "name": "VehicleTelemetry",
+  "namespace": "automotive.telemetry",
+  "fields": [
+    {"name": "event_id", "type": "string"},
+    {"name": "vehicle_id", "type": "string"},
+    {"name": "event_time", "type": "string"},
+    {"name": "speed_kph", "type": ["null", "double"], "default": null},
+    {"name": "battery_soc", "type": ["null", "double"], "default": null},
+    {"name": "battery_temperature_c", "type": ["null", "double"], "default": null},
+    {"name": "schema_version", "type": "int"}
+  ]
+}

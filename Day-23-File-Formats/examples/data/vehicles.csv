@@ -1,0 +1,5 @@
+vehicle_id,vin,model,powertrain,model_year
+V100,DEMO-VIN-100,VoltX,BEV,2026
+V101,DEMO-VIN-101,DriveH,HEV,2025
+V102,DEMO-VIN-102,VoltX,BEV,2026
+V103,DEMO-VIN-103,RoadMax,ICE,2024

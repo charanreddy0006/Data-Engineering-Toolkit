@@ -1,0 +1,4 @@
+{"event_id":"evt-001","vehicle_id":"V100","event_time":"2026-09-06T08:00:00Z","speed_kph":42.1,"battery_soc":81.5,"odometer_km":15230.2,"schema_version":1}
+{"event_id":"evt-002","vehicle_id":"V100","event_time":"2026-09-06T08:05:00Z","speed_kph":57.3,"battery_soc":79.9,"odometer_km":15234.6,"schema_version":1}
+{"event_id":"evt-003","vehicle_id":"V101","event_time":"2026-09-06T08:10:00Z","speed_kph":31.2,"battery_soc":62.4,"odometer_km":9820.1,"schema_version":1}
+{"event_id":"evt-004","vehicle_id":"V102","event_time":"2026-09-06T08:15:00Z","speed_kph":65.0,"battery_soc":91.1,"odometer_km":22401.8,"schema_version":1}

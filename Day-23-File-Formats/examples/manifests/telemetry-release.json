@@ -1,0 +1,14 @@
+{
+  "dataset": "vehicle_telemetry",
+  "schema_version": 1,
+  "format": "parquet",
+  "compression": "zstd",
+  "partitioning": ["event_date"],
+  "files": [
+    {
+      "path": "event_date=2026-09-06/part-00000.parquet",
+      "rows": 100000,
+      "status": "validated"
+    }
+  ]
+}

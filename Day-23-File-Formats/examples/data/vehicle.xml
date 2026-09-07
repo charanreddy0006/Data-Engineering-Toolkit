@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vehicle>
+  <vehicleId>V100</vehicleId>
+  <vin>DEMO-VIN-100</vin>
+  <model>VoltX</model>
+  <powertrain>BEV</powertrain>
+  <modelYear>2026</modelYear>
+</vehicle>

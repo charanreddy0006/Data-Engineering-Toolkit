@@ -1,0 +1,40 @@
+name: File Format Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r examples/python/requirements.txt
+
+      - name: Validate JSON
+        run: python -m json.tool examples/data/vehicle.json
+
+      - name: Validate YAML
+        run: python -c "import yaml; yaml.safe_load(open('examples/data/pipeline.yml'))"
+
+      - name: Validate XML
+        run: python -c "import xml.etree.ElementTree as ET; ET.parse('examples/data/vehicle.xml')"
+
+      - name: Verify documentation
+        shell: bash
+        run: |
+          test -f README.md
+          test -f 06-Parquet/01-parquet-basics.md
+          test -f 05-Avro/01-avro-basics.md
+          test -f automobile-project/schema.sql
