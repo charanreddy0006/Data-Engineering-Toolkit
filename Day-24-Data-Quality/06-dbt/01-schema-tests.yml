@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: fct_vehicle_telemetry
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+          - unique
+      - name: vehicle_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_vehicle')
+              field: vehicle_id
+      - name: speed_kmh
+        tests:
+          - not_null

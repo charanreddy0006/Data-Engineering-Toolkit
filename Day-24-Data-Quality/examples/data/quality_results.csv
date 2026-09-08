@@ -1,0 +1,5 @@
+run_id,dataset,rule_id,total_rows,failed_rows,pass_rate,status
+R001,vehicle_telemetry,DQ-TEL-001,1000000,2,99.9998,PASS
+R001,vehicle_telemetry,DQ-TEL-002,1000000,15,99.9985,PASS
+R001,vehicle_telemetry,DQ-TEL-003,1000000,7,99.9993,PASS
+R001,vehicle_telemetry,DQ-TEL-004,1000000,9200,99.0800,FAIL

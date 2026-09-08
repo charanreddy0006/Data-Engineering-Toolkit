@@ -1,0 +1,11 @@
+{
+  "run_id": "AUTO-DQ-20260908-1900",
+  "dataset": "vehicle_telemetry",
+  "status": "FAIL",
+  "checks": [
+    {"rule_id": "DQ-AUTO-001", "status": "FAIL", "failed_rows": 1, "message": "vehicle_id missing"},
+    {"rule_id": "DQ-AUTO-002", "status": "FAIL", "failed_rows": 1, "message": "duplicate event_id"},
+    {"rule_id": "DQ-AUTO-003", "status": "FAIL", "failed_rows": 1, "message": "speed outside domain"},
+    {"rule_id": "DQ-AUTO-004", "status": "FAIL", "failed_rows": 1, "message": "SOC outside domain"}
+  ]
+}

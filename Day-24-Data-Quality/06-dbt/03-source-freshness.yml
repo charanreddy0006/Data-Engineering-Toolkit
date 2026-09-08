@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: telemetry
+    schema: raw
+    tables:
+      - name: vehicle_events
+        loaded_at_field: ingestion_time
+        freshness:
+          warn_after:
+            count: 10
+            period: minute
+          error_after:
+            count: 30
+            period: minute

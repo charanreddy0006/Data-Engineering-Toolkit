@@ -1,0 +1,31 @@
+version: 1
+dataset: vehicle_telemetry
+rules:
+  - id: DQ-TEL-001
+    field: vehicle_id
+    dimension: completeness
+    severity: critical
+    condition: not_null
+    threshold_pct: 99.99
+    action: quarantine
+  - id: DQ-TEL-002
+    field: event_id
+    dimension: uniqueness
+    severity: high
+    condition: unique
+    threshold_pct: 99.99
+    action: quarantine
+  - id: DQ-TEL-003
+    field: speed_kmh
+    dimension: validity
+    severity: high
+    condition: "0 <= value <= 350"
+    threshold_pct: 99.99
+    action: quarantine
+  - id: DQ-TEL-004
+    field: battery_soc
+    dimension: validity
+    severity: high
+    condition: "0 <= value <= 100"
+    threshold_pct: 99.99
+    action: quarantine

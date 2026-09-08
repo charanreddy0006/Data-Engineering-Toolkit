@@ -1,0 +1,32 @@
+version: 1
+rules:
+  - id: DQ-AUTO-001
+    dataset: vehicle_telemetry
+    dimension: completeness
+    field: vehicle_id
+    severity: critical
+    threshold_pct: 99.99
+  - id: DQ-AUTO-002
+    dataset: vehicle_telemetry
+    dimension: uniqueness
+    field: event_id
+    severity: critical
+    threshold_pct: 99.99
+  - id: DQ-AUTO-003
+    dataset: vehicle_telemetry
+    dimension: validity
+    field: speed_kmh
+    severity: high
+    threshold_pct: 99.99
+  - id: DQ-AUTO-004
+    dataset: vehicle_telemetry
+    dimension: validity
+    field: battery_soc
+    severity: high
+    threshold_pct: 99.99
+  - id: DQ-AUTO-005
+    dataset: vehicle_telemetry
+    dimension: integrity
+    field: vehicle_id
+    severity: critical
+    threshold_pct: 100
