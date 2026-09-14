@@ -1,0 +1,6 @@
+dataset,domain,owner,classification,quality,lineage,product_status
+vehicle_master,vehicle,vehicle-owner,INTERNAL,certified,available,certified
+vehicle_telemetry,connected_vehicle,connected-owner,CONFIDENTIAL,certified,available,certified
+ev_battery,ev,ev-owner,CONFIDENTIAL,monitored,available,certified
+warranty_claim,warranty,warranty-owner,CONFIDENTIAL,certified,available,certified
+customer_location,customer,customer-owner,RESTRICTED,restricted,available,restricted

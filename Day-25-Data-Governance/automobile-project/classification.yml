@@ -1,0 +1,16 @@
+classification:
+  PUBLIC:
+    example: public vehicle specifications
+    minimum_control: integrity
+
+  INTERNAL:
+    example: internal production metrics
+    minimum_control: authenticated_access
+
+  CONFIDENTIAL:
+    example: warranty analytics
+    minimum_control: restricted_access_and_audit
+
+  RESTRICTED:
+    example: customer-linked location
+    minimum_control: strong_access_control_audit_and_minimization

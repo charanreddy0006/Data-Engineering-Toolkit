@@ -1,0 +1,24 @@
+contract:
+  name: certified_vehicle_telemetry
+  version: "1.0"
+
+  owner: connected-vehicle-domain
+
+  schema:
+    vehicle_id: string
+    event_time: timestamp
+    signal: string
+    value: decimal
+    unit: string
+
+  guarantees:
+    identifier: vehicle_id must reference a governed vehicle identity
+    timestamp: event_time must use the agreed timestamp standard
+    quality: required fields are non-null
+    compatibility: breaking changes require impact analysis and approval
+
+  governance:
+    classification: CONFIDENTIAL
+    lineage: required
+    catalog: required
+    retention_policy: required

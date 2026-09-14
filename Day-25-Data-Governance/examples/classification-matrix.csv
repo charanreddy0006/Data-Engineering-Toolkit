@@ -1,0 +1,6 @@
+asset,domain,classification,owner,reason
+vehicle_master,vehicle,INTERNAL,vehicle-domain,core business master data
+vehicle_telemetry,connected_vehicle,CONFIDENTIAL,connected-domain,operational telemetry
+customer_location,customer,RESTRICTED,customer-domain,customer-linked location
+warranty_claim,warranty,CONFIDENTIAL,warranty-domain,business-sensitive claims
+public_model_catalog,vehicle,PUBLIC,product-domain,approved public information

@@ -1,0 +1,8 @@
+activity,vehicle_owner,data_steward,platform_custodian,security,consumer
+classify_data,A,R,C,C,I
+catalog_metadata,A,R,C,I,I
+implement_access,A,C,R,C,I
+schema_change,A,R,C,C,C
+quality_issue,A,R,C,C,C
+retention_rule,A,R,C,C,I
+incident_response,A,R,R,C,C

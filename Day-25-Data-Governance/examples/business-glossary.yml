@@ -1,0 +1,18 @@
+terms:
+  - name: Vehicle
+    definition: A business-recognized vehicle entity with a governed identity.
+    domain: vehicle
+    owner: vehicle-domain-owner
+    status: approved
+
+  - name: Vehicle Telemetry Event
+    definition: A timestamped measurement or event produced by a connected vehicle system.
+    domain: connected-vehicle
+    owner: connected-vehicle-owner
+    status: approved
+
+  - name: Warranty Claim
+    definition: A governed record representing a request for warranty coverage or reimbursement.
+    domain: warranty
+    owner: warranty-domain-owner
+    status: draft

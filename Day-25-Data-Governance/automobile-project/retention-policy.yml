@@ -1,0 +1,20 @@
+retention:
+  owner: connected-vehicle-domain
+
+  datasets:
+    - name: raw_vehicle_telemetry
+      purpose: ingestion_and_reprocessing
+      rule: follow approved enterprise retention schedule
+      deletion: controlled_lifecycle_process
+
+    - name: curated_vehicle_daily_metrics
+      purpose: analytics
+      rule: follow approved analytical retention schedule
+      deletion: controlled_lifecycle_process
+
+  controls:
+    - owner_approval
+    - documented_purpose
+    - retention_metadata
+    - auditable_deletion
+    - exception_expiry

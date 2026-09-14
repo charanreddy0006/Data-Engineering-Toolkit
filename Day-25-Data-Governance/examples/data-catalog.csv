@@ -1,0 +1,5 @@
+dataset,domain,description,owner,steward,classification,freshness,lineage,quality_status
+vehicle_master,vehicle,Authoritative vehicle entity,vehicle_owner,vehicle_steward,INTERNAL,daily,available,certified
+vehicle_telemetry,connected_vehicle,Curated telemetry events,connected_owner,telemetry_steward,CONFIDENTIAL,near_real_time,available,certified
+warranty_claim,warranty,Warranty claim records,warranty_owner,warranty_steward,CONFIDENTIAL,daily,available,monitored
+customer_location,customer,Customer-linked location,customer_owner,customer_steward,RESTRICTED,daily,available,restricted

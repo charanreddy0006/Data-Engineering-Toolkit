@@ -1,0 +1,21 @@
+lineage:
+  - source: ecu.telemetry
+    target: kafka.vehicle.events
+    transformation: serialization
+
+  - source: kafka.vehicle.events
+    target: lakehouse.bronze_vehicle_events
+    transformation: ingestion
+
+  - source: lakehouse.bronze_vehicle_events
+    target: lakehouse.silver_vehicle_telemetry
+    transformation:
+      - validate_vehicle_id
+      - standardize_timestamp
+      - validate_ranges
+
+  - source: lakehouse.silver_vehicle_telemetry
+    target: product.certified_vehicle_telemetry
+    transformation:
+      - aggregate
+      - publish_contract

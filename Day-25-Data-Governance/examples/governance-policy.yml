@@ -1,0 +1,39 @@
+policy:
+  id: DG-001
+  name: Automotive Data Governance Policy
+  version: "1.0"
+  owner: Enterprise Data Governance
+  review_cycle: annual
+
+scope:
+  domains:
+    - vehicle
+    - connected_vehicle
+    - service
+    - warranty
+    - ev
+
+principles:
+  - accountability
+  - least_privilege
+  - discoverability
+  - traceability
+  - data_minimization
+
+required_controls:
+  - owner_assigned
+  - classification_assigned
+  - catalog_entry
+  - lineage_for_critical_assets
+  - approved_access
+  - retention_rule
+  - quality_expectations
+  - change_management
+
+exceptions:
+  require:
+    - business_reason
+    - risk_assessment
+    - compensating_control
+    - accountable_owner
+    - expiry_or_review_date

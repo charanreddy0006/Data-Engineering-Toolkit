@@ -1,0 +1,29 @@
+access_policy:
+  name: Connected Vehicle Data Access
+  principles:
+    - least_privilege
+    - purpose_limitation
+    - owner_approval
+    - periodic_review
+
+  rules:
+    - dataset_class: PUBLIC
+      approval: standard
+
+    - dataset_class: INTERNAL
+      approval: manager_or_owner
+
+    - dataset_class: CONFIDENTIAL
+      approval: data_owner
+      audit: required
+
+    - dataset_class: RESTRICTED
+      approval: data_owner_and_required_control_function
+      audit: required
+      minimization: required
+
+  lifecycle:
+    request: validate_purpose
+    provision: approved_identity
+    review: periodic
+    revoke: when_no_longer_needed
