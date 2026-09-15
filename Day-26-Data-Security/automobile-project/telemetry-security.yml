@@ -1,0 +1,6 @@
+telemetry:
+  transport: {encryption: required, authentication: required}
+  kafka: {producer_authorization: required, consumer_authorization: required, topic_acl: required}
+  data: {classification: CONFIDENTIAL, encryption_at_rest: required, audit: required}
+  quality: {vehicle_id_validation: required, timestamp_validation: required, range_validation: required}
+  access: {default: deny, least_privilege: required}

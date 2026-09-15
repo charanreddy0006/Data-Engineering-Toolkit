@@ -1,0 +1,14 @@
+# Production Checklist
+- [ ] Privileged MFA
+- [ ] Workload identities
+- [ ] Least privilege
+- [ ] Classification
+- [ ] Encryption at rest/in transit
+- [ ] Secret manager + rotation
+- [ ] Network segmentation
+- [ ] Kafka/database/storage authorization
+- [ ] Audit and monitoring
+- [ ] Protected backups
+- [ ] Restore testing
+- [ ] Incident runbook
+- [ ] Access reviews

@@ -1,0 +1,13 @@
+roles:
+  telemetry_reader:
+    resources: [curated.telemetry]
+    actions: [read]
+  telemetry_writer:
+    resources: [curated.telemetry]
+    actions: [write]
+  platform_admin:
+    resources: [platform]
+    actions: [admin]
+rules:
+  default: deny
+  privileged_review: required

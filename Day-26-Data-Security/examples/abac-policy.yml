@@ -1,0 +1,7 @@
+policy:
+  effect: allow
+  conditions:
+    - user.department == dataset.allowed_department
+    - dataset.classification != RESTRICTED
+    - request.purpose in dataset.approved_purposes
+default: deny

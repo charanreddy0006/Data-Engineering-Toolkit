@@ -1,0 +1,13 @@
+security_policy:
+  principles: [least_privilege, defense_in_depth, encryption, auditability]
+  identity:
+    privileged_mfa: required
+    workload_identity: preferred
+  data:
+    encryption_at_rest: required
+    encryption_in_transit: required
+  secrets:
+    source_control: prohibited
+    rotation: required
+  monitoring:
+    audit_logging: required

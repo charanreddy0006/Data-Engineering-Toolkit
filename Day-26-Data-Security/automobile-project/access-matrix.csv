@@ -1,0 +1,6 @@
+principal,resource,classification,action,approval
+telemetry_analyst,curated_telemetry,CONFIDENTIAL,read,connected_owner
+telemetry_pipeline,bronze_telemetry,CONFIDENTIAL,write,platform_owner
+fleet_engineer,fleet_metrics,INTERNAL,read,fleet_owner
+customer_analytics,customer_location,RESTRICTED,read,customer_owner
+platform_admin,platform,INTERNAL,admin,privileged_access_process

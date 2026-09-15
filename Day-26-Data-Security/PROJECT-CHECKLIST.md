@@ -1,0 +1,13 @@
+# Day 26 Project Checklist
+- [ ] Explain CIA and defense in depth.
+- [ ] Explain authentication vs authorization.
+- [ ] Design RBAC and ABAC.
+- [ ] Apply least privilege and MFA.
+- [ ] Explain encryption vs hashing.
+- [ ] Explain TLS, KMS, masking, tokenization.
+- [ ] Secure databases, object storage, Kafka, Spark, Airflow, and APIs.
+- [ ] Remove secrets from code and images.
+- [ ] Design audit and incident response.
+- [ ] Protect backups and recovery paths.
+- [ ] Apply DevSecOps and cloud security.
+- [ ] Complete automobile capstone.
