@@ -1,0 +1,6 @@
+metric,unit,category,purpose,owner
+vehicle_events_per_second,events/s,throughput,Incoming telemetry rate,connected-vehicle
+kafka_consumer_lag,records,streaming,Unprocessed consumer records,data-platform
+data_freshness_seconds,seconds,data,Age of newest expected data,analytics
+invalid_telemetry_ratio,ratio,quality,Invalid telemetry share,connected-vehicle
+pipeline_duration_seconds,seconds,pipeline,Pipeline runtime,data-platform

@@ -1,0 +1,9 @@
+metric,unit,category,purpose
+vehicle_events_per_second,events/s,throughput,Detect telemetry traffic changes
+gateway_error_rate,ratio,availability,Detect gateway failures
+kafka_consumer_lag,records,streaming,Detect backlog
+processing_latency_seconds,seconds,latency,Measure processing delay
+telemetry_freshness_seconds,seconds,data,Measure freshness
+invalid_telemetry_ratio,ratio,quality,Detect invalid records
+duplicate_event_ratio,ratio,quality,Detect duplicates
+ev_battery_range_violation_ratio,ratio,quality,Detect suspicious EV values

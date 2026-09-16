@@ -1,0 +1,18 @@
+groups:
+  - name: data-platform
+    rules:
+      - alert: PipelineFailure
+        expr: rate(pipeline_failures_total[10m]) > 0
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: Pipeline failures detected
+
+      - alert: TelemetryFreshnessHigh
+        expr: data_freshness_seconds{dataset="vehicle_telemetry"} > 900
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: Vehicle telemetry freshness breached

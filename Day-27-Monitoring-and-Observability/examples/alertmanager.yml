@@ -1,0 +1,11 @@
+route:
+  receiver: data-platform
+  group_by: [alertname, service, environment]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 2h
+
+receivers:
+  - name: data-platform
+    # Configure approved notification integration.
+    # Never store credentials directly in this file.
