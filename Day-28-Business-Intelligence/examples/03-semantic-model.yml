@@ -1,0 +1,27 @@
+name: automobile_bi
+description: Governed semantic model for vehicle and service analytics.
+
+dimensions:
+  - vehicle_id
+  - model
+  - fuel_type
+  - dealer
+  - region
+  - service_date
+
+measures:
+  service_revenue:
+    expression: sum(labor_amount + parts_amount)
+    format: currency
+
+  service_orders:
+    expression: count(service_order_id)
+
+  average_order_value:
+    expression: service_revenue / nullif(service_orders, 0)
+    format: currency
+
+security:
+  row_level:
+    key: dealer_id
+    source: user_dealer_access

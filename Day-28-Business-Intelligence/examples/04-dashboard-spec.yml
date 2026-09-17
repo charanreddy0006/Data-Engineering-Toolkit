@@ -1,0 +1,28 @@
+dashboard:
+  name: Vehicle Service Intelligence
+  audience:
+    - service executives
+    - regional managers
+    - dealer managers
+
+pages:
+  - name: Executive Overview
+    kpis:
+      - service_revenue
+      - service_orders
+      - average_order_value
+      - warranty_claim_rate
+    visuals:
+      - monthly_revenue_trend
+      - revenue_by_region
+      - claims_by_model
+
+  - name: Dealer Performance
+    filters:
+      - region
+      - dealer
+      - month
+    visuals:
+      - dealer_revenue
+      - order_volume
+      - average_order_value

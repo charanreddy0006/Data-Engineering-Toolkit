@@ -1,0 +1,6 @@
+trip_id,vehicle_id,date,dealer_id,region,distance_km,energy_kwh,duration_min
+T001,V1001,2026-09-01,D01,West,42.5,7.8,55
+T002,V1002,2026-09-01,D01,West,61.2,11.1,72
+T003,V1003,2026-09-02,D02,South,35.7,6.2,49
+T004,V1001,2026-09-02,D01,West,88.4,15.5,101
+T005,V1004,2026-09-03,D03,North,54.1,9.7,64

@@ -1,0 +1,18 @@
+Total Service Revenue =
+SUM(fact_service[service_amount])
+
+Service Orders =
+COUNTROWS(fact_service)
+
+Average Order Value =
+DIVIDE([Total Service Revenue], [Service Orders])
+
+YoY Revenue % =
+VAR CurrentRevenue = [Total Service Revenue]
+VAR PreviousRevenue =
+    CALCULATE(
+        [Total Service Revenue],
+        SAMEPERIODLASTYEAR(dim_date[date])
+    )
+RETURN
+    DIVIDE(CurrentRevenue - PreviousRevenue, PreviousRevenue)

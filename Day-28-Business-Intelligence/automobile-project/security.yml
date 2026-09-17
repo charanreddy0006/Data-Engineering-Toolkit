@@ -1,0 +1,27 @@
+security_model:
+  principle: least_privilege
+
+roles:
+  executive:
+    access: approved_enterprise_metrics
+
+  regional_manager:
+    row_filter:
+      column: region
+      source: user_region_access
+
+  dealer_manager:
+    row_filter:
+      column: dealer_id
+      source: user_dealer_access
+
+sensitive_fields:
+  - customer_identifier
+  - vehicle_location
+  - precise_telemetry
+
+controls:
+  - authenticated_users_only
+  - row_level_security
+  - audit_access
+  - periodic_access_review

@@ -1,0 +1,7 @@
+kpi,definition,formula,grain,owner,refresh
+service_revenue,Total completed service revenue,SUM(labor_amount+parts_amount),service_order,Service Analytics,Daily
+service_orders,Number of completed service orders,COUNT(service_order_id),service_order,Service Analytics,Daily
+average_order_value,Average service revenue per order,service_revenue/service_orders,service_order,Service Analytics,Daily
+warranty_claim_rate,Eligible vehicles with claim divided by eligible vehicles,claim_vehicles/eligible_vehicles*100,vehicle,Quality Analytics,Daily
+fleet_utilization,Distance or active-use measure relative to defined availability,defined_business_formula,vehicle_day,Fleet Operations,Hourly
+ev_energy_per_100km,Energy consumed per 100 km,energy_kwh/distance_km*100,trip,EV Analytics,Daily
