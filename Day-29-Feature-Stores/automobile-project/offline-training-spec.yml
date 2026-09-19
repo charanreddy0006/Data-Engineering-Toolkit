@@ -1,0 +1,21 @@
+training_dataset:
+  entity: vehicle
+  label: service_required_within_7d
+
+point_in_time:
+  enabled: true
+  rule: feature_event_time <= prediction_time
+
+lookback:
+  telemetry: 365d
+  service_history: 365d
+  warranty_history: 730d
+
+outputs:
+  features:
+    - fault_count_24h
+    - fault_count_7d
+    - distance_km_30d
+    - service_count_90d
+    - days_since_last_service
+    - battery_soc_latest

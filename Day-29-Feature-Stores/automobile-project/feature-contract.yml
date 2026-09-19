@@ -1,0 +1,25 @@
+feature_contract:
+  domain: predictive_maintenance
+  entity: vehicle
+
+features:
+  fault_count_24h:
+    type: int64
+    minimum: 0
+    freshness_minutes: 15
+
+  battery_soc_latest:
+    type: float64
+    minimum: 0
+    maximum: 100
+    freshness_minutes: 5
+
+  distance_km_30d:
+    type: float64
+    minimum: 0
+    freshness_hours: 24
+
+  days_since_last_service:
+    type: int64
+    minimum: 0
+    freshness_hours: 24

@@ -1,0 +1,13 @@
+{
+  "name": "predictive_maintenance_v1",
+  "entity": "vehicle",
+  "features": [
+    "distance_km_30d",
+    "fault_count_24h",
+    "days_since_last_service",
+    "service_count_90d",
+    "battery_soc_latest"
+  ],
+  "model": "maintenance-risk-v1",
+  "version": 1
+}

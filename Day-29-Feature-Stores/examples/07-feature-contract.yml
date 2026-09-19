@@ -1,0 +1,20 @@
+feature:
+  name: fault_count_24h
+  entity: vehicle
+  description: Number of fault events associated with a vehicle during the previous 24 hours.
+  data_type: int64
+  source: vehicle_fault_events
+  aggregation_window: 24h
+  update_frequency: 15m
+  freshness_sla: 15m
+  owner: connected-vehicle-team
+
+quality:
+  min: 0
+  nullable: false
+  duplicate_key: [vehicle_id, feature_timestamp]
+
+governance:
+  pii: false
+  production: true
+  version: 1

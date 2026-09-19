@@ -1,0 +1,17 @@
+online_serving:
+  key: vehicle_id
+
+sla:
+  p95_latency_ms: 50
+  availability_percent: 99.9
+
+features:
+  - fault_count_24h
+  - battery_soc_latest
+  - distance_km_7d
+  - days_since_last_service
+
+ttl:
+  battery_soc_latest: 15m
+  fault_count_24h: 2h
+  distance_km_7d: 48h

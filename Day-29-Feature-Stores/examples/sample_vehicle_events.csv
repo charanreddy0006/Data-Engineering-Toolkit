@@ -1,0 +1,8 @@
+vehicle_id,event_time,event_type,distance_km,avg_speed_kmh,harsh_braking,energy_kwh,fault_code
+V1001,2026-09-18T09:10:00Z,trip,42.5,46.4,false,7.8,
+V1001,2026-09-18T11:20:00Z,trip,31.4,44.1,true,5.9,
+V1001,2026-09-18T12:15:00Z,fault,0,0,false,0,P0420
+V1002,2026-09-18T13:00:00Z,trip,61.2,51.8,false,11.1,
+V1002,2026-09-18T15:40:00Z,trip,25.9,39.6,false,4.8,
+V1003,2026-09-18T16:20:00Z,trip,35.7,42.0,true,6.2,
+V1004,2026-09-18T17:05:00Z,fault,0,0,false,0,P0301

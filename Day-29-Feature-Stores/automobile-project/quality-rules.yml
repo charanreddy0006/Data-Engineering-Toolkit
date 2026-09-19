@@ -1,0 +1,18 @@
+quality_rules:
+  vehicle_id:
+    - not_null
+    - unique_per_entity_timestamp
+
+  distance_km_30d:
+    - min: 0
+
+  battery_soc_latest:
+    - min: 0
+    - max: 100
+
+  service_count_90d:
+    - min: 0
+
+  freshness:
+    fault_count_24h_minutes: 15
+    battery_soc_latest_minutes: 5

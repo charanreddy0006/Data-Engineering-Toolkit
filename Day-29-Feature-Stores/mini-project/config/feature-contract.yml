@@ -1,0 +1,14 @@
+name: vehicle-maintenance-features
+entity: vehicle
+schedule: daily
+
+features:
+  - distance_km_30d
+  - fault_count_24h
+  - harsh_braking_count_1h
+  - service_count_90d
+  - battery_soc_latest
+
+quality:
+  freshness_hours: 24
+  null_allowed: [battery_soc_latest]

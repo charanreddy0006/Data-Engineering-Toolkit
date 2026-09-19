@@ -1,0 +1,7 @@
+feature_name,entity,type,description,window,freshness
+distance_km_30d,vehicle,numeric,Total distance traveled in previous 30 days,30d,daily
+fault_count_24h,vehicle,numeric,Fault events during previous 24 hours,24h,15m
+harsh_braking_count_1h,vehicle,numeric,Harsh braking events during previous hour,1h,5m
+service_count_90d,vehicle,numeric,Completed service orders in previous 90 days,90d,daily
+days_since_last_service,vehicle,numeric,Days since last eligible service,point-in-time,daily
+battery_soc_latest,vehicle,numeric,Latest valid battery state of charge,latest,5m

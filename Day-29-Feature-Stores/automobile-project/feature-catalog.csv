@@ -1,0 +1,12 @@
+feature_name,domain,entity,dtype,window,frequency,latency_requirement,owner
+fault_count_24h,vehicle_health,vehicle,int64,24h,15m,low,connected-vehicle-team
+fault_count_7d,vehicle_health,vehicle,int64,7d,daily,medium,connected-vehicle-team
+battery_soc_latest,vehicle_health,vehicle,float64,latest,5m,low,ev-platform-team
+distance_km_7d,vehicle_usage,vehicle,float64,7d,hourly,medium,fleet-analytics
+distance_km_30d,vehicle_usage,vehicle,float64,30d,daily,medium,fleet-analytics
+harsh_braking_count_24h,driver_behavior,vehicle,int64,24h,15m,low,safety-analytics
+days_since_last_service,service,vehicle,int64,point-in-time,daily,medium,service-analytics
+service_count_90d,service,vehicle,int64,90d,daily,medium,service-analytics
+service_spend_365d,service,vehicle,float64,365d,daily,medium,service-analytics
+fast_charge_ratio_30d,ev,vehicle,float64,30d,daily,medium,ev-analytics
+energy_per_100km_30d,ev,vehicle,float64,30d,daily,medium,ev-analytics

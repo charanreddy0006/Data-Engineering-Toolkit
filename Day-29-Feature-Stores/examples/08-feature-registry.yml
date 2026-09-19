@@ -1,0 +1,22 @@
+entities:
+  vehicle:
+    join_key: vehicle_id
+
+features:
+  - name: distance_km_30d
+    entity: vehicle
+    dtype: float64
+    owner: fleet-analytics
+    freshness: daily
+
+  - name: fault_count_24h
+    entity: vehicle
+    dtype: int64
+    owner: connected-vehicle
+    freshness: 15m
+
+  - name: days_since_last_service
+    entity: vehicle
+    dtype: int32
+    owner: service-analytics
+    freshness: daily

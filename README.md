@@ -1,249 +1,315 @@
-<div align="center">
+div align="center">
 
-# 🚀 Data Engineering Toolkit
+🚀 Data Engineering Toolkit
 
-### A Complete Open-Source Guide to Data Engineering
+Learn • Build • Practice • Master
 
-Learn Data Engineering from fundamentals to advanced concepts through structured documentation, practical examples, architecture diagrams, real-world projects, and industry best practices.
+A structured, practical learning repository for Data Engineering, from fundamentals to modern data platforms and real-world projects.
 
-**Designed for Students • Developers • Data Engineers • Professionals**
+Python • SQL • Databases • ETL/ELT • Spark • Kafka • Airflow • Cloud • Docker • Kubernetes • BI
 
 </div>
 
----
+📖 About
 
-# 📖 About
+Data Engineering Toolkit is a hands-on learning repository designed to build strong Data Engineering fundamentals and gradually move toward production-oriented technologies, architectures, and projects.
 
-**Data Engineering Toolkit** is a comprehensive open-source repository created to help learners understand every major concept, technology, architecture, and workflow used in modern Data Engineering.
+What this repository contains
 
-This repository is not a collection of notes or tutorials. It is designed as a **structured knowledge base** that explains concepts from first principles and gradually progresses to production-level tools, architectures, and real-world implementations.
+📚 Clear concept documentation
 
-Whether you are a beginner exploring Data Engineering for the first time or a professional looking for a reference, this repository aims to provide clear explanations, practical examples, and industry-focused learning resources.
+💻 Practical code examples
 
----
+🏗️ Architecture and workflow diagrams
 
-# 🎯 Objectives
+🧪 Exercises and mini projects
 
-The primary goals of this repository are to:
+🚗 Automobile-industry use cases
 
-- Build strong Data Engineering fundamentals
-- Learn industry-standard tools and technologies
-- Understand modern data architectures
-- Design scalable data pipelines
-- Work with cloud-based data platforms
-- Explore real-world use cases
-- Build practical projects
-- Prepare for technical interviews
-- Create a professional GitHub portfolio
+🎯 Interview preparation
 
----
+📋 Cheat sheets and resources
 
-# 📚 Topics Covered
+🎯 Goals
 
-This repository includes comprehensive documentation on:
+By completing this repository, you will learn how to:
 
-- Introduction to Data Engineering
-- Data Engineering Fundamentals
-- Python for Data Engineering
-- SQL
-- Linux
-- Git & GitHub
-- Relational Databases
-- NoSQL Databases
-- Data Warehousing
-- Data Lakes
-- Lakehouse Architecture
-- ETL & ELT
-- Apache Airflow
-- dbt
-- Apache NiFi
-- Apache Spark
-- Hadoop Ecosystem
-- Apache Hive
-- Apache Kafka
-- Apache Flink
-- Spark Streaming
-- Cloud Platforms (AWS, Azure & GCP)
-- Docker
-- Kubernetes
-- CI/CD
-- Data Modeling
-- File Formats
-- Data Quality
-- Data Governance
-- Security
-- Monitoring
-- Power BI
-- Tableau
-- Feature Stores
-- Machine Learning Pipelines
-- Batch Data Pipelines
-- Real-Time Data Pipelines
-- Data Architecture
-- Interview Preparation
-- Cheat Sheets
-- Mini Projects
-- End-to-End Projects
+Understand Data Engineering fundamentals
 
----
+Work with Python and SQL
 
-# 🏗️ Repository Structure
+Use relational and NoSQL databases
 
-```text
+Build ETL and ELT pipelines
+
+Work with batch and real-time data
+
+Use Airflow, dbt, Spark, Kafka and other industry tools
+
+Work with Data Warehouses, Data Lakes and Lakehouses
+
+Use AWS, Azure and GCP
+
+Work with Docker and Kubernetes
+
+Design production-oriented data architectures
+
+Build practical portfolio projects
+
+🗺️ Learning Path
+
+Day 00  Introduction
+Day 01  Data Engineering Fundamentals
+Day 02  Python for Data Engineering
+Day 03  SQL for Data Engineering
+Day 04  Linux for Data Engineering
+Day 05  Git & GitHub
+Day 06  Databases
+Day 07  Data Warehousing
+Day 08  Data Lakes
+Day 09  ETL & ELT
+Day 10  Apache Airflow
+Day 11  dbt
+Day 12  Apache NiFi
+Day 13  Apache Spark
+Day 14  Hadoop Ecosystem
+Day 15  Apache Kafka
+Day 16  Apache Hive
+Day 17  Apache Flink
+Day 18  Data Modeling
+Day 19  Docker
+Day 20  Kubernetes
+Day 21  CI/CD
+Day 22  Data Modeling
+Day 23  File Formats
+Day 24  Data Quality
+Day 25  Data Governance
+Day 26  Data Security
+Day 27  Monitoring & Observability
+Day 28  Business Intelligence
+Day 29  Feature Stores
+Day 30  Machine Learning Pipelines
+Day 31  Batch Data Pipelines
+Day 32  Real-Time Data Pipelines
+Day 33  Data Architecture
+Day 34  Interview Preparation
+Day 35  Cheat Sheets
+Day 36  Mini Projects
+Day 37  End-to-End Projects
+
+🧩 Standard Topic Structure
+
+Major topics follow a consistent learning structure:
+
+Introduction
+Why It Exists
+History
+Problems It Solves
+Architecture
+Core Components
+Installation / Setup
+Folder Structure
+Beginner Example
+Intermediate Example
+Advanced Example
+Real-World Use Cases
+Automobile Example 🚗
+Best Practices
+Common Mistakes
+Performance
+Advantages & Limitations
+Comparison
+Interview Questions
+Cheat Sheet
+Official Documentation
+Additional Resources
+
+🚗 Automobile Industry Focus
+
+Many examples use automobile-industry scenarios to connect Data Engineering concepts with realistic business problems.
+
+Examples include:
+
+🚘 Vehicle Sales Analytics
+
+🚚 Fleet Management
+
+📡 Connected Vehicle Analytics
+
+🔧 Predictive Maintenance
+
+📍 GPS & Trip Analytics
+
+⚡ EV Charging Analytics
+
+⛽ Fuel Consumption Analysis
+
+🏭 Manufacturing Data Pipelines
+
+🔩 Spare Parts Analytics
+
+🛡️ Warranty Analytics
+
+🏗️ Typical Data Engineering Architecture
+
+Source Systems
+      │
+      ▼
+   Ingestion
+      │
+      ▼
+Data Lake / Lakehouse
+      │
+      ▼
+ Transformation
+      │
+      ▼
+Data Warehouse
+      │
+      ▼
+Semantic / Analytics Layer
+      │
+      ▼
+BI / ML / Applications
+
+📂 Repository Structure
+
 Data-Engineering-Toolkit/
-
-├── 00-Introduction
-├── 01-Data-Engineering-Fundamentals
-├── 02-Python-for-Data-Engineering
-├── 03-SQL-for-Data-Engineering
-├── 04-Linux
-├── 05-Git-and-GitHub
-├── 06-Databases
-├── 07-Data-Warehousing
-├── 08-Data-Lakes
-├── 09-Lakehouse-Architecture
-├── 10-ETL-and-ELT
-├── 11-Apache-Airflow
-├── 12-dbt
-├── 13-Apache-NiFi
-├── 14-Apache-Spark
-├── 15-Hadoop-Ecosystem
-├── 16-Apache-Hive
-├── 17-Apache-Kafka
-├── 18-Apache-Flink
-├── 19-Spark-Streaming
-├── 20-Cloud-Platforms
-├── 21-Docker
-├── 22-Kubernetes
-├── 23-CI-CD
-├── 24-Data-Modeling
-├── 25-File-Formats
-├── 26-Data-Quality
-├── 27-Data-Governance
-├── 28-Data-Security
-├── 29-Monitoring-and-Observability
-├── 30-Business-Intelligence
-├── 31-Feature-Stores
-├── 32-Machine-Learning-Pipelines
-├── 33-Batch-Data-Pipelines
-├── 34-Real-Time-Data-Pipelines
-├── 35-Data-Architecture
-├── 36-Interview-Preparation
-├── 37-Cheat-Sheets
-├── 38-Mini-Projects
-├── 39-End-to-End-Projects
 │
-├── assets
-├── datasets
-├── resources
+├── Day-07-Data-Warehousing/
+├── Day-08-Data-Lakes/
+├── Day-09-ETL-and-ELT/
+├── ...
+├── Day-28-Business-Intelligence/
+├── Day-29-Feature-Stores/
+│
+├── assets/
+├── datasets/
+├── resources/
 │
 ├── README.md
 ├── ROADMAP.md
 ├── CONTRIBUTING.md
 └── LICENSE
-```
 
----
+🛠️ Technologies Covered
 
-# 💡 What Makes This Repository Different?
+Programming & Querying
 
-Every topic follows a consistent learning structure:
+Python • SQL • Bash
 
-- Introduction
-- Why the technology exists
-- History
-- Problems it solves
-- Architecture
-- Core Components
-- Installation
-- Folder Structure
-- Beginner Example
-- Intermediate Example
-- Advanced Example
-- Real-World Use Cases
-- Best Practices
-- Common Mistakes
-- Advantages
-- Disadvantages
-- Comparison with Alternatives
-- Interview Questions
-- Cheat Sheet
-- Official Documentation
-- Additional Learning Resources
+Databases
 
-This approach provides both theoretical understanding and practical knowledge.
+PostgreSQL • MySQL • SQLite • MongoDB • Redis • Elasticsearch
 
----
+Data Engineering
 
-# 🚗 Industry-Focused Learning
+Airflow • dbt • NiFi • Spark • Kafka • Flink • Hive
 
-Throughout this repository, examples are based on real-world business scenarios with a strong focus on the **automobile industry**.
+Storage & Analytics
 
-Example projects include:
+Data Warehouses • Data Lakes • Lakehouses • Parquet • Avro • ORC
 
-- Vehicle Sales Analytics
-- Fleet Management
-- Connected Vehicle Analytics
-- Predictive Maintenance
-- GPS Tracking
-- EV Charging Analytics
-- Fuel Consumption Analysis
-- Manufacturing Data Pipelines
-- Spare Parts Inventory Management
+Cloud
 
-These examples demonstrate how Data Engineering concepts are applied in real production environments.
+AWS • Azure • Google Cloud
 
----
+Infrastructure
 
-# 📂 Learning Resources
+Docker • Kubernetes • CI/CD
 
-Each module contains:
+Analytics & AI
 
-- Concept Explanations
-- Architecture Diagrams
-- Workflow Diagrams
-- Code Examples
-- Practical Exercises
-- Mini Projects
-- Real-World Projects
-- Interview Questions
-- Cheat Sheets
-- Official Documentation
+Power BI • Tableau • Feature Stores • ML Pipelines
 
----
+📚 Learning Approach
 
-# 👨‍🎓 Who Should Use This Repository?
+Learn
+  ↓
+Understand
+  ↓
+Practice
+  ↓
+Build
+  ↓
+Document
+  ↓
+Review
+  ↓
+Repeat
 
-This repository is suitable for:
+The goal is not only to learn individual tools, but to understand why they are used, where they fit, and how they work together in a complete data system.
 
-- Students
-- Beginners
-- Software Developers
-- Data Analysts
-- Data Scientists
-- Aspiring Data Engineers
-- Professionals preparing for interviews
+🎯 Projects
 
----
+The repository includes practical projects around:
 
-# 🤝 Contributing
+ETL pipelines
 
-Contributions are welcome.
+Weather data
 
-If you would like to improve this repository by fixing errors, adding examples, improving documentation, or creating new learning resources, feel free to open an Issue or submit a Pull Request.
+Sales analytics
 
----
+Vehicle data
 
-# 📄 License
+Fleet management
 
-This repository is licensed under the **MIT License**.
+EV charging
 
----
+Manufacturing
+
+Real-time streaming
+
+Data quality
+
+Data governance
+
+Business Intelligence
+
+💼 Portfolio Goal
+
+This repository is also designed as a long-term technical portfolio.
+
+Projects should demonstrate:
+
+Problem understanding
+
+Data architecture
+
+Pipeline design
+
+Data modeling
+
+Code quality
+
+Testing
+
+Data quality
+
+Security
+
+Monitoring
+
+Documentation
+
+📖 Start Learning
+
+Begin with the ROADMAP.md and follow the modules in order.
+
+🤝 Contributing
+
+Contributions, corrections, examples and improvements are welcome.
+
+Open an Issue or submit a Pull Request if you would like to improve the repository.
+
+📄 License
+
+This project is licensed under the MIT License.
 
 <div align="center">
 
-### ⭐ If you find this repository useful, consider giving it a Star.
+⭐ Learn • Build • Practice • Share • Master
 
-**Learn • Build • Practice • Share • Master**
+Data Engineering Toolkit
 
 </div>
