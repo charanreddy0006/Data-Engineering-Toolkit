@@ -1,0 +1,22 @@
+pipeline:
+  name: vehicle-maintenance-training
+  schedule: weekly
+
+inputs:
+  dataset: vehicle_training_v12
+  features:
+    - fault_count_24h
+    - fault_count_7d
+    - distance_km_30d
+    - service_count_90d
+    - days_since_last_service
+
+training:
+  algorithm: gradient_boosting
+  random_seed: 42
+
+validation:
+  minimum_f1: 0.80
+
+promotion:
+  require_approval: true

@@ -1,0 +1,19 @@
+training:
+  model: predictive-maintenance-v1
+  task: binary_classification
+  label: service_required_within_7d
+
+split:
+  strategy: time_based
+  test_fraction: 0.20
+
+evaluation:
+  metrics:
+    - precision
+    - recall
+    - f1
+
+promotion:
+  require_evaluation: true
+  require_baseline_comparison: true
+  require_approval: true

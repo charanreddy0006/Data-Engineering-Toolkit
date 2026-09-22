@@ -1,0 +1,21 @@
+# Project Checklist
+
+- [ ] Understand ML lifecycle
+- [ ] Design training pipeline
+- [ ] Design inference pipeline
+- [ ] Validate data
+- [ ] Build features
+- [ ] Version datasets
+- [ ] Track experiments
+- [ ] Evaluate models
+- [ ] Register models
+- [ ] Implement batch inference
+- [ ] Understand online inference
+- [ ] Add orchestration
+- [ ] Add CI/CD
+- [ ] Add monitoring
+- [ ] Detect drift
+- [ ] Plan retraining
+- [ ] Design rollback
+- [ ] Secure the pipeline
+- [ ] Complete automobile capstone

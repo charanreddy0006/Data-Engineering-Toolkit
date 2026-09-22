@@ -1,0 +1,21 @@
+project:
+  name: vehicle-maintenance-ml-pipeline
+  version: 1
+
+data:
+  input: examples/sample_vehicle_training.csv
+
+model:
+  algorithm: random_forest
+  n_estimators: 100
+  random_state: 42
+
+evaluation:
+  metrics:
+    - precision
+    - recall
+    - f1
+
+promotion:
+  require_validation: true
+  require_approval: true

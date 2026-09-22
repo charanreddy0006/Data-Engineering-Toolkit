@@ -1,0 +1,15 @@
+retraining:
+  scheduled:
+    enabled: true
+    frequency: weekly
+
+  triggered:
+    - measured_performance_below_threshold
+    - major_data_drift
+    - source_schema_change
+    - new_vehicle_generation
+
+  safeguards:
+    require_evaluation: true
+    require_baseline_comparison: true
+    require_approval: true

@@ -1,0 +1,18 @@
+data_quality:
+  source:
+    required_columns:
+      - vehicle_id
+      - event_time
+    null_vehicle_id_max: 0
+
+  features:
+    fault_count_24h:
+      min: 0
+    distance_km_30d:
+      min: 0
+    battery_soc_latest:
+      min: 0
+      max: 100
+
+  pipeline:
+    maximum_null_feature_rate: 0.02

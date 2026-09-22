@@ -1,0 +1,34 @@
+feature_set:
+  name: vehicle_health_v1
+  entity: vehicle
+
+features:
+  - name: fault_count_24h
+    type: int64
+    window: 24h
+    freshness: 15m
+
+  - name: fault_count_7d
+    type: int64
+    window: 7d
+    freshness: 1h
+
+  - name: distance_km_30d
+    type: float64
+    window: 30d
+    freshness: 24h
+
+  - name: service_count_90d
+    type: int64
+    window: 90d
+    freshness: 24h
+
+  - name: days_since_last_service
+    type: int64
+    window: point-in-time
+    freshness: 24h
+
+  - name: battery_soc_latest
+    type: float64
+    range: [0, 100]
+    freshness: 5m
