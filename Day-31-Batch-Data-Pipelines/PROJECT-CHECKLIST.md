@@ -1,0 +1,21 @@
+# Project Checklist
+
+- [ ] Explain batch processing
+- [ ] Explain batch vs streaming
+- [ ] Design a batch architecture
+- [ ] Implement a full load
+- [ ] Implement an incremental load
+- [ ] Use a watermark
+- [ ] Understand CDC
+- [ ] Design idempotent writes
+- [ ] Add retries
+- [ ] Plan backfills
+- [ ] Handle late-arriving data
+- [ ] Partition large data
+- [ ] Add data quality checks
+- [ ] Reconcile source and target
+- [ ] Add orchestration
+- [ ] Add monitoring
+- [ ] Add security
+- [ ] Control cost
+- [ ] Complete the automobile capstone

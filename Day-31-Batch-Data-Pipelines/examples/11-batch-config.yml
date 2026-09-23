@@ -1,0 +1,20 @@
+pipeline:
+  name: daily-service-analytics
+  schedule: "0 2 * * *"
+
+source:
+  table: service_orders
+  extraction: incremental
+
+watermark:
+  column: updated_at
+
+processing:
+  partition: service_date
+  retries: 3
+
+quality:
+  reconciliation_required: true
+
+publish:
+  target: curated_service_orders

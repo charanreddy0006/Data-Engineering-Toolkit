@@ -1,0 +1,24 @@
+project:
+  name: automotive-batch-platform
+  timezone: UTC
+
+pipelines:
+  sales:
+    mode: incremental
+    watermark: updated_at
+    target: curated_vehicle_sales
+
+  service:
+    mode: incremental
+    watermark: updated_at
+    target: curated_service_orders
+
+  warranty:
+    mode: incremental
+    watermark: updated_at
+    target: curated_warranty_claims
+
+  ev_charging:
+    mode: daily_batch
+    partition: session_date
+    target: curated_ev_charging

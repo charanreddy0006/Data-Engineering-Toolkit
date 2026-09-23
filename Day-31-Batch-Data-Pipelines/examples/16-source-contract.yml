@@ -1,0 +1,16 @@
+source_contract:
+  table: service_orders
+  owner: dealer-platform
+  update_frequency: continuous
+
+schema:
+  service_order_id: string
+  vehicle_id: string
+  dealer_id: string
+  service_date: date
+  updated_at: timestamp
+  amount: decimal
+
+expectations:
+  service_order_id_not_null: true
+  amount_non_negative: true

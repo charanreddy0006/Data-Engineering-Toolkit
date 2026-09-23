@@ -1,0 +1,21 @@
+quality:
+  sales:
+    required:
+      - sale_id
+      - vehicle_id
+      - sale_date
+      - sale_amount
+    sale_amount_min: 0
+
+  service:
+    required:
+      - service_order_id
+      - vehicle_id
+      - dealer_id
+      - service_date
+    duplicate_service_order_id_max: 0
+    amount_min: 0
+
+  ev_charging:
+    energy_kwh_min: 0
+    duration_min: 0
