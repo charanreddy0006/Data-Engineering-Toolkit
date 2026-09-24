@@ -1,0 +1,14 @@
+pipeline:
+  name: vehicle-realtime
+source:
+  topic: vehicle.telemetry
+  group: fleet-analytics
+processing:
+  event_time: event_time
+  watermark_delay: 5m
+  window: 5m
+  allowed_lateness: 2m
+sink:
+  output: vehicle_live_metrics
+monitoring:
+  max_lag_seconds: 30

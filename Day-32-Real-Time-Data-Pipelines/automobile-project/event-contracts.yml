@@ -1,0 +1,27 @@
+topics:
+  vehicle.telemetry:
+    key: vehicle_id
+    fields:
+      event_id: string
+      vehicle_id: string
+      event_time: timestamp
+      speed_kmh: float
+      battery_soc: float
+
+  vehicle.faults:
+    key: vehicle_id
+    fields:
+      event_id: string
+      vehicle_id: string
+      event_time: timestamp
+      fault_code: string
+      severity: string
+
+  vehicle.charging:
+    key: vehicle_id
+    fields:
+      event_id: string
+      vehicle_id: string
+      event_time: timestamp
+      energy_kwh: float
+      charging_power_kw: float

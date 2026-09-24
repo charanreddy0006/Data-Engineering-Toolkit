@@ -1,0 +1,3 @@
+{"event_id":"E001","vehicle_id":"V1001","event_time":"2026-09-24T10:00:00Z","speed_kmh":52.4,"battery_soc":78}
+{"event_id":"E002","vehicle_id":"V1001","event_time":"2026-09-24T10:01:00Z","speed_kmh":58.2,"battery_soc":77}
+{"event_id":"E003","vehicle_id":"V1002","event_time":"2026-09-24T10:01:10Z","speed_kmh":41.7,"battery_soc":61}

@@ -1,0 +1,8 @@
+feature:
+  name: fault_count_15m
+  entity: vehicle
+  source: vehicle.faults
+  window: 15m
+  time: event_time
+  allowed_lateness: 2m
+  output: online_feature_store

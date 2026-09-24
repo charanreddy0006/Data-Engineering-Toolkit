@@ -1,0 +1,6 @@
+quality:
+  event_id_not_null: true
+  vehicle_id_not_null: true
+  event_time_not_null: true
+  battery_soc_range: [0, 100]
+  dedup_key: event_id

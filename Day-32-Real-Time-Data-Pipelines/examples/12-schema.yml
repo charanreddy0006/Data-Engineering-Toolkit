@@ -1,0 +1,12 @@
+event:
+  name: vehicle_fault
+  version: 1
+fields:
+  event_id: string
+  vehicle_id: string
+  event_time: timestamp
+  fault_code: string
+  severity: string
+rules:
+  event_id_required: true
+  vehicle_id_required: true

@@ -1,0 +1,12 @@
+pipeline:
+  name: vehicle-fault-stream
+source:
+  topic: vehicle.faults
+  group: maintenance-alerts
+processing:
+  dedup_key: event_id
+  state_key: vehicle_id
+  window: 5m
+monitoring:
+  max_lag_seconds: 30
+  max_processing_latency_ms: 500

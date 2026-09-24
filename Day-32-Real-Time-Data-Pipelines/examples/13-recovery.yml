@@ -1,0 +1,9 @@
+recovery:
+  checkpoint_enabled: true
+  replay_source: kafka
+  restart_attempts: 3
+on_failure:
+  action: restore_checkpoint_and_replay
+after_recovery:
+  validate_lag: true
+  validate_freshness: true

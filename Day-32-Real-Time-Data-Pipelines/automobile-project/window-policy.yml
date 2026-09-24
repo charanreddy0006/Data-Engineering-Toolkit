@@ -1,0 +1,12 @@
+windows:
+  fault_count_5m:
+    type: tumbling
+    size: 5m
+    time: event_time
+    allowed_lateness: 2m
+  harsh_braking_1h:
+    type: sliding
+    size: 1h
+    slide: 5m
+    time: event_time
+    allowed_lateness: 5m

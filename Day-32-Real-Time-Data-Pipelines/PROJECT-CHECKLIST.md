@@ -1,0 +1,22 @@
+# Project Checklist
+
+- [ ] Explain real-time processing
+- [ ] Explain event-driven architecture
+- [ ] Explain batch vs streaming
+- [ ] Understand producers and consumers
+- [ ] Understand topics and partitions
+- [ ] Understand consumer groups and offsets
+- [ ] Define event schemas
+- [ ] Explain event time and processing time
+- [ ] Use windows and watermarks
+- [ ] Handle late events
+- [ ] Handle state
+- [ ] Handle duplicates
+- [ ] Understand delivery guarantees
+- [ ] Use checkpointing
+- [ ] Design recovery
+- [ ] Handle backpressure
+- [ ] Scale processing
+- [ ] Monitor lag and latency
+- [ ] Secure event systems
+- [ ] Complete the automobile capstone

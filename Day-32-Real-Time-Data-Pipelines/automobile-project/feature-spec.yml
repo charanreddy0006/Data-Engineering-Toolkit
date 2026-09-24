@@ -1,0 +1,16 @@
+features:
+  fault_count_15m:
+    entity: vehicle
+    source: vehicle.faults
+    window: 15m
+    freshness: 30s
+  battery_soc_latest:
+    entity: vehicle
+    source: vehicle.telemetry
+    window: latest
+    freshness: 15s
+  charging_sessions_30m:
+    entity: vehicle
+    source: vehicle.charging
+    window: 30m
+    freshness: 60s

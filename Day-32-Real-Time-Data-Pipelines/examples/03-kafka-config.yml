@@ -1,0 +1,10 @@
+topic:
+  name: vehicle.faults
+  partitions: 12
+  retention: 7d
+producer:
+  key: vehicle_id
+  compression: zstd
+consumer:
+  group: maintenance-alerts
+  enable_auto_commit: false
