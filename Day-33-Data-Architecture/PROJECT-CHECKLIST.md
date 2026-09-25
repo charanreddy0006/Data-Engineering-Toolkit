@@ -1,0 +1,23 @@
+# Project Checklist
+
+- [ ] Requirements
+- [ ] Context diagram
+- [ ] Logical architecture
+- [ ] Physical architecture
+- [ ] Data flow
+- [ ] Ingestion
+- [ ] Storage
+- [ ] Processing
+- [ ] Serving
+- [ ] Batch/streaming choice
+- [ ] Lake/warehouse/lakehouse
+- [ ] Governance
+- [ ] Security
+- [ ] Quality
+- [ ] Observability
+- [ ] Reliability
+- [ ] Scaling
+- [ ] DR
+- [ ] Cost
+- [ ] ADRs
+- [ ] Automobile capstone

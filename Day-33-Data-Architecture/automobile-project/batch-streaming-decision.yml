@@ -1,0 +1,16 @@
+decisions:
+  telemetry:
+    processing: streaming
+    reason: low-latency operational use cases
+  service:
+    processing: batch_and_cdc
+    reason: transactional history plus timely updates
+  warranty:
+    processing: batch
+    reason: analytical reporting
+  vehicle_master:
+    processing: batch
+    reason: slower change rate
+  charging:
+    processing: streaming_and_batch
+    reason: live state plus historical analytics

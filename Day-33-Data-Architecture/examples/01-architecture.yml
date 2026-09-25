@@ -1,0 +1,20 @@
+architecture:
+  name: connected-vehicle-platform
+layers:
+  sources:
+    - vehicle_telemetry
+    - service_orders
+    - warranty_claims
+    - vehicle_master
+  ingestion:
+    streaming: vehicle_telemetry
+    batch: service_orders
+    cdc: warranty_claims
+  storage:
+    raw: object_storage
+    curated: lakehouse
+    serving: warehouse
+  consumers:
+    - fleet_bi
+    - predictive_maintenance
+    - dealer_application

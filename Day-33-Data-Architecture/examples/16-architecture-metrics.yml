@@ -1,0 +1,11 @@
+architecture_metrics:
+  volume:
+    unit: events_per_day
+  throughput:
+    unit: events_per_second
+  latency:
+    unit: milliseconds
+  availability:
+    unit: percent
+  freshness:
+    unit: minutes

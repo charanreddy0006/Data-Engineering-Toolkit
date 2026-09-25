@@ -1,0 +1,13 @@
+platform:
+  ingestion:
+    batch: managed_batch
+    streaming: managed_event_platform
+  storage:
+    raw: object_storage
+    analytical: lakehouse
+    serving: warehouse
+  processing:
+    batch: sql_or_spark
+    streaming: flink_or_streaming_engine
+  operations:
+    monitoring: metrics_logs_traces

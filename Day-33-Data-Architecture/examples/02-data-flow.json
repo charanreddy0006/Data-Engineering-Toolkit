@@ -1,0 +1,16 @@
+{
+  "pipeline": "vehicle-health",
+  "source": "vehicle.telemetry",
+  "flow": [
+    "ingestion",
+    "validation",
+    "normalization",
+    "enrichment",
+    "aggregation",
+    "serving"
+  ],
+  "outputs": [
+    "online_feature_store",
+    "historical_lake"
+  ]
+}

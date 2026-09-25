@@ -1,0 +1,10 @@
+requirements:
+  volume: 100M_events_per_day
+  latency:
+    fault_alerts: seconds
+    bi: hours
+    ml_batch: daily
+  retention: 5y
+  availability: high
+  security: required
+  cost: controlled

@@ -1,0 +1,13 @@
+data_product:
+  name: vehicle_health
+  owner: vehicle-domain
+  consumers:
+    - fleet
+    - service
+    - ml
+  freshness_sla: 5m
+  quality:
+    schema: versioned
+    freshness: required
+  security:
+    classification: internal

@@ -1,0 +1,11 @@
+domains:
+  vehicle:
+    owner: vehicle-domain
+  service:
+    owner: service-domain
+  warranty:
+    owner: warranty-domain
+  charging:
+    owner: ev-domain
+  sales:
+    owner: sales-domain

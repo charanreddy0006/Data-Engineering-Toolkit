@@ -1,0 +1,7 @@
+recovery:
+  fleet_operations:
+    rpo: 5m
+    rto: 15m
+  historical_bi:
+    rpo: 24h
+    rto: 8h

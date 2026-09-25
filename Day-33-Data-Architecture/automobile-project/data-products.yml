@@ -1,0 +1,13 @@
+products:
+  vehicle_health:
+    domain: vehicle
+    consumers: [fleet, service, ml]
+  service_performance:
+    domain: service
+    consumers: [dealer, executive_bi]
+  warranty_analytics:
+    domain: warranty
+    consumers: [quality, finance]
+  ev_charging:
+    domain: charging
+    consumers: [ev_operations, analytics]

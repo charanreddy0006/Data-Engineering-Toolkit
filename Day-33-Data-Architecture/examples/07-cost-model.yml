@@ -1,0 +1,14 @@
+cost_model:
+  storage:
+    raw: high
+    curated: medium
+    aggregates: low
+  compute:
+    batch: scheduled
+    streaming: continuous
+  optimization:
+    - incremental_processing
+    - partitioning
+    - compression
+    - lifecycle_policies
+    - right_sizing
